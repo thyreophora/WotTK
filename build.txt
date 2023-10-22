@@ -1,0 +1,3 @@
+displayName = Wrath of the Terrarian King
+author = thyreo
+version = 0.1
