@@ -1,1 +1,18 @@
-# This file will automatically update with entries for new content after a build and reload
+Items: {
+	TestMace: {
+		Tooltip: ""
+		DisplayName: Test Mace
+	}
+
+	TestMace2: {
+		Tooltip: ""
+		DisplayName: Test Mace2
+	}
+}
+
+Projectiles: {
+	TestMaceProj.DisplayName: Test Mace Proj
+	TestMaceProj2.DisplayName: Test Mace Proj2
+}
+
+DamageClasses.PaladinDamageType.DisplayName: paladin`s (melee) damage

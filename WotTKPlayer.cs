@@ -12,6 +12,7 @@ namespace WotTK
     {
         public bool hasPaladinTeamBuff;
         public int paladinsTeam;
+        public bool maceHitOnGround = false;
         public override void ResetEffects()
         {
             paladinsTeam = -1;
