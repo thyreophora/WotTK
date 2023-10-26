@@ -1,22 +1,16 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
-using static Humanizer.In;
 
 namespace WotTK.Content.Items.Weapons.Melee.Mace
 {
     public abstract class BaseMace : ModItem
     {
-        int Timer = 0;
         public virtual int MaceUseTime => 10;
         public override void SetDefaults()
         {
@@ -34,37 +28,6 @@ namespace WotTK.Content.Items.Weapons.Melee.Mace
         {
 
         }
-        /*public override void HoldItem(Player player)
-        {
-            if (player.itemAnimation == 0)
-            {
-                Timer = 0;
-                return;
-            }
-            if (player.itemAnimation == player.itemAnimationMax)
-            {
-                Timer = player.itemAnimationMax;
-            }
-            if (player.itemAnimation > 0)
-            {
-                Timer--;
-            }
-            if (Timer == 1)
-            {
-                HitOnGround(player);
-            }
-            //float cos = MathF.Cos(1.5f * Timer * MathF.PI / player.itemAnimationMax);
-            //float a = cos / 2f + 0.5f;
-            float a = MathF.Cos(4f * Timer * MathF.PI / player.itemAnimationMax / 3f - MathF.PI / 3f) / 2f + 0.5f;
-            if (Timer > 0)
-                player.itemAnimation = (int)(player.itemAnimationMax * a);
-            else
-                player.itemAnimation = 0;
-        }
-        public virtual void HitOnGround(Player player)
-        {
-
-        }*/
     }
     public abstract class BaseMaceProj<T> : ModProjectile where T : ModItem
     {
@@ -101,12 +64,10 @@ namespace WotTK.Content.Items.Weapons.Melee.Mace
         public override void SendExtraAI(BinaryWriter writer)
         {
             writer.Write((sbyte)Projectile.spriteDirection);
-            //writer.Write(Hited);
         }
         public override void ReceiveExtraAI(BinaryReader reader)
         {
             Projectile.spriteDirection = reader.ReadSByte();
-            //Hited = reader.ReadBoolean();
         }
         public override bool? Colliding(Rectangle projHitbox, Rectangle targetHitbox)
         {
@@ -144,20 +105,16 @@ namespace WotTK.Content.Items.Weapons.Melee.Mace
             return false;
         }
         private ref float Timer => ref Projectile.ai[0];
-        //private ref float Hited => ref Projectile.ai[1];
-        //private bool Hited = false;
         public override void OnSpawn(IEntitySource source)
         {
             Timer = Projectile.timeLeft = Owner.itemAnimationMax;
             Projectile.idStaticNPCHitCooldown = Owner.itemAnimationMax * 3 / 2;
             Projectile.spriteDirection = Main.MouseWorld.X > Owner.MountedCenter.X ? 1 : -1;
             Projectile.scale = Owner.HeldItem.scale;
-            //Timer = Owner.itemAnimationMax;
-            //Hited = false;
             Owner.GetModPlayer<WotTKPlayer>().maceHitOnGround = false;
-
-            //Main.NewText(Projectile.scale);
         }
+        //I don t understand how to fix 3x trigering of AI()
+        //extraUpdates is 0 but don t work
         public override void AI()
         {
             Owner.itemAnimation = 2;
@@ -193,6 +150,10 @@ namespace WotTK.Content.Items.Weapons.Melee.Mace
         public override void ModifyHitNPC(NPC target, ref NPC.HitModifiers modifiers)
         {
             modifiers.HitDirectionOverride = target.position.X > Owner.MountedCenter.X ? 1 : -1;
+        }
+        public virtual void SafeModifyHitNPC(NPC target, ref NPC.HitModifiers modifiers)
+        {
+
         }
     }
 }

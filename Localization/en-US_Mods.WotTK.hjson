@@ -1,18 +1,23 @@
 Items: {
 	TestMace: {
-		Tooltip: ""
 		DisplayName: Test Mace
+		Tooltip: Debug
 	}
 
 	TestMace2: {
-		Tooltip: ""
-		DisplayName: Test Mace2
+		DisplayName: Test Big Mace
+		Tooltip:
+			'''
+			Debug
+			2x Scale of Item
+			And low attack speed
+			'''
 	}
 }
 
 Projectiles: {
-	TestMaceProj.DisplayName: Test Mace Proj
-	TestMaceProj2.DisplayName: Test Mace Proj2
+	TestMaceProj.DisplayName: Test Mace
+	TestMaceProj2.DisplayName: Test Mace
 }
 
 DamageClasses.PaladinDamageType.DisplayName: paladin`s (melee) damage
