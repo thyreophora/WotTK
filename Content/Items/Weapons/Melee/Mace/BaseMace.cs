@@ -1,23 +1,17 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.GameContent.Biomes;
 using Terraria.ID;
 using Terraria.ModLoader;
-using static Humanizer.In;
 
 namespace WotTK.Content.Items.Weapons.Melee.Mace
 {
     public abstract class BaseMace : ModItem
     {
-        int Timer = 0;
         public virtual int MaceUseTime => 10;
         public virtual int MinimalPlayerLevel => 0;
         public override void SetDefaults()
@@ -97,12 +91,10 @@ namespace WotTK.Content.Items.Weapons.Melee.Mace
         public override void SendExtraAI(BinaryWriter writer)
         {
             writer.Write((sbyte)Projectile.spriteDirection);
-            //writer.Write(Hited);
         }
         public override void ReceiveExtraAI(BinaryReader reader)
         {
             Projectile.spriteDirection = reader.ReadSByte();
-            //Hited = reader.ReadBoolean();
         }
         public override bool? Colliding(Rectangle projHitbox, Rectangle targetHitbox)
         {
@@ -140,8 +132,6 @@ namespace WotTK.Content.Items.Weapons.Melee.Mace
             return false;
         }
         private ref float Timer => ref Projectile.ai[0];
-        //private ref float Hited => ref Projectile.ai[1];
-        //private bool Hited = false;
         public virtual int PositionOffset => 0;
         public override void OnSpawn(IEntitySource source)
         {
@@ -151,6 +141,8 @@ namespace WotTK.Content.Items.Weapons.Melee.Mace
             Projectile.scale = Owner.HeldItem.scale;
             Owner.GetModPlayer<WotTKPlayer>().maceHitOnGround = false;
         }
+        //I don t understand how to fix 3x trigering of AI()
+        //extraUpdates is 0 but don t work
         public override void AI()
         {
             Owner.itemAnimation = 2;
@@ -187,6 +179,10 @@ namespace WotTK.Content.Items.Weapons.Melee.Mace
         public override void ModifyHitNPC(NPC target, ref NPC.HitModifiers modifiers)
         {
             modifiers.HitDirectionOverride = target.position.X > Owner.MountedCenter.X ? 1 : -1;
+        }
+        public virtual void SafeModifyHitNPC(NPC target, ref NPC.HitModifiers modifiers)
+        {
+
         }
     }
 }
