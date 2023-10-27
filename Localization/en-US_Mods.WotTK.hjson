@@ -13,13 +13,18 @@ Items: {
 			And low attack speed
 			'''
 	}
+
+	DemonicBoneCrusher: {
+		Tooltip: ""
+		DisplayName: Demonic Bone Crusher
+	}
 }
 
 Projectiles: {
 	TestMaceProj.DisplayName: Test Mace
 	TestMaceProj2.DisplayName: Test Mace
+	DemonicBoneCrusherProj.DisplayName: Demonic Bone Crusher Proj
 }
 
-Events.LevelUp: "Level Up: now {0} level"
-
+Events.LevelUp: Level Up: now {0} level
 DamageClasses.PaladinDamageType.DisplayName: paladin`s (melee) damage

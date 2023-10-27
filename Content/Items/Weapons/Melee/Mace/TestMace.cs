@@ -33,7 +33,7 @@ namespace WotTK.Content.Items.Weapons.Melee.Mace
     }
     public class TestMaceProj : BaseMaceProj<TestMace>
     {
-        public override void HitOnGround(Player player, Vector2 hitCenter)
+        public override void HitOnGround(Player player, Vector2 hitCenter, ref int damage, ref float kb)
         {
             Main.NewText("Bonk!");
         }
@@ -62,11 +62,12 @@ namespace WotTK.Content.Items.Weapons.Melee.Mace
         }
     }
     public class TestMaceProj2 : BaseMaceProj<TestMace2> {
-        public override void HitOnGround(Player player, Vector2 hitCenter)
+        public override void HitOnGround(Player player, Vector2 hitCenter, ref int damage, ref float kb)
         {
             Main.NewText("BONK!!!");
             for (int i = 0; i < 12; i++)
                 Gore.NewGore(Projectile.GetSource_FromAI(), Projectile.Center, Vector2.UnitX.RotatedBy(MathHelper.TwoPi / 12 * i) * 2f, Main.rand.Next(61, 64));
+
         }
     }
     /*public class TestMace2 : ModItem

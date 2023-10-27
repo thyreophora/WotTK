@@ -36,8 +36,14 @@ namespace WotTK.Content.Items.Weapons.Melee.Mace
             float percent = 1f;
             int damage2 = damage;
 
+            if (MinimalPlayerLevel == 0)
+                percent = 1f;
             if (MinimalPlayerLevel <= 10)
+            {
                 percent = level / MinimalPlayerLevel;
+                if (level > MinimalPlayerLevel)
+                    percent = 1f;
+            }
             else
             {
                 percent = 1f - (MinimalPlayerLevel - level) / 10f;
@@ -166,13 +172,15 @@ namespace WotTK.Content.Items.Weapons.Melee.Mace
 
             Owner.SetCompositeArmFront(true, Player.CompositeArmStretchAmount.Full, Projectile.rotation - MathHelper.ToRadians(90f) * Projectile.spriteDirection);
 
-            if (Timer == (int)(Owner.itemAnimationMax * 0.7f) && !Owner.GetModPlayer<WotTKPlayer>().maceHitOnGround)
+            Vector2 hammerPos = Projectile.Center 
+                + new Vector2(Projectile.spriteDirection, 0).RotatedBy(rot) * (Projectile.Size.Length() / 2f - PositionOffset);
+            if ((Timer == (int)(Owner.itemAnimationMax * 0.7f) || hammerPos.Y - Owner.Center.Y - Owner.height / 2 < 1f) && !Owner.GetModPlayer<WotTKPlayer>().maceHitOnGround)
             {
-                HitOnGround(Owner, Owner.MountedCenter + new Vector2(Projectile.spriteDirection, 0).RotatedBy(rot) * Projectile.Size.Length() * Projectile.scale);
+                HitOnGround(Owner, Owner.MountedCenter + new Vector2(Projectile.spriteDirection, 0).RotatedBy(rot) * (Projectile.Size.Length() - PositionOffset) * Projectile.scale, ref Projectile.damage, ref Projectile.knockBack);
                 Owner.GetModPlayer<WotTKPlayer>().maceHitOnGround = true;
             }
         }
-        public virtual void HitOnGround(Player player, Vector2 hitCenter)
+        public virtual void HitOnGround(Player player, Vector2 hitCenter, ref int damage, ref float kb)
         {
 
         }
