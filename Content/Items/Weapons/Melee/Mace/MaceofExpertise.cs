@@ -10,12 +10,12 @@ using Terraria.ModLoader;
 
 namespace WotTK.Content.Items.Weapons.Melee.Mace
 {
-    public class TestMace : BaseMace
+    public class MaceofExpertise : BaseMace
     {
-        public override int MaceUseTime => 40;
+        public override int MaceUseTime => 50;
         public override void SafeSetDefaults()
         {
-            Item.width = Item.height = 40;
+            Item.width = Item.height = 50;
             Item.value = 4000;
             Item.rare = 0;
 
@@ -28,10 +28,10 @@ namespace WotTK.Content.Items.Weapons.Melee.Mace
             Item.damage = 10;
             Item.knockBack = 1f;
 
-            Item.shoot = ModContent.ProjectileType<TestMaceProj>();
+            Item.shoot = ModContent.ProjectileType<MaceProj>();
         }
     }
-    public class TestMaceProj : BaseMaceProj<TestMace>
+    public class MaceProj : BaseMaceProj<MaceofExpertise>
     {
         public override void HitOnGround(Player player, Vector2 hitCenter)
         {

@@ -13,13 +13,23 @@ Items: {
 			And low attack speed
 			'''
 	}
+
+	MaceOfExpertise: {
+		Tooltip: ""
+		DisplayName: Mace Of Expertise
+	}
+
+	MaceofExpertise: {
+		DisplayName: Maceof Expertise
+		Tooltip: ""
+	}
 }
 
 Projectiles: {
 	TestMaceProj.DisplayName: Test Mace
 	TestMaceProj2.DisplayName: Test Mace
+	MaceProj.DisplayName: Mace Proj
 }
 
-Events.LevelUp: "Level Up: now {0} level"
-
+Events.LevelUp: Level Up: now {0} level
 DamageClasses.PaladinDamageType.DisplayName: paladin`s (melee) damage
