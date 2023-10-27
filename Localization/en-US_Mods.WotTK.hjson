@@ -31,5 +31,6 @@ Projectiles: {
 	MaceProj.DisplayName: Mace Proj
 }
 
-Events.LevelUp: Level Up: now {0} level
+Events.LevelUp: "Level Up: now {0} level"
+
 DamageClasses.PaladinDamageType.DisplayName: paladin`s (melee) damage
