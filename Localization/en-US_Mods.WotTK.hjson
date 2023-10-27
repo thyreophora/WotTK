@@ -14,16 +14,22 @@ Items: {
 			'''
 	}
 
+
 	DemonicBoneCrusher: {
 		Tooltip: ""
 		DisplayName: Demonic Bone Crusher
 	}
 }
 
+	MaceofExpertise: {
+		DisplayName: Maceof Expertise
+		Tooltip: ""
+	}
+}
+
 Projectiles: {
 	TestMaceProj.DisplayName: Test Mace
 	TestMaceProj2.DisplayName: Test Mace
-	DemonicBoneCrusherProj.DisplayName: Demonic Bone Crusher Proj
 }
 
 Events.LevelUp: Level Up: now {0} level

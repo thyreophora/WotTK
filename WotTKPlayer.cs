@@ -18,6 +18,7 @@ namespace WotTK
 
         public int playerLevel = 1;
         public int playerLevelPoints = 0;
+        public int playerLevelPointsNeed { get => (int)(100 * MathF.Sqrt(playerLevel)); }
         public override void ResetEffects()
         {
             paladinsTeam = -1;
@@ -25,7 +26,7 @@ namespace WotTK
         }
         public override void PostUpdateEquips()
         {
-            if (playerLevelPoints >= 100 * MathF.Sqrt(playerLevel))
+            if (playerLevelPoints >= playerLevelPointsNeed)
             {
                 playerLevelPoints -= (int)(100 * MathF.Sqrt(playerLevel));
                 playerLevel++;
