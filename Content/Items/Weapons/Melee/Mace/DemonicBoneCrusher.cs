@@ -15,7 +15,7 @@ namespace WotTK.Content.Items.Weapons.Melee.Mace
         public override int MaceUseTime => 80;
         public override void SafeSetDefaults()
         {
-            Item.width = Item.height = 40;
+            Item.width = Item.height = 60;
             Item.value = 17500;
             Item.rare = ItemRarityID.Green;
 
@@ -24,16 +24,32 @@ namespace WotTK.Content.Items.Weapons.Melee.Mace
 
             Item.shoot = ModContent.ProjectileType<DemonicBoneCrusherProj>();
         }
+        public override void AddRecipes()
+        {
+            CreateRecipe()
+                .AddIngredient(ItemID.DemoniteBar, 8)
+                .AddIngredient(ItemID.Bone, 12)
+                .AddTile(TileID.Anvils)
+                .Register();
+            CreateRecipe()
+                .AddIngredient(ItemID.CrimtaneBar, 8)
+                .AddIngredient(ItemID.Bone, 12)
+                .AddTile(TileID.Anvils)
+                .Register();
+        }
     }
     public class DemonicBoneCrusherProj : BaseMaceProj<DemonicBoneCrusher>
     {
+        public override float HeadOffset => 8f;
         public override void HitOnGround(Player player, Vector2 hitCenter, ref int damage, ref float kb)
         {
             for (int i = 0; i < 3; i++)
             {
-                Projectile projectile = Projectile.NewProjectileDirect(Projectile.GetSource_FromAI(), hitCenter, -Vector2.UnitY * 3 + Main.rand.NextVector2Square(1, 1), ProjectileID.Bone, damage / 4, kb);
+                Projectile projectile = Projectile.NewProjectileDirect(Projectile.GetSource_FromAI(), hitCenter, -Vector2.UnitY * 5 + Main.rand.NextVector2Square(-1, 1), ProjectileID.Bone, damage / 4, kb);
                 projectile.DamageType = PaladinDamageType.Instance;
             }
+            Dust dust = Dust.NewDustPerfect(hitCenter, DustID.Flare, Scale: 2f);
+            dust.noGravity = true;
         }
     }
 }

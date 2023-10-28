@@ -12,7 +12,17 @@ namespace WotTK.Content.Items.Weapons.Melee.Mace
 {
     public abstract class BaseMace : ModItem
     {
+        /// <summary>
+        /// Use time of weapon
+        /// Used in Item.useTime and Item.useAnimation
+        /// </summary>
         public virtual int MaceUseTime => 10;
+        /// <summary>
+        /// Minimal level for use weapon
+        /// from [N-10; N] damage is [1 dmg; 100% of dmg]
+        /// at 0<N<10= damage is CurrectLvl/N % of dmg (max 100% or CurrectLvl==N)
+        /// At default value (0) damage always is 100%
+        /// </summary>
         public virtual int MinimalPlayerLevel => 0;
         public override void SetDefaults()
         {
@@ -38,7 +48,7 @@ namespace WotTK.Content.Items.Weapons.Melee.Mace
 
             if (MinimalPlayerLevel == 0)
                 percent = 1f;
-            if (MinimalPlayerLevel <= 10)
+            else if (MinimalPlayerLevel <= 10 && MinimalPlayerLevel > 0)
             {
                 percent = level / MinimalPlayerLevel;
                 if (level > MinimalPlayerLevel)
@@ -58,6 +68,7 @@ namespace WotTK.Content.Items.Weapons.Melee.Mace
                     percent = 1;
                 }
             }
+            //Main.NewText(percent);
             Projectile.NewProjectile(source, position, velocity, type, (int)(damage2 * percent), knockback, player.whoAmI);
             return false;
         }
@@ -105,14 +116,20 @@ namespace WotTK.Content.Items.Weapons.Melee.Mace
         public override bool? Colliding(Rectangle projHitbox, Rectangle targetHitbox)
         {
             Vector2 start = Owner.MountedCenter;
-            Vector2 end = start + Projectile.rotation.ToRotationVector2() * (Projectile.Size.Length() - PositionOffset) * Projectile.scale * Projectile.spriteDirection;
+            Vector2 end = start 
+                + Projectile.rotation.ToRotationVector2() * Projectile.Size.Length() * Projectile.scale * Projectile.spriteDirection
+                - Projectile.rotation.ToRotationVector2() * PositionOffset * Projectile.spriteDirection;
             float collisionPoint = 0f;
             return Collision.CheckAABBvLineCollision(targetHitbox.TopLeft(), targetHitbox.Size(), start, end, 10f * Projectile.scale, ref collisionPoint);
         }
         public override void CutTiles()
         {
             Vector2 start = Owner.MountedCenter;
-            Vector2 end = start + Projectile.rotation.ToRotationVector2() * (Projectile.Size.Length() - PositionOffset) * Projectile.scale * Projectile.spriteDirection;
+            //Vector2 end = start + Projectile.rotation.ToRotationVector2() * (Projectile.Size.Length() - PositionOffset) * Projectile.scale * Projectile.spriteDirection;
+            Vector2 end = start
+                + Projectile.rotation.ToRotationVector2() * Projectile.Size.Length() * Projectile.scale * Projectile.spriteDirection
+                - Projectile.rotation.ToRotationVector2() * PositionOffset * Projectile.spriteDirection;
+
             Utils.PlotTileLine(start, end, 10f * Projectile.scale, DelegateMethods.CutTiles);
         }
         public override bool PreDraw(ref Color lightColor)
@@ -138,14 +155,27 @@ namespace WotTK.Content.Items.Weapons.Melee.Mace
             return false;
         }
         private ref float Timer => ref Projectile.ai[0];
-        public virtual int PositionOffset => 0;
+        /// <summary>
+        /// Changes position in world regarding player
+        /// </summary>
+        public virtual float PositionOffset => 0;
+        /// <summary>
+        /// Changes position of HitOnGround
+        /// </summary>
+        public virtual float HeadOffset => 0;
+        //public virtual int ExtraRotationDegrees => 20;
         public override void OnSpawn(IEntitySource source)
         {
             Timer = Projectile.timeLeft = Owner.itemAnimationMax;
-            Projectile.idStaticNPCHitCooldown = Owner.itemAnimationMax * 3 / 2;
+            Projectile.idStaticNPCHitCooldown = Owner.itemAnimationMax;
             Projectile.spriteDirection = Main.MouseWorld.X > Owner.MountedCenter.X ? 1 : -1;
             Projectile.scale = Owner.HeldItem.scale;
             Owner.GetModPlayer<WotTKPlayer>().maceHitOnGround = false;
+
+
+            //Texture2D texture = ModContent.Request<Texture2D>(Texture).Value;
+            //Projectile.width = (int)(texture.Width * Projectile.scale);
+            //Projectile.height = (int)(texture.Height * Projectile.scale);
         }
         //I don t understand how to fix 3x trigering of AI()
         //extraUpdates is 0 but don t work
@@ -164,22 +194,52 @@ namespace WotTK.Content.Items.Weapons.Melee.Mace
             Timer--;
             float percent = Timer / Owner.itemAnimationMax;
             float rot = MathF.Pow(MathF.Sin(percent * percent * MathF.PI * Projectile.spriteDirection), 3) * MathF.PI - MathHelper.ToRadians(135f);
-            if (Projectile.spriteDirection < 0)
-                rot += MathHelper.PiOver2 * Projectile.spriteDirection;
+            rot += Projectile.spriteDirection < 0 ? -MathHelper.PiOver2 : 0;
+            //rot += MathHelper.ToRadians(15f) * Projectile.spriteDirection;
+
+            //Experiment (not finished)
+            //rot = MathF.Pow(MathF.Sin(percent * percent * MathF.PI * Projectile.spriteDirection), 3) * MathF.PI - MathHelper.ToRadians(ExtraRotationDegrees);
+            //rot += Projectile.spriteDirection < 0 ? (-ExtraRotationDegrees * 2) : ExtraRotationDegrees * 2;
+            //End of Experiment
+
             Projectile.rotation = rot;
             Projectile.Center = Owner.MountedCenter
-                + new Vector2(Projectile.spriteDirection, 0).RotatedBy(rot) * (Projectile.Size.Length() / 2f - PositionOffset) * Projectile.scale;
+                + new Vector2(Projectile.spriteDirection, 0).RotatedBy(rot) * Projectile.Size.Length() / 2.5f * Projectile.scale
+                - new Vector2(Projectile.spriteDirection, 0).RotatedBy(rot) * PositionOffset;
 
             Owner.SetCompositeArmFront(true, Player.CompositeArmStretchAmount.Full, Projectile.rotation - MathHelper.ToRadians(90f) * Projectile.spriteDirection);
 
             Vector2 hammerPos = Projectile.Center 
-                + new Vector2(Projectile.spriteDirection, 0).RotatedBy(rot) * (Projectile.Size.Length() / 2f - PositionOffset);
-            if ((Timer == (int)(Owner.itemAnimationMax * 0.7f) || hammerPos.Y - Owner.Center.Y - Owner.height / 2 < 1f) && !Owner.GetModPlayer<WotTKPlayer>().maceHitOnGround)
+                + new Vector2(Projectile.spriteDirection, 0).RotatedBy(rot) * Projectile.Size.Length() / 2f * Projectile.scale
+                - new Vector2(Projectile.spriteDirection, 0).RotatedBy(rot) * HeadOffset;
+            //float delta = hammerPos.Y - Owner.Center.Y + Owner.height / 2f;
+            if (
+                (
+                    Timer == (int)(Owner.itemAnimationMax * 0.6f) 
+                    /*|| 
+                    (
+                        Projectile.rotation > (Projectile.spriteDirection < 0 ? 0 : MathHelper.ToRadians(80)) 
+                        && 
+                        Projectile.rotation < (Projectile.spriteDirection < 0 ? MathHelper.ToRadians(10) : MathF.PI)
+                    )*/
+                ) 
+                && 
+                !Owner.GetModPlayer<WotTKPlayer>().maceHitOnGround
+            )
             {
-                HitOnGround(Owner, Owner.MountedCenter + new Vector2(Projectile.spriteDirection, 0).RotatedBy(rot) * (Projectile.Size.Length() - PositionOffset) * Projectile.scale, ref Projectile.damage, ref Projectile.knockBack);
+                //HitOnGround(Owner, Owner.MountedCenter + new Vector2(Projectile.spriteDirection, 0).RotatedBy(rot) * (Projectile.Size.Length() - PositionOffset) * Projectile.scale, ref Projectile.damage, ref Projectile.knockBack);
+                HitOnGround(Owner, hammerPos, ref Projectile.damage, ref Projectile.knockBack);
+                //HitOnGround(Owner, new Vector2(hammerPos.X, Owner.position.Y + Owner.height), ref Projectile.damage, ref Projectile.knockBack);
                 Owner.GetModPlayer<WotTKPlayer>().maceHitOnGround = true;
             }
         }
+        /// <summary>
+        /// Make a effect than hammer is horizontally
+        /// </summary>
+        /// <param name="player">The player</param>
+        /// <param name="hitCenter">Position of hammer head (can be changed by HeadOffset)</param>
+        /// <param name="damage">Damage of weapon</param>
+        /// <param name="kb">Knockback of Weapon</param>
         public virtual void HitOnGround(Player player, Vector2 hitCenter, ref int damage, ref float kb)
         {
 
@@ -187,6 +247,7 @@ namespace WotTK.Content.Items.Weapons.Melee.Mace
         public override void ModifyHitNPC(NPC target, ref NPC.HitModifiers modifiers)
         {
             modifiers.HitDirectionOverride = target.position.X > Owner.MountedCenter.X ? 1 : -1;
+            SafeModifyHitNPC(target, ref modifiers);
         }
         public virtual void SafeModifyHitNPC(NPC target, ref NPC.HitModifiers modifiers)
         {

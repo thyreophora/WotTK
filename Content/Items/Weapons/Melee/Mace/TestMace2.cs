@@ -14,7 +14,7 @@ namespace WotTK.Content.Items.Weapons.Melee.Mace
         public override int MaceUseTime => 100;
         public override void SafeSetDefaults()
         {
-            Item.width = Item.height = 40;
+            Item.width = Item.height = 64;
             Item.value = 4000;
             Item.rare = 0;
 
@@ -34,6 +34,7 @@ namespace WotTK.Content.Items.Weapons.Melee.Mace
     }
     public class TestMaceProj2 : BaseMaceProj<TestMace2>
     {
+        public override float HeadOffset => -10f;
         public override void HitOnGround(Player player, Vector2 hitCenter, ref int damage, ref float kb)
         {
             Main.NewText("BONK!!!");

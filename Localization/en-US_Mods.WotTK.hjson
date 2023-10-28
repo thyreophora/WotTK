@@ -1,35 +1,47 @@
 Items: {
-	TestMace: {
-		DisplayName: Test Mace
-		Tooltip: Debug
-	}
-
 	TestMace2: {
 		DisplayName: Test Big Mace
 		Tooltip:
 			'''
-			Debug
+			-Debug-
 			2x Scale of Item
 			And low attack speed
 			'''
 	}
 
-
 	DemonicBoneCrusher: {
-		Tooltip: ""
-		DisplayName: Demonic Bone Crusher
+		DisplayName: Demonic Bone-Crusher
+		Tooltip: Create a bones on hit on ground
 	}
-}
 
 	MaceofExpertise: {
-		DisplayName: Maceof Expertise
+		DisplayName: Mace of Expertise
 		Tooltip: ""
+	}
+
+	LevelShow: {
+		DisplayName: Level Show
+		Tooltip:
+			'''
+			-Debug-
+			Left Click to show your currect level and points
+			'''
+	}
+
+	LevelReset: {
+		DisplayName: Level Reset
+		Tooltip:
+			'''
+			-Debug-
+			Left Click to reset your progress
+			'''
 	}
 }
 
 Projectiles: {
-	TestMaceProj.DisplayName: Test Mace
 	TestMaceProj2.DisplayName: Test Mace
+	MaceofExpertiseProj.DisplayName: Mace of Expertise
+	DemonicBoneCrusherProj.DisplayName: Demonic Bone-Crusher
 }
 
 Events.LevelUp: Level Up: now {0} level

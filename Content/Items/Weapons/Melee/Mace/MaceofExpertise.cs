@@ -18,21 +18,25 @@ namespace WotTK.Content.Items.Weapons.Melee.Mace
             Item.width = Item.height = 50;
             Item.value = 4000;
             Item.rare = 0;
+            Item.scale = 1.5f;
 
-            /*Item.useTime = Item.useAnimation = 40;
-            Item.useStyle = ItemUseStyleID.Shoot;
-            Item.UseSound = SoundID.Item1;
-            Item.noUseGraphic = true;
-            Item.noMelee = true;*/
-
-            Item.damage = 10;
+            Item.damage = 25;
             Item.knockBack = 1f;
 
             Item.shoot = ModContent.ProjectileType<MaceofExpertiseProj>();
         }
+        public override void AddRecipes()
+        {
+            CreateRecipe()
+                .AddIngredient(ItemID.GoldBar, 12)
+                .AddIngredient(ItemID.Ruby)
+                .AddTile(TileID.Anvils)
+                .Register();
+        }
     }
     public class MaceofExpertiseProj : BaseMaceProj<MaceofExpertise>
     {
+        public override float PositionOffset => -10f;
         public override void HitOnGround(Player player, Vector2 hitCenter, ref int damage, ref float kb)
         {
             //Main.NewText("Bonk!");
