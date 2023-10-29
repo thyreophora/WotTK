@@ -1,0 +1,16 @@
+Wand subclass (magic)
+- the projectiles will have a small cooldown to prepare the attack, all the wands will follow the enemy and heal some points of mana 
+* Idea by tryreo
+
+Mace subclass (melee)
+- Subclass of melee swords
+  - Animation like sword but returning back to the original position
+- Has effect on hit on ground (horisontal position)
+- And can use effect on hit (by projectile)
+* Idea by WitherTaco
+
+Paladin class
+- He is subclass of Melee (can use Melee class accesories and buffs)
+- He uses Mace
+- Can add buffs for you team (like paladin`s shield accessory)
+* Idea by tryreo and upgraded by WitherTaco

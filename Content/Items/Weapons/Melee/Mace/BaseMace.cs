@@ -163,11 +163,19 @@ namespace WotTK.Content.Items.Weapons.Melee.Mace
         /// Changes position of HitOnGround
         /// </summary>
         public virtual float HeadOffset => 0;
-        //public virtual int ExtraRotationDegrees => 20;
+        /// <summary>
+        /// Can value of i-frames per hit
+        /// That is, you can make more hits on target per use
+        /// </summary>
+        public virtual float ImmunityFramePercent => 1f;
+        public virtual void ExtraRotation(float baseSinRot, ref float rot)
+        {
+
+        }
         public override void OnSpawn(IEntitySource source)
         {
             Timer = Projectile.timeLeft = Owner.itemAnimationMax;
-            Projectile.idStaticNPCHitCooldown = Owner.itemAnimationMax;
+            Projectile.idStaticNPCHitCooldown = (int)(Owner.itemAnimationMax * ImmunityFramePercent);
             Projectile.spriteDirection = Main.MouseWorld.X > Owner.MountedCenter.X ? 1 : -1;
             Projectile.scale = Owner.HeldItem.scale;
             Owner.GetModPlayer<WotTKPlayer>().maceHitOnGround = false;
@@ -191,36 +199,37 @@ namespace WotTK.Content.Items.Weapons.Melee.Mace
                 return;
             }
 
+            //Base Rotation
             Timer--;
             float percent = Timer / Owner.itemAnimationMax;
-            float rot = MathF.Pow(MathF.Sin(percent * percent * MathF.PI * Projectile.spriteDirection), 3) * MathF.PI - MathHelper.ToRadians(135f);
+            float baseSinRot = MathF.Pow(MathF.Sin(percent * percent * MathF.PI * Projectile.spriteDirection), 3) * MathF.PI;
+            float rot = baseSinRot - MathHelper.ToRadians(135f);
             rot += Projectile.spriteDirection < 0 ? -MathHelper.PiOver2 : 0;
+            ExtraRotation(baseSinRot, ref rot);
+            Vector2 center = Owner.MountedCenter
+                + new Vector2(Projectile.spriteDirection, 0).RotatedBy(rot) * Projectile.Size.Length() / 2f * Projectile.scale;
             //rot += MathHelper.ToRadians(15f) * Projectile.spriteDirection;
 
-            //Experiment (not finished)
-            //rot = MathF.Pow(MathF.Sin(percent * percent * MathF.PI * Projectile.spriteDirection), 3) * MathF.PI - MathHelper.ToRadians(ExtraRotationDegrees);
-            //rot += Projectile.spriteDirection < 0 ? (-ExtraRotationDegrees * 2) : ExtraRotationDegrees * 2;
-            //End of Experiment
-
+            //Base AI
             Projectile.rotation = rot;
-            Projectile.Center = Owner.MountedCenter
-                + new Vector2(Projectile.spriteDirection, 0).RotatedBy(rot) * Projectile.Size.Length() / 2.5f * Projectile.scale
-                - new Vector2(Projectile.spriteDirection, 0).RotatedBy(rot) * PositionOffset;
+            Projectile.Center = center
+                - new Vector2(Projectile.spriteDirection, 0).RotatedBy(rot) * (PositionOffset + 2f * Projectile.scale);
 
+            //Hand pos
             Owner.SetCompositeArmFront(true, Player.CompositeArmStretchAmount.Full, Projectile.rotation - MathHelper.ToRadians(90f) * Projectile.spriteDirection);
 
-            Vector2 hammerPos = Projectile.Center 
+            //Hammer Effect
+            Vector2 hammerPos = center
                 + new Vector2(Projectile.spriteDirection, 0).RotatedBy(rot) * Projectile.Size.Length() / 2f * Projectile.scale
                 - new Vector2(Projectile.spriteDirection, 0).RotatedBy(rot) * HeadOffset;
-            //float delta = hammerPos.Y - Owner.Center.Y + Owner.height / 2f;
             if (
                 (
-                    Timer == (int)(Owner.itemAnimationMax * 0.6f) 
+                    Timer == (int)(Owner.itemAnimationMax * 0.65f) 
                     /*|| 
                     (
-                        Projectile.rotation > (Projectile.spriteDirection < 0 ? 0 : MathHelper.ToRadians(80)) 
+                        Projectile.rotation > (Projectile.spriteDirection > 0 ? -0.1f : MathHelper.ToRadians(-350)) 
                         && 
-                        Projectile.rotation < (Projectile.spriteDirection < 0 ? MathHelper.ToRadians(10) : MathF.PI)
+                        Projectile.rotation < (Projectile.spriteDirection > 0 ? MathHelper.ToRadians(10) : -MathHelper.TwoPi)
                     )*/
                 ) 
                 && 
@@ -228,8 +237,8 @@ namespace WotTK.Content.Items.Weapons.Melee.Mace
             )
             {
                 //HitOnGround(Owner, Owner.MountedCenter + new Vector2(Projectile.spriteDirection, 0).RotatedBy(rot) * (Projectile.Size.Length() - PositionOffset) * Projectile.scale, ref Projectile.damage, ref Projectile.knockBack);
-                HitOnGround(Owner, hammerPos, ref Projectile.damage, ref Projectile.knockBack);
-                //HitOnGround(Owner, new Vector2(hammerPos.X, Owner.position.Y + Owner.height), ref Projectile.damage, ref Projectile.knockBack);
+                //HitOnGround(Owner, hammerPos, ref Projectile.damage, ref Projectile.knockBack);
+                HitOnGround(Owner, new Vector2(hammerPos.X, Owner.position.Y + Owner.height - 5f), ref Projectile.damage, ref Projectile.knockBack);
                 Owner.GetModPlayer<WotTKPlayer>().maceHitOnGround = true;
             }
         }

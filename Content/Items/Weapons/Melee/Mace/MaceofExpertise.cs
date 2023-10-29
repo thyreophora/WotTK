@@ -36,7 +36,7 @@ namespace WotTK.Content.Items.Weapons.Melee.Mace
     }
     public class MaceofExpertiseProj : BaseMaceProj<MaceofExpertise>
     {
-        public override float PositionOffset => -10f;
+        //public override float PositionOffset => -10f;
         public override void HitOnGround(Player player, Vector2 hitCenter, ref int damage, ref float kb)
         {
             //Main.NewText("Bonk!");

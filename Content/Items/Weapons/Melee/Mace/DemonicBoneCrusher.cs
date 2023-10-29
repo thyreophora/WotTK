@@ -40,7 +40,7 @@ namespace WotTK.Content.Items.Weapons.Melee.Mace
     }
     public class DemonicBoneCrusherProj : BaseMaceProj<DemonicBoneCrusher>
     {
-        public override float HeadOffset => 8f;
+        //public override float HeadOffset => 8f;
         public override void HitOnGround(Player player, Vector2 hitCenter, ref int damage, ref float kb)
         {
             for (int i = 0; i < 3; i++)

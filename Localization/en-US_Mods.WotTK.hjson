@@ -46,3 +46,19 @@ Projectiles: {
 
 Events.LevelUp: Level Up: now {0} level
 DamageClasses.PaladinDamageType.DisplayName: paladin`s (melee) damage
+
+Configs: {
+	WotTKConfig: {
+		DisplayName: Wot T K Config
+
+		LevelBarX: {
+			Label: Level Bar X
+			Tooltip: ""
+		}
+
+		LevelBarY: {
+			Label: Level Bar Y
+			Tooltip: ""
+		}
+	}
+}

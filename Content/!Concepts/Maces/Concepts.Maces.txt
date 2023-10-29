@@ -1,0 +1,25 @@
+Stage:		
+Getting:	
+Effect:		
+
+
+Cracked Sledge
+Stage:		Pre-Boss
+Getting:	Craft: Stone + Any Wood
+Effect:		NaN
+
+Goblin Smasher
+Stage:		Pre-Boss?
+Getting:	Goblin
+Effect:		Has pre-HM and HM vesions. Increase damage while invasion is active
+
+Demonic Bone-Crusher
+Stage:		Post-Skeletron
+Getting:	Craft: Demonite/Crimtane + Bone
+Effect:		Create bones on hit on ground
+
+Gorian Pulvizer
+Stage:		Early HM
+Getting:	WoF drop
+Effect:		
+
