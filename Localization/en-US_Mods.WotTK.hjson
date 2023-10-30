@@ -32,9 +32,28 @@ Items: {
 		DisplayName: Level Reset
 		Tooltip:
 			'''
-			-Debug-
+			- Debug - 
 			Left Click to reset your progress
 			'''
+	}
+
+	DarkIronBar: {
+		DisplayName: Dark Iron Bar
+		Tooltip:
+			'''
+			Item Level: 10
+			Used to craft Dark Iron themed armory & weaponry
+			'''
+	}
+
+	GoblinSmasher: {
+		DisplayName: Goblin Smasher
+		Tooltip: ""
+	}
+
+	CrackedSledge: {
+		DisplayName: Cracked Sledge
+		Tooltip: ""
 	}
 }
 
@@ -48,6 +67,8 @@ Projectiles: {
 	SlapHand.DisplayName: Slap Hand
 	TentacleSpike.DisplayName: Tentacle Spike
 	WaffleIron.DisplayName: Waffle Iron
+	GoblinSmasherProj.DisplayName: Goblin Smasher Proj
+	CrackedSledgeProj.DisplayName: Cracked Sledge Proj
 }
 
 Events.LevelUp: Level Up: now {0} level
