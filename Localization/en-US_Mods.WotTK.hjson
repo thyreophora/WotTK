@@ -3,7 +3,7 @@ Items: {
 		DisplayName: Test Big Mace
 		Tooltip:
 			'''
-			-Debug-
+			- Debug -
 			2x Scale of Item
 			And low attack speed
 			'''
@@ -22,7 +22,7 @@ Items: {
 		DisplayName: Mace of Expertise
 		Tooltip:
 			'''
-			- Item Level 15 -
+			- Item Level 10 -
 			Deals sacred damage to the enemy, healing you 3 hp per hit
 			'''
 	}
@@ -31,7 +31,7 @@ Items: {
 		DisplayName: Level Show
 		Tooltip:
 			'''
-			-Debug-
+			- Debug -
 			Left Click to show your currect level and points
 			'''
 	}
@@ -49,7 +49,7 @@ Items: {
 		DisplayName: Dark Iron Bar
 		Tooltip:
 			'''
-			- Item Level 10 -
+			- Item Level 15 -
 			Used to craft Dark Iron themed armory & weaponry
 			'''
 	}
@@ -58,8 +58,8 @@ Items: {
 		DisplayName: Goblin Smasher
 		Tooltip:
 			'''
-			- Item Level 0 -
-			Spawns an Acorn on Hit
+			- Item Level 15 -
+			Increase damage while invasion is active
 			'''
 	}
 
@@ -67,7 +67,7 @@ Items: {
 		DisplayName: Cracked Sledge
 		Tooltip:
 			'''
-			- Item Level 5 -
+			- Item Level 0 -
 			Huge knockback, hitting with the mace will shoot rocks
 			'''
 	}
@@ -83,6 +83,8 @@ Projectiles: {
 	SlapHand.DisplayName: Slap Hand
 	TentacleSpike.DisplayName: Tentacle Spike
 	WaffleIron.DisplayName: Waffle Iron
+	CrackedSledgeProj.DisplayName: Cracked Sledge Proj
+	GoblinSmasherProj.DisplayName: Goblin Smasher Proj
 }
 
 Events.LevelUp: Level Up: now {0} level
@@ -109,6 +111,11 @@ Configs: {
 
 		Pos: {
 			Label: Pos
+			Tooltip: ""
+		}
+
+		Debug: {
+			Label: Debug
 			Tooltip: ""
 		}
 	}

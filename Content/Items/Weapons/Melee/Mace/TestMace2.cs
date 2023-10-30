@@ -35,7 +35,7 @@ namespace WotTK.Content.Items.Weapons.Melee.Mace
     public class TestMaceProj2 : BaseMaceProj<TestMace2>
     {
         public override float HeadOffset => -10f;
-        public override void HitOnGround(Player player, Vector2 hitCenter, ref int damage, ref float kb)
+        public override void OnHitGround(Player player, Vector2 hitCenter, ref int damage, ref float kb)
         {
             Main.NewText("BONK!!!");
             for (int i = 0; i < 12; i++)

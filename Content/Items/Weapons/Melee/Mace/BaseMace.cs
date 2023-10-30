@@ -68,6 +68,8 @@ namespace WotTK.Content.Items.Weapons.Melee.Mace
                     percent = 1;
                 }
             }
+            if (WotTKConfig.Instance.Debug)
+                damage2 = damage;
             Projectile.NewProjectile(source, position, velocity, type, (int)(damage2 * percent), knockback, player.whoAmI);
             return false;
         }
@@ -75,7 +77,7 @@ namespace WotTK.Content.Items.Weapons.Melee.Mace
     public abstract class BaseMaceProj<T> : ModProjectile where T : ModItem
     {
         public override string Texture => ModContent.GetInstance<T>().Texture;
-        private Player Owner => Main.player[Projectile.owner];
+        public Player Owner => Main.player[Projectile.owner];
         public override void SetStaticDefaults()
         {
             ProjectileID.Sets.HeldProjDoesNotUsePlayerGfxOffY[Type] = true;
@@ -167,6 +169,7 @@ namespace WotTK.Content.Items.Weapons.Melee.Mace
         /// That is, you can make more hits on target per use
         /// </summary>
         public virtual float ImmunityFramePercent => 1f;
+        public Vector2 HammerCenter = new Vector2(0, 0);
         public virtual void ExtraRotation(float baseSinRot, ref float rot)
         {
 
@@ -218,7 +221,7 @@ namespace WotTK.Content.Items.Weapons.Melee.Mace
             Owner.SetCompositeArmFront(true, Player.CompositeArmStretchAmount.Full, Projectile.rotation - MathHelper.ToRadians(90f) * Projectile.spriteDirection);
 
             //Hammer Effect
-            Vector2 hammerPos = center
+            HammerCenter = center
                 + new Vector2(Projectile.spriteDirection, 0).RotatedBy(rot) * Projectile.Size.Length() / 2f * Projectile.scale
                 - new Vector2(Projectile.spriteDirection, 0).RotatedBy(rot) * HeadOffset;
             if (
@@ -237,7 +240,7 @@ namespace WotTK.Content.Items.Weapons.Melee.Mace
             {
                 //HitOnGround(Owner, Owner.MountedCenter + new Vector2(Projectile.spriteDirection, 0).RotatedBy(rot) * (Projectile.Size.Length() - PositionOffset) * Projectile.scale, ref Projectile.damage, ref Projectile.knockBack);
                 //HitOnGround(Owner, hammerPos, ref Projectile.damage, ref Projectile.knockBack);
-                HitOnGround(Owner, new Vector2(hammerPos.X, Owner.position.Y + Owner.height - 5f), ref Projectile.damage, ref Projectile.knockBack);
+                OnHitGround(Owner, new Vector2(HammerCenter.X, Owner.position.Y + Owner.height - 5f), ref Projectile.damage, ref Projectile.knockBack);
                 Owner.GetModPlayer<WotTKPlayer>().maceHitOnGround = true;
             }
         }
@@ -248,7 +251,7 @@ namespace WotTK.Content.Items.Weapons.Melee.Mace
         /// <param name="hitCenter">Position of hammer head (can be changed by HeadOffset)</param>
         /// <param name="damage">Damage of weapon</param>
         /// <param name="kb">Knockback of Weapon</param>
-        public virtual void HitOnGround(Player player, Vector2 hitCenter, ref int damage, ref float kb)
+        public virtual void OnHitGround(Player player, Vector2 hitCenter, ref int damage, ref float kb)
         {
 
         }

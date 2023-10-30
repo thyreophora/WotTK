@@ -26,5 +26,8 @@ namespace WotTK
 
         [DefaultValue(true)]
         public bool ChangeVanillaWeaponsToMace;
+
+        [DefaultValue(true)]
+        public bool Debug;
     }
 }
