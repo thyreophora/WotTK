@@ -11,7 +11,7 @@ using Terraria.GameContent.UI.Elements;
 using Terraria.ModLoader;
 using Terraria.UI;
 
-namespace WotTK.Content.UI
+namespace WotTK.Content.UI.LevelBar
 {
     public class LevelBarPart : UIImage
     {
@@ -45,27 +45,44 @@ namespace WotTK.Content.UI
         private UIText text3;
         public override void OnInitialize()
         {
+            string way = "WotTK/Content/UI/LevelBar/";
+
             dragPanel = new DraggableUIPanel();
             dragPanel.SetPadding(0);
             SetRectangle(dragPanel, left: WotTKConfig.Instance.LevelBarX * Main.screenWidth, top: WotTKConfig.Instance.LevelBarY * Main.screenHeight, width: 208f, height: 16f);
             //SetRectangle(dragPanel, left: 400, top: 100, width: 208f, height: 16f);
             //CoinCounterPanel.BackgroundColor = new Color(73, 94, 171);
 
-            barFrame = new UIImage(ModContent.Request<Texture2D>("WotTK/Content/UI/LevelBarFrame"));
+            barFrame = new UIImage(ModContent.Request<Texture2D>(way + "LevelBarFrame"));
             SetRectangle(barFrame, 0, 0, 208, 12);
             dragPanel.Append(barFrame);
 
             for (int i = 0; i < 100; i++)
             {
-                barPart[i] = new LevelBarPart(ModContent.Request<Texture2D>("WotTK/Content/UI/LevelBarPart" + ((i == 0 || i == 99) ? "Edge" : "")), 0.01f * (i + 1));
+                barPart[i] = new LevelBarPart(ModContent.Request<Texture2D>(way + "LevelBarPart" + (i == 0 || i == 99 ? "Edge" : "")), 0.01f * (i + 1));
                 SetRectangle(barPart[i], i * 2 + 4, 4, 2, 4);
-                dragPanel.Append((UIImage)barPart[i]);
+                dragPanel.Append(barPart[i]);
                 //barPart[i].
             }
 
+            iconLevel = new UIImage(ModContent.Request<Texture2D>(way + "LevelBarIconLevel"));
+            SetRectangle(iconLevel, 0, 20f, 32, 12);
+            text2 = new UIText("", 0.8f);
+            SetRectangle(text2, 35, 0, 1, 1);
+            iconLevel.Append(text2);
+            dragPanel.Append(iconLevel);
+
+            iconXP = new UIImage(ModContent.Request<Texture2D>(way + "LevelBarIconPoints"));
+            SetRectangle(iconXP, 100, 20f, 22, 12);
+            text3 = new UIText("", 0.8f);
+            SetRectangle(text3, 25, 0, 1, 1);
+            iconXP.Append(text3);
+            dragPanel.Append(iconXP);
+
+
             text = new UIText("Level: 0\nPoints: 0/0", 0.8f);
             SetRectangle(text, 0, -20, 208, 32);
-            dragPanel.Append(text); //Can be removed to remove text from UI
+            //dragPanel.Append(text); //Can be removed to remove text from UI
 
             Append(dragPanel);
         }
@@ -78,9 +95,12 @@ namespace WotTK.Content.UI
             base.Update(gameTime);
             dragPanel.SetConfigValue(ref WotTKConfig.Instance.LevelBarX, ref WotTKConfig.Instance.LevelBarY);
 
+            var modPlayer = Main.LocalPlayer.GetModPlayer<WotTKPlayer>();
+            text2.SetText(modPlayer.playerLevel.ToString());
+            text3.SetText(modPlayer.playerLevelPoints.ToString() + "/" + modPlayer.playerLevelPointsNeed.ToString());
+
             if (dragPanel.mouseOn)
             {
-                var modPlayer = Main.LocalPlayer.GetModPlayer<WotTKPlayer>();
                 text.SetText(LevelBarSystem.levelBarText.Format(modPlayer.playerLevel, modPlayer.playerLevelPoints, modPlayer.playerLevelPointsNeed));
             }
             else

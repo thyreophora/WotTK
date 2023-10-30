@@ -201,7 +201,7 @@ namespace WotTK.Content.Items.Weapons.Melee.Mace
             //Base Rotation
             Timer--;
             float percent = Timer / Owner.itemAnimationMax;
-            float baseSinRot = MathF.Pow(MathF.Sin(percent * percent * MathF.PI * Projectile.spriteDirection), 3) * MathF.PI;
+            float baseSinRot = MathF.Pow(MathF.Sin(percent * percent * MathF.PI * Projectile.spriteDirection), 5) * MathF.PI;
             float rot = baseSinRot - MathHelper.ToRadians(135f);
             rot += Projectile.spriteDirection < 0 ? -MathHelper.PiOver2 : 0;
             ExtraRotation(baseSinRot, ref rot);

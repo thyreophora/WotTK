@@ -5,7 +5,7 @@ using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.UI;
 
-namespace WotTK.Content.UI
+namespace WotTK.Content.UI.LevelBar
 {
     [Autoload(Side = ModSide.Client)]
     public class LevelBarSystem : ModSystem
@@ -32,7 +32,8 @@ namespace WotTK.Content.UI
             {
                 layers.Insert(levelBarIndex, new LegacyGameInterfaceLayer(
                     "WotTK: Level Bar",
-                    delegate {
+                    delegate
+                    {
                         levelBarUserInterface.Draw(Main.spriteBatch, new GameTime());
                         return true;
                     },

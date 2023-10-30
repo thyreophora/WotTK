@@ -48,8 +48,8 @@ namespace WotTK.Content.Items.Weapons.Melee.Mace
                 Projectile projectile = Projectile.NewProjectileDirect(Projectile.GetSource_FromAI(), hitCenter, -Vector2.UnitY * 5 + Main.rand.NextVector2Square(-1, 1), ProjectileID.Bone, damage / 4, kb);
                 projectile.DamageType = PaladinDamageType.Instance;
             }
-            Dust dust = Dust.NewDustPerfect(hitCenter, DustID.Flare, Scale: 2f);
-            dust.noGravity = true;
+            //Dust dust = Dust.NewDustPerfect(hitCenter, DustID.Flare, Scale: 2f);
+            //dust.noGravity = true;
         }
     }
 }

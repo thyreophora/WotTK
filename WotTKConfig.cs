@@ -10,18 +10,19 @@ namespace WotTK
         public override ConfigScope Mode => ConfigScope.ClientSide;
         public static WotTKConfig Instance;
 
-        [DefaultValue(1f)]
+        [DefaultValue(0.5f)]
         public float LevelBarX;
 
-        [DefaultValue(1f)]
+        [DefaultValue(0.4f)]
         public float LevelBarY; 
-        [Range(0f, 1f)]
+
+        /*[Range(0f, 1f)]
         [Increment(.1f)]
         [DrawTicks]
         public Vector2 Pos
         {
             get => new Vector2(LevelBarX, LevelBarY);
-        }
+        }*/
 
         [DefaultValue(true)]
         public bool ChangeVanillaWeaponsToMace;
