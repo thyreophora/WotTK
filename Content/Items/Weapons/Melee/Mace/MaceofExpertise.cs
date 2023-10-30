@@ -13,7 +13,7 @@ namespace WotTK.Content.Items.Weapons.Melee.Mace
     public class MaceofExpertise : BaseMace
     {
         public override int MaceUseTime => 50;
-        public override int MinimalPlayerLevel => 5;
+        public override int MinimalPlayerLevel => 10;
         public override void SafeSetDefaults()
         {
             Item.width = Item.height = 50;
@@ -37,9 +37,14 @@ namespace WotTK.Content.Items.Weapons.Melee.Mace
     }
     public class MaceofExpertiseProj : BaseMaceProj<MaceofExpertise>
     {
-        public override void HitOnGround(Player player, Vector2 hitCenter, ref int damage, ref float kb)
+        public override void OnHitGround(Player player, Vector2 hitCenter, ref int damage, ref float kb)
         {
 
+        }
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
+        {
+            base.OnHitNPC(target, hit, damageDone);
+            Owner.HealEffect(3);
         }
     }
 }

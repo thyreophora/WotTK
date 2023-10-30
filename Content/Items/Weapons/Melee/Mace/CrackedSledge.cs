@@ -36,26 +36,24 @@ namespace WotTK.Content.Items.Weapons.Melee.Mace
     }
     public class CrackedSledgeProj : BaseMaceProj<CrackedSledge>
     {
-        //public override float PositionOffset => -10f;
-        public override void HitOnGround(Player player, Vector2 hitCenter, ref int damage, ref float kb)
+        public override void OnHitGround(Player player, Vector2 hitCenter, ref int damage, ref float kb)
         {
-            //Main.NewText("Bonk!");
+            for (int i = 0; i < 5; i++)
+            {
+                int index = Projectile.NewProjectile(Projectile.GetSource_FromThis(), hitCenter, -Vector2.UnitY * 4 + Main.rand.NextVector2Square(-0.5f, 0.5f), ProjectileID.DeerclopsRangedProjectile, damage, kb, player.whoAmI, Main.rand.Next(0, 3));
+                Main.projectile[index].extraUpdates = 3;
+                Main.projectile[index].hostile = false;
+                Main.projectile[index].friendly = true;
+
+            }
+        }
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
+        {
+            Vector2 vel = (target.Center - HammerCenter).SafeNormalize(Vector2.Zero) * 3f;
+            int index = Projectile.NewProjectile(Projectile.GetSource_FromThis(), HammerCenter, vel + Main.rand.NextVector2Square(-0.5f, 0.5f), ProjectileID.DeerclopsRangedProjectile, Projectile.damage, Projectile.knockBack, Owner.whoAmI, Main.rand.Next(0, 3));
+            Main.projectile[index].extraUpdates = 3;
+            Main.projectile[index].hostile = false;
+            Main.projectile[index].friendly = true;
         }
     }
-    /*public class TestMace2 : ModItem
-    {
-        public override void SetDefaults()
-        {
-            Item.width = Item.height = 40;
-            Item.value = 4000;
-            Item.rare = 0;
-
-            Item.useTime = Item.useAnimation = 40;
-            Item.useStyle = ItemUseStyleID.Swing;
-
-            Item.damage = 10;
-            Item.DamageType = DamageClass.Melee;
-            Item.knockBack = 1f;
-        }
-    }*/
 }

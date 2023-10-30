@@ -22,13 +22,17 @@ namespace WotTK.Content.Materials
 
         public override void AddRecipes()
         {
-            Recipe recipe = CreateRecipe();
+            CreateRecipe()
+                .AddIngredient(ItemID.IronBar, 2)
+                .AddIngredient(ItemID.DemoniteBar, 2)
+                .AddTile(TileID.Anvils)
+                .Register();
+            CreateRecipe()
+                .AddIngredient(ItemID.IronBar, 2)
+                .AddIngredient(ItemID.CrimtaneBar, 2)
+                .AddTile(TileID.Anvils)
+                .Register();
 
-            recipe.AddIngredient(ItemID.IronBar, 4);
-            recipe.AddIngredient(ItemID.DemoniteBar, 4);
-            recipe.AddTile(TileID.Anvils);
-
-            recipe.Register();
         }
     }
 }
