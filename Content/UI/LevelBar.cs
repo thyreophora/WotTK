@@ -38,11 +38,16 @@ namespace WotTK.Content.UI
         public DraggableUIPanel dragPanel;
         private UIImage barFrame;
         private LevelBarPart[] barPart = new LevelBarPart[100];
+        private UIText text;
+        private UIImage iconLevel;
+        private UIText text2;
+        private UIImage iconXP;
+        private UIText text3;
         public override void OnInitialize()
         {
             dragPanel = new DraggableUIPanel();
             dragPanel.SetPadding(0);
-            SetRectangle(dragPanel, left: WotTKConfig.Instance.LevelBarX, top: WotTKConfig.Instance.LevelBarY, width: 208f, height: 16f);
+            SetRectangle(dragPanel, left: WotTKConfig.Instance.LevelBarX * Main.screenWidth, top: WotTKConfig.Instance.LevelBarY * Main.screenHeight, width: 208f, height: 16f);
             //SetRectangle(dragPanel, left: 400, top: 100, width: 208f, height: 16f);
             //CoinCounterPanel.BackgroundColor = new Color(73, 94, 171);
 
@@ -58,6 +63,10 @@ namespace WotTK.Content.UI
                 //barPart[i].
             }
 
+            text = new UIText("Level: 0\nPoints: 0/0", 0.8f);
+            SetRectangle(text, 0, -20, 208, 32);
+            dragPanel.Append(text); //Can be removed to remove text from UI
+
             Append(dragPanel);
         }
         /*public override void Update(GameTime gameTime)
@@ -68,6 +77,16 @@ namespace WotTK.Content.UI
         {
             base.Update(gameTime);
             dragPanel.SetConfigValue(ref WotTKConfig.Instance.LevelBarX, ref WotTKConfig.Instance.LevelBarY);
+
+            if (dragPanel.mouseOn)
+            {
+                var modPlayer = Main.LocalPlayer.GetModPlayer<WotTKPlayer>();
+                text.SetText(LevelBarSystem.levelBarText.Format(modPlayer.playerLevel, modPlayer.playerLevelPoints, modPlayer.playerLevelPointsNeed));
+            }
+            else
+            {
+                text.SetText("");
+            }
         }
         private void SetRectangle(UIElement uiElement, float left, float top, float width, float height)
         {

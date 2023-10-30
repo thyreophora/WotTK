@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Terraria;
+using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.UI;
 
@@ -11,11 +12,14 @@ namespace WotTK.Content.UI
     {
         private UserInterface levelBarUserInterface;
         internal LevelBar levelBar;
+        public static LocalizedText levelBarText { get; private set; }
         public override void Load()
         {
             levelBar = new LevelBar();
             levelBarUserInterface = new UserInterface();
             levelBarUserInterface.SetState(levelBar);
+
+            levelBarText ??= Language.GetOrRegister($"Mods.WotTK.UI.LevelBar");
         }
         public override void UpdateUI(GameTime gameTime)
         {

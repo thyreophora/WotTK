@@ -7,14 +7,15 @@ namespace WotTK.Content.UI
 {
     public class DraggableUIPanel : UIPanel
     {
-        private Vector2 offset;
-        private bool dragging;
+        public Vector2 offset;
+        public bool dragging;
+        public bool mouseOn;
         public void SetConfigValue(ref float refX, ref float refY)
         {
             if (dragging)
             {
-                refX = Main.mouseX;
-                refY = Main.mouseY;
+                refX = (float)Main.mouseX / Main.screenWidth;
+                refY = (float)Main.mouseY / Main.screenHeight;
                 //Recalculate();
             }
         }
@@ -35,6 +36,18 @@ namespace WotTK.Content.UI
         {
             offset = new Vector2(evt.MousePosition.X - Left.Pixels, evt.MousePosition.Y - Top.Pixels);
             dragging = true;
+        }
+
+        public override void MouseOver(UIMouseEvent evt)
+        {
+            base.MouseOver(evt);
+            mouseOn = true;
+        }
+
+        public override void MouseOut(UIMouseEvent evt)
+        {
+            base.MouseOut(evt);
+            mouseOn = false;
         }
 
         private void DragEnd(UIMouseEvent evt)

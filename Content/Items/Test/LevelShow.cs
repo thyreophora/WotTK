@@ -11,6 +11,10 @@ namespace WotTK.Content.Items.Test
 {
     public class LevelShow : ModItem
     {
+        public override bool IsLoadingEnabled(Mod mod)
+        {
+            return false;
+        }
         public override void SetDefaults()
         {
             Item.width = Item.height = 32;

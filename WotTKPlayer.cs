@@ -19,11 +19,15 @@ namespace WotTK
 
         public int playerLevel = 1;
         public int playerLevelPoints = 0;
-        public int playerLevelPointsNeed { get => (int)(1500 * MathF.Sqrt(playerLevel)); }
+        public int playerLevelPointsNeed { get => (int)(1000 * MathF.Pow(playerLevel, 0.75f) * (Main.masterMode ? 3f : (Main.expertMode ? 2f : 1f))); }
 
         public int agility;
         public int intellect;
         public int strength;
+
+        public bool _spawnTentacleSpikesClone;
+        public bool _spawnTentacleSpikesClone2;
+        public static Point[] _tentacleSpikesMax5 = new Point[5];
         public override void ResetEffects()
         {
             paladinsTeam = -1;
@@ -33,6 +37,14 @@ namespace WotTK
             intellect = 0;
             strength = 0;
         }
+        /*public override void UpdateEquips()
+        {
+            if (Player.HeldItem.type == 5094 && Player.itemAnimation == 2 && !_spawnTentacleSpikesClone)
+            {
+                Main.NewText("Trigger");
+                _spawnTentacleSpikesClone = true;
+            }
+        }*/
         public static readonly SoundStyle LevelUpSound = new SoundStyle("WotTK/Sounds/Custom/LevelUp");
         public override void PostUpdateEquips()
         {
@@ -74,22 +86,26 @@ namespace WotTK
         }
         public override void OnHitNPCWithItem(Item item, NPC target, NPC.HitInfo hit, int damageDone)
         {
-            if (target.life <= hit.Damage && target.GetGlobalNPC<WotTKGlobalNPC>().canGetExp)
-            {
-                playerLevelPoints += (int)target.value;
-                target.GetGlobalNPC<WotTKGlobalNPC>().canGetExp = false;
-            }
+            TriggerPointUp(target, hit);
         }
         public override void OnHitNPCWithProj(Projectile proj, NPC target, NPC.HitInfo hit, int damageDone)
         {
+            TriggerPointUp(target, hit);
+        }
+        private void TriggerPointUp(NPC target, NPC.HitInfo hit)
+        {
             if (target.life <= hit.Damage && target.GetGlobalNPC<WotTKGlobalNPC>().canGetExp)
             {
-                playerLevelPoints += (int)target.value;
+                int vvalue = (int)target.value / 2;
+                if (target.boss)
+                    vvalue /= 2;
+                playerLevelPoints += vvalue;
                 target.GetGlobalNPC<WotTKGlobalNPC>().canGetExp = false;
             }
         }
         public override void ModifyShootStats(Item item, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback)
         {
+            //Main.ViewSize
             if (item.DamageType == DamageClass.Melee || item.DamageType == DamageClass.MeleeNoSpeed) 
             {
                 velocity *= (1f + agility * 0.01f + strength * 0.01f); 

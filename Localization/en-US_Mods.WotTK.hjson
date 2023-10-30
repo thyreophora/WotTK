@@ -42,23 +42,45 @@ Projectiles: {
 	TestMaceProj2.DisplayName: Test Mace
 	MaceofExpertiseProj.DisplayName: Mace of Expertise
 	DemonicBoneCrusherProj.DisplayName: Demonic Bone-Crusher
+	ZombieArm.DisplayName: Zombie Arm
+	HamBat.DisplayName: Ham Bat
+	PurpleClubberfish.DisplayName: Purple Clubberfish
+	SlapHand.DisplayName: Slap Hand
+	TentacleSpike.DisplayName: Tentacle Spike
+	WaffleIron.DisplayName: Waffle Iron
 }
 
 Events.LevelUp: Level Up: now {0} level
-DamageClasses.PaladinDamageType.DisplayName: paladin`s (melee) damage
+DamageClasses.PaladinDamageType.DisplayName: paladin`s melee damage
 
 Configs: {
 	WotTKConfig: {
-		DisplayName: Wot T K Config
+		DisplayName: Configs
 
 		LevelBarX: {
-			Label: Level Bar X
+			Label: Level Bar X Position
 			Tooltip: ""
 		}
 
 		LevelBarY: {
-			Label: Level Bar Y
+			Label: Level Bar Y Position
+			Tooltip: ""
+		}
+
+		ChangeVanillaWeaponsToMace: {
+			Tooltip: ""
+			Label: Change Vanilla Weapons To Mace
+		}
+
+		Pos: {
+			Label: Pos
 			Tooltip: ""
 		}
 	}
 }
+
+UI.LevelBar:
+	'''
+	Level: {0}
+	Points: {1}/{2}
+	'''

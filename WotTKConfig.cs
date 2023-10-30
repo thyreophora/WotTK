@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel;
+using System.Numerics;
+using Terraria;
 using Terraria.ModLoader.Config;
 
 namespace WotTK
@@ -13,10 +10,20 @@ namespace WotTK
         public override ConfigScope Mode => ConfigScope.ClientSide;
         public static WotTKConfig Instance;
 
-        [DefaultValue(400)]
+        [DefaultValue(1f)]
         public float LevelBarX;
 
-        [DefaultValue(100)]
-        public float LevelBarY;
+        [DefaultValue(1f)]
+        public float LevelBarY; 
+        [Range(0f, 1f)]
+        [Increment(.1f)]
+        [DrawTicks]
+        public Vector2 Pos
+        {
+            get => new Vector2(LevelBarX, LevelBarY);
+        }
+
+        [DefaultValue(true)]
+        public bool ChangeVanillaWeaponsToMace;
     }
 }

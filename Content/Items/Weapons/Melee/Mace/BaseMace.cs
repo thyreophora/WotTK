@@ -33,7 +33,7 @@ namespace WotTK.Content.Items.Weapons.Melee.Mace
             Item.UseSound = SoundID.Item1;
             Item.noUseGraphic = true;
             Item.noMelee = true;
-            Item.channel = true;
+            //Item.channel = true;
             SafeSetDefaults();
         }
         public virtual void SafeSetDefaults()
@@ -68,7 +68,6 @@ namespace WotTK.Content.Items.Weapons.Melee.Mace
                     percent = 1;
                 }
             }
-            //Main.NewText(percent);
             Projectile.NewProjectile(source, position, velocity, type, (int)(damage2 * percent), knockback, player.whoAmI);
             return false;
         }
@@ -154,7 +153,7 @@ namespace WotTK.Content.Items.Weapons.Melee.Mace
 
             return false;
         }
-        private ref float Timer => ref Projectile.ai[0];
+        public ref float Timer => ref Projectile.ai[0];
         /// <summary>
         /// Changes position in world regarding player
         /// </summary>
