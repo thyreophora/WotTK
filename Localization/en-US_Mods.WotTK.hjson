@@ -11,12 +11,20 @@ Items: {
 
 	DemonicBoneCrusher: {
 		DisplayName: Demonic Bone-Crusher
-		Tooltip: Create a bones on hit on ground
+		Tooltip:
+			'''
+			- Item Level 20 -
+			Spawns a bunch of Bones on hit, that sticks to the enemy, dealing 25 damage constantly for 4 seconds.
+			'''
 	}
 
 	MaceofExpertise: {
 		DisplayName: Mace of Expertise
-		Tooltip: ""
+		Tooltip:
+			'''
+			- Item Level 15 -
+			Deals sacred damage to the enemy, healing you 3 hp per hit
+			'''
 	}
 
 	LevelShow: {
@@ -41,19 +49,27 @@ Items: {
 		DisplayName: Dark Iron Bar
 		Tooltip:
 			'''
-			Item Level: 10
+			- Item Level 10 -
 			Used to craft Dark Iron themed armory & weaponry
 			'''
 	}
 
 	GoblinSmasher: {
 		DisplayName: Goblin Smasher
-		Tooltip: ""
+		Tooltip:
+			'''
+			- Item Level 0 -
+			Spawns an Acorn on Hit
+			'''
 	}
 
 	CrackedSledge: {
 		DisplayName: Cracked Sledge
-		Tooltip: ""
+		Tooltip:
+			'''
+			- Item Level 5 -
+			Huge knockback, hitting with the mace will shoot rocks
+			'''
 	}
 }
 

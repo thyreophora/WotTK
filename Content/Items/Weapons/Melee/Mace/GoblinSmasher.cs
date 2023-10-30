@@ -20,16 +20,16 @@ namespace WotTK.Content.Items.Weapons.Melee.Mace
             Item.rare = 3;
             Item.scale = 0.8f;
 
-            Item.damage = 30;
-            Item.knockBack = 3f;
+            Item.damage = 15;
+            Item.knockBack = 1f;
 
             Item.shoot = ModContent.ProjectileType<GoblinSmasherProj>();
         }
         public override void AddRecipes()
         {
             CreateRecipe()
-                .AddIngredient(ItemID.GoldBar, 12)
-                .AddIngredient(ItemID.Ruby)
+                .AddIngredient(ItemID.Wood, 15)
+                .AddIngredient(ItemID.Acorn, 6)
                 .AddTile(TileID.Anvils)
                 .Register();
         }

@@ -20,7 +20,7 @@ namespace WotTK.Content.Items.Weapons.Melee.Mace
             Item.rare = 1;
             Item.scale = 1f;
 
-            Item.damage = 35;
+            Item.damage = 20;
             Item.knockBack = 2f;
 
             Item.shoot = ModContent.ProjectileType<CrackedSledgeProj>();
