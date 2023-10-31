@@ -113,6 +113,11 @@ Configs: {
 			Label: Pos
 			Tooltip: ""
 		}
+
+		Debug: {
+			Tooltip: ""
+			Label: Debug
+		}
 	}
 }
 
