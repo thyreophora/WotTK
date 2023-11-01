@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Mono.Cecil;
+using System.Collections.ObjectModel;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
@@ -74,6 +75,19 @@ namespace WotTK
                 Projectile.NewProjectile(player.GetSource_ItemUse(item), position, vel, type, damage, knockback, player.whoAmI);
                 return false;
             }*/
+            return true;
+        }
+        public override bool PreDrawTooltip(Item item, ReadOnlyCollection<TooltipLine> lines, ref int x, ref int y)
+        {
+            foreach (TooltipLine line in lines) 
+            { 
+                if (line.Mod == "Terraria" && line.Name == "ItemName")
+                {
+                    //Main.Text
+                    //Main.spriteBatch.DrawString(Main.)
+                    return false;
+                }
+            }
             return true;
         }
     }
