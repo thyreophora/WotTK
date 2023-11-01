@@ -37,7 +37,7 @@ namespace WotTK.Content.UI.LevelBar
     {
         public DraggableUIPanel dragPanel;
         private UIImage barFrame;
-        private LevelBarPart[] barPart = new LevelBarPart[100];
+        private LevelBarPart[] barPart = new LevelBarPart[250];
         private UIText text;
         private UIImage iconLevel;
         private UIText text2;
@@ -57,9 +57,9 @@ namespace WotTK.Content.UI.LevelBar
             SetRectangle(barFrame, 0, 0, 512, 12);
             dragPanel.Append(barFrame);
 
-            for (int i = 0; i < 100; i++)
+            for (int i = 0; i < 250; i++)
             {
-                barPart[i] = new LevelBarPart(ModContent.Request<Texture2D>(way + "LevelBarPart" + (i == 0 || i == 9 ? "Edge" : "")), 0.01f * (i + 2));
+                barPart[i] = new LevelBarPart(ModContent.Request<Texture2D>(way + "LevelBarPart" + (i == 0 || i == 245 ? "Edge" : "")), 0.004f * (i + 2));
                 SetRectangle(barPart[i], i * 5 + 12, 8, 2, 0);
                 dragPanel.Append(barPart[i]);
                 //barPart[i].
