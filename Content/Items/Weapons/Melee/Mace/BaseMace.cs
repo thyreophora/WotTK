@@ -177,6 +177,7 @@ namespace WotTK.Content.Items.Weapons.Melee.Mace
         public override void OnSpawn(IEntitySource source)
         {
             Timer = Projectile.timeLeft = Owner.itemAnimationMax;
+            Projectile.timeLeft++;
             Projectile.idStaticNPCHitCooldown = (int)(Owner.itemAnimationMax * ImmunityFramePercent);
             Projectile.spriteDirection = Main.MouseWorld.X > Owner.MountedCenter.X ? 1 : -1;
             Projectile.scale = Owner.HeldItem.scale;

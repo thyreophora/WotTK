@@ -77,7 +77,7 @@ namespace WotTK
             }*/
             return true;
         }
-        public override bool PreDrawTooltip(Item item, ReadOnlyCollection<TooltipLine> lines, ref int x, ref int y)
+        /*public override bool PreDrawTooltip(Item item, ReadOnlyCollection<TooltipLine> lines, ref int x, ref int y)
         {
             foreach (TooltipLine line in lines) 
             { 
@@ -89,6 +89,6 @@ namespace WotTK
                 }
             }
             return true;
-        }
+        }*/
     }
 }
