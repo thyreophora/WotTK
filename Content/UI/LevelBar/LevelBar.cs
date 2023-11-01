@@ -49,18 +49,18 @@ namespace WotTK.Content.UI.LevelBar
 
             dragPanel = new DraggableUIPanel();
             dragPanel.SetPadding(0);
-            SetRectangle(dragPanel, left: WotTKConfig.Instance.LevelBarX * Main.screenWidth, top: WotTKConfig.Instance.LevelBarY * Main.screenHeight, width: 208f, height: 16f);
+            SetRectangle(dragPanel, left: WotTKConfig.Instance.LevelBarX * Main.screenWidth, top: WotTKConfig.Instance.LevelBarY * Main.screenHeight, width: 512f, height: 20f);
             //SetRectangle(dragPanel, left: 400, top: 100, width: 208f, height: 16f);
             //CoinCounterPanel.BackgroundColor = new Color(73, 94, 171);
 
             barFrame = new UIImage(ModContent.Request<Texture2D>(way + "LevelBarFrame"));
-            SetRectangle(barFrame, 0, 0, 208, 12);
+            SetRectangle(barFrame, 0, 0, 512, 12);
             dragPanel.Append(barFrame);
 
             for (int i = 0; i < 100; i++)
             {
-                barPart[i] = new LevelBarPart(ModContent.Request<Texture2D>(way + "LevelBarPart" + (i == 0 || i == 99 ? "Edge" : "")), 0.01f * (i + 1));
-                SetRectangle(barPart[i], i * 2 + 4, 4, 2, 4);
+                barPart[i] = new LevelBarPart(ModContent.Request<Texture2D>(way + "LevelBarPart" + (i == 0 || i == 9 ? "Edge" : "")), 0.01f * (i + 2));
+                SetRectangle(barPart[i], i * 5 + 12, 8, 90, 0);
                 dragPanel.Append(barPart[i]);
                 //barPart[i].
             }
@@ -73,7 +73,7 @@ namespace WotTK.Content.UI.LevelBar
             dragPanel.Append(iconLevel);
 
             iconXP = new UIImage(ModContent.Request<Texture2D>(way + "LevelBarIconPoints"));
-            SetRectangle(iconXP, 100, 20f, 22, 12);
+            SetRectangle(iconXP, 410, 20f, 22, 12);
             text3 = new UIText("", 0.8f);
             SetRectangle(text3, 25, 0, 1, 1);
             iconXP.Append(text3);
