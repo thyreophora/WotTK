@@ -8,14 +8,14 @@ using Terraria.ObjectData;
 
 namespace WotTK.Content.Tiles
 {
-    public class DarkIronOreItem : ModItem
+    public class ObsidiumOreItem : ModItem
     {
         public override void SetDefaults()
         {
-            Item.DefaultToPlaceableTile(ModContent.TileType<DarkIronOre>());
+            Item.DefaultToPlaceableTile(ModContent.TileType<ObsidiumOre>());
             Item.width = Item.height = 52;
             Item.value = 0;
-            Item.rare = ItemRarityID.White;
+            Item.rare = ItemRarityID.Green;
 
         }
     }

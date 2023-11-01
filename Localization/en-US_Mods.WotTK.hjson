@@ -76,6 +76,21 @@ Items: {
 		DisplayName: Dark Iron Ore Item
 		Tooltip: ""
 	}
+
+	BasePickaxe: {
+		DisplayName: Base Pickaxe
+		Tooltip: ""
+	}
+
+	ObsidiumOreItem: {
+		DisplayName: Obsidium Ore Item
+		Tooltip: ""
+	}
+
+	SaroniteOreItem: {
+		DisplayName: Saronite Ore Item
+		Tooltip: ""
+	}
 }
 
 Projectiles: {
@@ -131,4 +146,9 @@ UI.LevelBar:
 	Level: {0}
 	Points: {1}/{2}
 	'''
-Tiles.DarkIronOre.MapEntry: Dark Iron Ore
+
+Tiles: {
+	DarkIronOre.MapEntry: Dark Iron Ore
+	ObsidiumOre.MapEntry: Obsidium Ore
+	SaroniteOre.MapEntry: Saronite Ore
+}
