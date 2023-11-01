@@ -60,7 +60,7 @@ namespace WotTK.Content.UI.LevelBar
             for (int i = 0; i < 100; i++)
             {
                 barPart[i] = new LevelBarPart(ModContent.Request<Texture2D>(way + "LevelBarPart" + (i == 0 || i == 9 ? "Edge" : "")), 0.01f * (i + 2));
-                SetRectangle(barPart[i], i * 5 + 12, 8, 90, 0);
+                SetRectangle(barPart[i], i * 5 + 12, 8, 2, 0);
                 dragPanel.Append(barPart[i]);
                 //barPart[i].
             }
