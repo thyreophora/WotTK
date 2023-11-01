@@ -71,6 +71,11 @@ Items: {
 			Huge knockback, hitting with the mace will shoot rocks
 			'''
 	}
+
+	DarkIronOreItem: {
+		DisplayName: Dark Iron Ore Item
+		Tooltip: ""
+	}
 }
 
 Projectiles: {
@@ -126,3 +131,4 @@ UI.LevelBar:
 	Level: {0}
 	Points: {1}/{2}
 	'''
+Tiles.DarkIronOre.MapEntry: Dark Iron Ore
