@@ -91,6 +91,16 @@ Items: {
 		DisplayName: Saronite Ore Item
 		Tooltip: ""
 	}
+
+	DarkIronNugget: {
+		Tooltip: ""
+		DisplayName: Dark Iron Nugget
+	}
+
+	MiningPick: {
+		DisplayName: Mining Pick
+		Tooltip: ""
+	}
 }
 
 Projectiles: {
@@ -105,6 +115,7 @@ Projectiles: {
 	WaffleIron.DisplayName: Waffle Iron
 	GoblinSmasherProj.DisplayName: Goblin Smasher Proj
 	CrackedSledgeProj.DisplayName: Cracked Sledge Proj
+	MiningPickProj.DisplayName: Mining Pick Proj
 }
 
 Events.LevelUp: Level Up: now {0} level
