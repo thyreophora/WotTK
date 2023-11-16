@@ -23,5 +23,5 @@ Magic weapons
 - Smoked Eye Shooter - Shoots a eye that explodes into flesh particles on the ground.
 
 Ranged weapons
-Intestinal Spitter - Crimson Themed Weapon (Fleshy and some ichor in it)
-Venomspitter - Spider theme Weapon (Shoots green spider spits that inflicts venom)
+- Intestinal Spitter - Crimson Themed Weapon (Fleshy and some ichor in it)
+- Venomspitter - Spider theme Weapon (Shoots green spider spits that inflicts venom)
