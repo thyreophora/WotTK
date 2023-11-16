@@ -149,8 +149,13 @@ Items: {
 	}
 
 	SmokedEyeShooter: {
-		Tooltip: "Shoots a homing eye which split into bloody fragments on impact"
+		Tooltip: Shoots a homing eye which split into bloody fragments on impact
 		DisplayName: Smoked Eye Shooter
+	}
+
+	Blink: {
+		DisplayName: Blink
+		Tooltip: ""
 	}
 }
 
@@ -224,5 +229,10 @@ Buffs: {
 	BlackAmnestyMark: {
 		DisplayName: Black Amnesty Mark
 		Description: Mods.WotTK.Buffs.BlackAmnestyMark.Description
+	}
+
+	BlinkCooldown: {
+		DisplayName: Blink Cooldown
+		Description: Mods.WotTK.Buffs.BlinkCooldown.Description
 	}
 }

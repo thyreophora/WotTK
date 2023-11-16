@@ -2,6 +2,8 @@
 using Terraria.ModLoader;
 using Terraria;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using System;
 using WotTK.Common.Utils;
 
 namespace WotTK.Content.Items.Weapons.Magic.Staffs
@@ -43,13 +45,39 @@ namespace WotTK.Content.Items.Weapons.Magic.Staffs
             Projectile.friendly = true;
             Projectile.timeLeft = 600;
             Projectile.DamageType = DamageClass.Magic;
-            Projectile.tileCollide = false;
+            Projectile.tileCollide = true;
+
+            ProjectileID.Sets.TrailingMode[Projectile.type] = 2;
+            ProjectileID.Sets.TrailCacheLength[Projectile.type] = 6;
 
         }
+
+
+        public override bool PreDraw(ref Color lightColor)
+        { // doing light trail
+            SpriteBatch spriteBatch = Main.spriteBatch;
+            Texture2D texture = (Texture2D)ModContent.Request<Texture2D>("WotTK/Textures/SmookedTrail");
+            Vector2 drawOrigin = new Vector2(texture.Width * 0.5f, texture.Height * 0.5f);
+            SpriteEffects effects = (Projectile.spriteDirection == -1) ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
+            for (int k = 0; k < Projectile.oldPos.Length - 1; k++)
+            {
+                Vector2 drawPos = Projectile.oldPos[k] + new Vector2(Projectile.width, Projectile.height) / 2f + Vector2.UnitY * Projectile.gfxOffY - Main.screenPosition;
+                Color color = new Color(255, 0, 0); // R, G, B 
+                spriteBatch.Draw(texture, drawPos, null, color * 0.45f, Projectile.oldRot[k] + (float)Math.PI / 2, drawOrigin, Projectile.scale - k / (float)Projectile.oldPos.Length, effects, 0f);
+                spriteBatch.Draw(texture, drawPos - Projectile.oldPos[k] * 0.5f + Projectile.oldPos[k + 1] * 0.5f, null, color * 0.45f, Projectile.oldRot[k] * 0.5f + Projectile.oldRot[k + 1] * 0.5f + (float)Math.PI / 2, drawOrigin, Projectile.scale - k / (float)Projectile.oldPos.Length, effects, 0f);
+            }
+            return true;
+        }
+
         public int TargetIndex = -1;
         public override void AI()
         {
             Projectile.rotation = Projectile.velocity.ToRotation();
+
+            int num623 = Dust.NewDust(Projectile.Center, 4, 4, DustID.Blood, 0f, 0f, 0, default, 1f);
+
+
+            Color dustColor = new Color(255, 0, 0); // R, G, B 
 
             if (TargetIndex >= 0)
             {
@@ -93,7 +121,11 @@ namespace WotTK.Content.Items.Weapons.Magic.Staffs
             Projectile.timeLeft = 600;
             Projectile.DamageType = DamageClass.Magic;
             Projectile.tileCollide = true;
+
+            ProjectileID.Sets.TrailingMode[Projectile.type] = 2;
+            ProjectileID.Sets.TrailCacheLength[Projectile.type] = 4;
         }
+
         public override void AI()
         {
             Dust dust = Dust.NewDustPerfect(Projectile.Center, DustID.Blood, Projectile.velocity / 2);
