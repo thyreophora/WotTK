@@ -14,3 +14,14 @@ Paladin class
 - He uses Mace
 - Can add buffs for you team (like paladin`s shield accessory)
 * Idea by tryreo and upgraded by WitherTaco
+
+
+Magic weapons
+- Skycaller - Shoots a Star 
+- Freezing Shard - Shoots 3 homing ice projectiles
+- Blackbone Wand - Shoots a pair of bones that sticks to the enemy and deals broken armor to the enemy
+- Smoked Eye Shooter - Shoots a eye that explodes into flesh particles on the ground.
+
+Ranged weapons
+Intestinal Spitter - Crimson Themed Weapon (Fleshy and some ichor in it)
+Venomspitter - Spider theme Weapon (Shoots green spider spits that inflicts venom)
