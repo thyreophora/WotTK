@@ -13,8 +13,10 @@ Items: {
 		DisplayName: Demonic Bone-Crusher
 		Tooltip:
 			'''
-			- Item Level 20 -
-			Spawns a bunch of Bones on hit, that sticks to the enemy, dealing 25 damage constantly for 4 seconds.
+			Requires [c/00FF00:Level 10]
+			[c/87CEEB:Crafting Reagent]
+			[c/FFD700:+1] Agility
+			Your Attacks will spawn bones!
 			'''
 	}
 
@@ -22,8 +24,10 @@ Items: {
 		DisplayName: Mace of Expertise
 		Tooltip:
 			'''
-			- Item Level 15 -
-			Deals sacred damage to the enemy, healing you 3 hp per hit
+			Requires [c/00FF00:Level 3]
+			[c/87CEEB:Crafting Reagent]
+			[c/FFD700:+1] Agility
+			Deals Sacred Damage on Hit, healing you 5hp per hit.
 			'''
 	}
 
@@ -31,8 +35,8 @@ Items: {
 		DisplayName: Level Show
 		Tooltip:
 			'''
-			-Debug-
-			Left Click to show your currect level and points
+			[c/8B0000:DEBUG ITEM]
+			[c/87CEEB:Left CLick to See your Progressionl]
 			'''
 	}
 
@@ -40,8 +44,8 @@ Items: {
 		DisplayName: Level Reset
 		Tooltip:
 			'''
-			- Debug - 
-			Left Click to reset your progress
+			[c/8B0000:DEBUG ITEM]
+			[c/87CEEB:Resets your Level]
 			'''
 	}
 
@@ -49,8 +53,10 @@ Items: {
 		DisplayName: Dark Iron Bar
 		Tooltip:
 			'''
-			- Item Level 10 -
-			Used to craft Dark Iron themed armory & weaponry
+			Requires [c/00FF00:Level 10]
+			[c/87CEEB:Crafting Reagent]
+			Max Stack - 1000
+			Sell Price - [i/s5:72]
 			'''
 	}
 
@@ -58,8 +64,8 @@ Items: {
 		DisplayName: Goblin Smasher
 		Tooltip:
 			'''
-			- Item Level 0 -
-			Spawns an Acorn on Hit
+			Requires [c/00FF00:Level 0]
+			[c/87CEEB:Crafting Reagent]
 			'''
 	}
 
@@ -67,8 +73,10 @@ Items: {
 		DisplayName: Cracked Sledge
 		Tooltip:
 			'''
-			- Item Level 5 -
-			Huge knockback, hitting with the mace will shoot rocks
+			Requires [c/00FF00:Level 6]
+			[c/87CEEB:Crafting Reagent]
+			[c/FFD700:+2] Agility
+			Huge Knockback, Summons rocks on hit.
 			'''
 	}
 
@@ -93,8 +101,14 @@ Items: {
 	}
 
 	DarkIronNugget: {
-		Tooltip: ""
 		DisplayName: Dark Iron Nugget
+		Tooltip:
+			'''
+			Requires [c/00FF00:Level 8]
+			[c/87CEEB:Crafting Reagent]
+			Max Stack - 1000
+			Sell Price - [i/s3:72]
+			'''
 	}
 
 	MiningPick: {
@@ -111,9 +125,10 @@ Items: {
 		DisplayName: Underworld Band
 		Tooltip:
 			'''
-			- Item Level 5 -
-			Increases Agility by 4
-			Increases Intellect by 6
+			Requires [c/00FF00:Level 5]
+			[c/87CEEB:Crafting Reagent]
+			[c/FFD700:+4] Agility
+			[c/FFD700:+6] Intellect
 			'''
 	}
 
@@ -121,9 +136,10 @@ Items: {
 		DisplayName: Mystic Bracelet
 		Tooltip:
 			'''
-			- Item Level 5 -
-			Increases Agility by 10
-			Increases Strength by 6
+			Requires [c/00FF00:Level 5]
+			[c/87CEEB:Crafting Reagent]
+			[c/FFD700:+10] Agility
+			[c/FFD700:+6] Strength
 			'''
 	}
 
@@ -131,11 +147,11 @@ Items: {
 		DisplayName: Archaedic Stone
 		Tooltip:
 			'''
-			- Item Level 10 -
-			Increases Agility by 12
-			Increases Strength by 10
-			Increases Intellect by 8
-			Increases Mana by 25
+			Requires [c/00FF00:Level 10]
+			[c/FFD700:+12] Agility
+			[c/FFD700:+10] Strength
+			[c/FFD700:+10] Intellect
+			[c/FFD700:+25] Mana
 			'''
 	}
 
@@ -143,19 +159,32 @@ Items: {
 		DisplayName: Black Anvil
 		Tooltip:
 			'''
-			- Item Level 10 -
-			May the Black Anvil bless ye.
+			Requires [c/00FF00:Level 13]
+			Guarded by [c/87CEEB:Lord Incendius,]this anvil is required to craft all Dark Iron items. 
+			It is made up of only the purest Dark iron, smelted and refined with secrets only revealed to
+			the Dark Iron clan's most trusted miners and blacksmiths.
+			The clan considers the anvil to be sacred,
+			and Dark Iron dwarves may sometimes say "May the Black Anvil bless ye."
 			'''
 	}
 
 	SmokedEyeShooter: {
-		Tooltip: Shoots a homing eye which split into bloody fragments on impact
 		DisplayName: Smoked Eye Shooter
+		Tooltip:
+			'''
+			Requires [c/00FF00:Level 10]
+			[c/FFD700:+3] Intellect
+			Shoots a homing eye which splits into bloody fragments on impact
+			'''
 	}
 
 	Blink: {
 		DisplayName: Blink
-		Tooltip: ""
+		Tooltip:
+			'''
+			Requires [c/00FF00:Level 25]
+			[c/FFD700:Teleports you forward your mouse position]
+			'''
 	}
 }
 
