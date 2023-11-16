@@ -16,7 +16,7 @@ namespace WotTK.Content.Materials
             Item.width = 28;
             Item.height = 26;
             Item.maxStack = 9999;
-            Item.value = Item.sellPrice(0, 5, 0, 0);
+            Item.value = Item.sellPrice(0, 0, 3, 0);
             Item.rare = -11;
         }
     }

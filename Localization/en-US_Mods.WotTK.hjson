@@ -160,11 +160,11 @@ Items: {
 		Tooltip:
 			'''
 			Requires [c/00FF00:Level 13]
-			Guarded by [c/87CEEB:Lord Incendius,]this anvil is required to craft all Dark Iron items. 
-			It is made up of only the purest Dark iron, smelted and refined with secrets only revealed to
-			the Dark Iron clan's most trusted miners and blacksmiths.
+			Guarded by [c/87CEEB:Lord Incendius,] this anvil is required to craft all Dark Iron items. 
+			It is made up of only the purest Dark iron, smelted and refined with secrets only revealed
+			                     to the Dark Iron clan's most trusted miners and blacksmiths.
 			The clan considers the anvil to be sacred,
-			and Dark Iron dwarves may sometimes say "May the Black Anvil bless ye."
+			and Dark Iron dwarves may sometimes say [c/87CEEB:"May the Black Anvil bless ye."]
 			'''
 	}
 
