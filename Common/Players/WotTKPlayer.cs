@@ -8,6 +8,7 @@ using Terraria;
 using Terraria.Audio;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
+using WotTK.Common.Globals;
 
 namespace WotTK.Common.Players
 {
@@ -28,6 +29,11 @@ namespace WotTK.Common.Players
         public bool _spawnTentacleSpikesClone;
         public bool _spawnTentacleSpikesClone2;
         public static Point[] _tentacleSpikesMax5 = new Point[5];
+
+        /*public static readonly List<Func<int>> stages = new()
+        {
+            () => { return }
+        };*/
         public override void ResetEffects()
         {
             paladinsTeam = -1;

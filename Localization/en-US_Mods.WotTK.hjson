@@ -147,6 +147,11 @@ Items: {
 			May the Black Anvil bless ye.
 			'''
 	}
+
+	SmokedEyeShooter: {
+		Tooltip: "Shoots a homing eye which split into bloody fragments on impact"
+		DisplayName: Smoked Eye Shooter
+	}
 }
 
 Projectiles: {
@@ -165,6 +170,8 @@ Projectiles: {
 	AmnestyBreak.DisplayName: Amnesty Break
 	BlackAmnestyCurse.DisplayName: Black Amnesty Curse
 	BlackAmnestyProj.DisplayName: Black Amnesty Proj
+	SmokedEyeShooterProj2.DisplayName: Smoked Eye Sprit
+	SmokedEyeShooterProj.DisplayName: Smoked Eye
 }
 
 Events.LevelUp: Level Up: now {0} level

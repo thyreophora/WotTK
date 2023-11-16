@@ -7,7 +7,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using WotTK.Content.Items.Weapons.Melee.Mace;
 
-namespace WotTK
+namespace WotTK.Common.Globals
 {
     public class WotTKGlobalItem : GlobalItem
     {
