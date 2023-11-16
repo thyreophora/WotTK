@@ -44,7 +44,7 @@ namespace WotTK.Content.Items.Weapons.Melee.Mace
         public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
             base.OnHitNPC(target, hit, damageDone);
-            Owner.HealEffect(3);
+            Owner.HealEffect(5);
         }
     }
 }

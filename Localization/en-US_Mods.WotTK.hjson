@@ -101,6 +101,52 @@ Items: {
 		DisplayName: Mining Pick
 		Tooltip: ""
 	}
+
+	BlackAmnesty: {
+		DisplayName: Black Amnesty
+		Tooltip: ""
+	}
+
+	UnderworldBand: {
+		DisplayName: Underworld Band
+		Tooltip:
+			'''
+			- Item Level 5 -
+			Increases Agility by 4
+			Increases Intellect by 6
+			'''
+	}
+
+	MysticBracelet: {
+		DisplayName: Mystic Bracelet
+		Tooltip:
+			'''
+			- Item Level 5 -
+			Increases Agility by 10
+			Increases Strength by 6
+			'''
+	}
+
+	ArchaedicStone: {
+		DisplayName: Archaedic Stone
+		Tooltip:
+			'''
+			- Item Level 10 -
+			Increases Agility by 12
+			Increases Strength by 10
+			Increases Intellect by 8
+			Increases Mana by 25
+			'''
+	}
+
+	BlackAnvilItem: {
+		DisplayName: Black Anvil
+		Tooltip:
+			'''
+			- Item Level 10 -
+			May the Black Anvil bless ye.
+			'''
+	}
 }
 
 Projectiles: {
@@ -116,6 +162,9 @@ Projectiles: {
 	GoblinSmasherProj.DisplayName: Goblin Smasher Proj
 	CrackedSledgeProj.DisplayName: Cracked Sledge Proj
 	MiningPickProj.DisplayName: Mining Pick Proj
+	AmnestyBreak.DisplayName: Amnesty Break
+	BlackAmnestyCurse.DisplayName: Black Amnesty Curse
+	BlackAmnestyProj.DisplayName: Black Amnesty Proj
 }
 
 Events.LevelUp: Level Up: now {0} level
@@ -162,4 +211,11 @@ Tiles: {
 	DarkIronOre.MapEntry: Dark Iron Ore
 	ObsidiumOre.MapEntry: Obsidium Ore
 	SaroniteOre.MapEntry: Saronite Ore
+}
+
+Buffs: {
+	BlackAmnestyMark: {
+		DisplayName: Black Amnesty Mark
+		Description: Mods.WotTK.Buffs.BlackAmnestyMark.Description
+	}
 }

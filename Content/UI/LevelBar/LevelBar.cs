@@ -10,6 +10,7 @@ using Terraria;
 using Terraria.GameContent.UI.Elements;
 using Terraria.ModLoader;
 using Terraria.UI;
+using WotTK.Common.Players;
 
 namespace WotTK.Content.UI.LevelBar
 {

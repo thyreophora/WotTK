@@ -9,7 +9,7 @@ using Terraria.Audio;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 
-namespace WotTK
+namespace WotTK.Common.Players
 {
     public class WotTKPlayer : ModPlayer
     {

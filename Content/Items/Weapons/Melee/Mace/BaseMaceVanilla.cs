@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
+using WotTK.Common.Players;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;

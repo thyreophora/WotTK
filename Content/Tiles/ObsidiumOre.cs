@@ -12,16 +12,20 @@ namespace WotTK.Content.Tiles
     {
         public override void SetStaticDefaults()
         {
-            Main.tileSolidTop[Type] = false;
-            Main.tileNoAttach[Type] = true;
-            Main.tileLavaDeath[Type] = false;
+
             Main.tileFrameImportant[Type] = true;
-            TileID.Sets.DisableSmartCursor[Type] = true;
-            TileID.Sets.IgnoredByNpcStepUp[Type] = true;
-            DustType = DustID.PurpleMoss;
+            Main.tileNoAttach[Type] = true;
+            Main.tileLavaDeath[Type] = true;
+
             TileObjectData.newTile.CopyFrom(TileObjectData.Style3x3);
+            TileObjectData.newTile.Origin = new Terraria.DataStructures.Point16(1, 1);
             TileObjectData.newTile.CoordinateHeights = new[] { 16, 16, 16 };
+            TileObjectData.newTile.StyleHorizontal = false;
+            TileObjectData.newTile.RandomStyleRange = 4;
             TileObjectData.addTile(Type);
+
+            DustType = DustID.PurpleMoss;
+
             LocalizedText name = CreateMapEntryName();
             AddMapEntry(new Color(93, 63, 211), name);
         }

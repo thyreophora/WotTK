@@ -11,30 +11,32 @@ namespace WotTK.Content.Tiles
 {
     public class DarkIronOre : ModTile
     {
-        public override void SetStaticDefaults()
-        {
-            Main.tileSolidTop[Type] = false;
-            Main.tileNoAttach[Type] = true;
-            Main.tileLavaDeath[Type] = false;
-            Main.tileFrameImportant[Type] = true;
-            TileID.Sets.DisableSmartCursor[Type] = true;
-            TileID.Sets.IgnoredByNpcStepUp[Type] = true;
-            DustType = DustID.Iron;
-            TileObjectData.newTile.CopyFrom(TileObjectData.Style3x3);
-            TileObjectData.newTile.CoordinateHeights = new[] { 16, 16, 16 };
-            TileObjectData.addTile(Type);
+		public override void SetStaticDefaults()
+		{
+			Main.tileFrameImportant[Type] = true;
+			Main.tileNoAttach[Type] = true;
+			Main.tileLavaDeath[Type] = true;
+
+			TileObjectData.newTile.CopyFrom(TileObjectData.Style3x2);
+			TileObjectData.newTile.Origin = new Terraria.DataStructures.Point16(1, 1);
+            TileObjectData.newTile.StyleHorizontal = false;
+			TileObjectData.newTile.RandomStyleRange = 4;
+			TileObjectData.addTile(Type);
+
+			DustType = DustID.Stone;
+
             LocalizedText name = CreateMapEntryName();
             AddMapEntry(new Color(144, 144, 144), name);
         }
 
-        public override void NumDust(int x, int y, bool fail, ref int num)
-        {
-            num = fail ? 1 : 4;
-        }
+        public override void SetDrawPositions(int i, int j, ref int width, ref int offsetY, ref int height, ref short tileFrameX, ref short tileFrameY) => offsetY = 2;
 
         public override void KillMultiTile(int i, int j, int frameX, int frameY)
         {
-            Item.NewItem(new EntitySource_TileBreak(i, j), i * 16, j * 16, 32, 16, ModContent.ItemType<DarkIronNugget>());
+            int itemID = ModContent.ItemType<DarkIronNugget>();
+            int frame = frameY / 36;
+
+            Item.NewItem(new Terraria.DataStructures.EntitySource_TileBreak(i, j), i * 16, j * 16, 16, 16, itemID, Main.rand.Next(22, 31));
         }
     }
 }
