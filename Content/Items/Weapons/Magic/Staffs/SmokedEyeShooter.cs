@@ -10,7 +10,7 @@ namespace WotTK.Content.Items.Weapons.Magic.Staffs
 {
     public class SmokedEyeShooter : LevelLockedItem
     {
-        public override int MininmalLevel => 10;
+        public override int MinimalLevel => 10;
         public override void SetStaticDefaults()
         {
             Item.staff[Type] = true;

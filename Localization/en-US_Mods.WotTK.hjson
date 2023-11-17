@@ -13,7 +13,6 @@ Items: {
 		DisplayName: Demonic Bone-Crusher
 		Tooltip:
 			'''
-			Requires [c/00FF00:Level 10]
 			[c/87CEEB:Crafting Reagent]
 			[c/FFD700:+1] Agility
 			Your Attacks will spawn bones!
@@ -24,7 +23,6 @@ Items: {
 		DisplayName: Mace of Expertise
 		Tooltip:
 			'''
-			Requires [c/00FF00:Level 3]
 			[c/87CEEB:Crafting Reagent]
 			[c/FFD700:+1] Agility
 			Deals Sacred Damage on Hit, healing you 5hp per hit.
@@ -62,18 +60,13 @@ Items: {
 
 	GoblinSmasher: {
 		DisplayName: Goblin Smasher
-		Tooltip:
-			'''
-			Requires [c/00FF00:Level 0]
-			[c/87CEEB:Crafting Reagent]
-			'''
+		Tooltip: "[c/87CEEB:Crafting Reagent]"
 	}
 
 	CrackedSledge: {
 		DisplayName: Cracked Sledge
 		Tooltip:
 			'''
-			Requires [c/00FF00:Level 6]
 			[c/87CEEB:Crafting Reagent]
 			[c/FFD700:+2] Agility
 			Huge Knockback, Summons rocks on hit.
@@ -186,6 +179,11 @@ Items: {
 			'''
 	}
 
+	CharredRazormaneWand: {
+		Tooltip: ""
+		DisplayName: Charred Razormane Wand
+	}
+
 	Skycaller: {
 		Tooltip: ""
 		DisplayName: Skycaller
@@ -219,6 +217,7 @@ Projectiles: {
 	BlackAmnestyProj.DisplayName: Black Amnesty Proj
 	SmokedEyeShooterProj2.DisplayName: Smoked Eye Sprit
 	SmokedEyeShooterProj.DisplayName: Smoked Eye
+	CharredProj.DisplayName: Charred Proj
 	SkycallerProj.DisplayName: Skycaller Proj
 }
 
