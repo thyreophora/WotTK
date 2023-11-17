@@ -123,8 +123,8 @@ namespace WotTK.Content.Items.Weapons.Magic.Staffs
             Projectile.DamageType = DamageClass.Magic;
             Projectile.tileCollide = true;
 
-            ProjectileID.Sets.TrailingMode[Projectile.type] = 2;
-            ProjectileID.Sets.TrailCacheLength[Projectile.type] = 4;
+            //ProjectileID.Sets.TrailingMode[Projectile.type] = 2;
+            //ProjectileID.Sets.TrailCacheLength[Projectile.type] = 4;
         }
 
         public override void AI()

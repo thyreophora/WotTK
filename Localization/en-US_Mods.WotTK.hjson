@@ -185,6 +185,20 @@ Items: {
 			[c/FFD700:Teleports you forward your mouse position]
 			'''
 	}
+
+	Skycaller: {
+		Tooltip: ""
+		DisplayName: Skycaller
+	}
+
+	LevelUp: {
+		DisplayName: Level Up
+		Tooltip:
+			'''
+			[c/8B0000:DEBUG ITEM]
+			[c/87CEEB:Makes your level maximum]
+			'''
+	}
 }
 
 Projectiles: {
@@ -205,6 +219,7 @@ Projectiles: {
 	BlackAmnestyProj.DisplayName: Black Amnesty Proj
 	SmokedEyeShooterProj2.DisplayName: Smoked Eye Sprit
 	SmokedEyeShooterProj.DisplayName: Smoked Eye
+	SkycallerProj.DisplayName: Skycaller Proj
 }
 
 Events.LevelUp: Level Up: now {0} level
