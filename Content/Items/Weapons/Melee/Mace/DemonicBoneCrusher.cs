@@ -13,7 +13,7 @@ namespace WotTK.Content.Items.Weapons.Melee.Mace
     public class DemonicBoneCrusher : BaseMace
     {
         public override int MaceUseTime => 80;
-        public override int MinimalPlayerLevel => 20;
+        public override int MinimalLevel => 28;
         public override void SafeSetDefaults()
         {
             Item.width = Item.height = 60;

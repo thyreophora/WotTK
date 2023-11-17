@@ -13,7 +13,6 @@ Items: {
 		DisplayName: Demonic Bone-Crusher
 		Tooltip:
 			'''
-			Requires [c/00FF00:Level 10]
 			[c/87CEEB:Crafting Reagent]
 			[c/FFD700:+1] Agility
 			Your Attacks will spawn bones!
@@ -24,7 +23,6 @@ Items: {
 		DisplayName: Mace of Expertise
 		Tooltip:
 			'''
-			Requires [c/00FF00:Level 3]
 			[c/87CEEB:Crafting Reagent]
 			[c/FFD700:+1] Agility
 			Deals Sacred Damage on Hit, healing you 5hp per hit.
@@ -64,7 +62,6 @@ Items: {
 		DisplayName: Goblin Smasher
 		Tooltip:
 			'''
-			Requires [c/00FF00:Level 0]
 			[c/87CEEB:Crafting Reagent]
 			'''
 	}
@@ -73,7 +70,6 @@ Items: {
 		DisplayName: Cracked Sledge
 		Tooltip:
 			'''
-			Requires [c/00FF00:Level 6]
 			[c/87CEEB:Crafting Reagent]
 			[c/FFD700:+2] Agility
 			Huge Knockback, Summons rocks on hit.

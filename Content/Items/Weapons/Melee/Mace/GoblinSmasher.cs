@@ -13,7 +13,7 @@ namespace WotTK.Content.Items.Weapons.Melee.Mace
     public class GoblinSmasher : BaseMace
     {
         public override int MaceUseTime => 45;
-        public override int MinimalPlayerLevel => 15;
+        public override int MinimalLevel => 16;
         public override void SafeSetDefaults()
         {
             Item.width = Item.height = 50;
