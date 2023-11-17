@@ -38,9 +38,8 @@ namespace WotTK.Common.Players
 
         public static readonly List<Func<int>> stages = new()
         {
-            () => { return NPC.downedSlimeKing ? 5 : 0; },
-            () => { return NPC.downedBoss1 ? 10 : 0; },
-            () => { return NPC.downedQueenBee ? 15 : 0; },
+            () => { return NPC.downedSlimeKing ? 10 : 0; },
+            () => { return NPC.downedBoss1 ? 15 : 0; },
             () => { return NPC.downedBoss2 ? 20 : 0; },
             () => { return NPC.downedBoss3 ? 25 : 0; },
             () => { return NPC.downedDeerclops ? 30 : 0; },
@@ -58,7 +57,7 @@ namespace WotTK.Common.Players
         };
         public static int CurrectMaxLevel()
         {
-            int max = 1;
+            int max = 5;
             foreach (Func<int> func in stages)
             {
                 if (func.Invoke() > max)

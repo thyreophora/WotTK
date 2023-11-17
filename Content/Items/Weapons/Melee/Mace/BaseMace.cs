@@ -12,7 +12,7 @@ using Terraria.ModLoader;
 
 namespace WotTK.Content.Items.Weapons.Melee.Mace
 {
-    public abstract class BaseMace : ModItem
+    public abstract class BaseMace : LevelLockedItem
     {
         /// <summary>
         /// Use time of weapon
@@ -25,7 +25,8 @@ namespace WotTK.Content.Items.Weapons.Melee.Mace
         /// at 0<N<10= damage is CurrectLvl/N % of dmg (max 100% or CurrectLvl==N)
         /// At default value (0) damage always is 100%
         /// </summary>
-        public virtual int MinimalPlayerLevel => 0;
+        //public virtual int MinimalPlayerLevel => 0;
+        public override bool IsWeapon => true;
         public override void SetDefaults()
         {
             Item.DamageType = ModContent.GetInstance<PaladinDamageType>();
@@ -44,35 +45,7 @@ namespace WotTK.Content.Items.Weapons.Melee.Mace
         }
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
         {
-            float level = (float)player.GetModPlayer<WotTKPlayer>().playerLevel;
-            float percent = 1f;
-            int damage2 = damage;
-
-            if (MinimalPlayerLevel == 0)
-                percent = 1f;
-            else if (MinimalPlayerLevel <= 10 && MinimalPlayerLevel > 0)
-            {
-                percent = level / MinimalPlayerLevel;
-                if (level > MinimalPlayerLevel)
-                    percent = 1f;
-            }
-            else
-            {
-                percent = 1f - (MinimalPlayerLevel - level) / 10f;
-
-                if (MinimalPlayerLevel - level >= 10) //Low when minimal
-                {
-                    percent = 1;
-                    damage2 = 1;
-                }
-                if (MinimalPlayerLevel - level <= 0) //High and Equal when minimal
-                {
-                    percent = 1;
-                }
-            }
-            if (WotTKConfig.Instance.Debug)
-                damage2 = damage;
-            Projectile.NewProjectile(source, position, velocity, type, (int)(damage2 * percent), knockback, player.whoAmI);
+            Projectile.NewProjectile(source, position, velocity, type, damage, knockback, player.whoAmI);
             return false;
         }
     }

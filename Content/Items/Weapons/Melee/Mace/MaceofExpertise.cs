@@ -13,7 +13,7 @@ namespace WotTK.Content.Items.Weapons.Melee.Mace
     public class MaceofExpertise : BaseMace
     {
         public override int MaceUseTime => 50;
-        public override int MinimalPlayerLevel => 10;
+        public override int MinimalLevel => 3;
         public override void SafeSetDefaults()
         {
             Item.width = Item.height = 50;
