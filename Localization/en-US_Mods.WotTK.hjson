@@ -185,6 +185,11 @@ Items: {
 			[c/FFD700:Teleports you forward your mouse position]
 			'''
 	}
+
+	CharredRazormaneWand: {
+		Tooltip: ""
+		DisplayName: Charred Razormane Wand
+	}
 }
 
 Projectiles: {
@@ -205,6 +210,7 @@ Projectiles: {
 	BlackAmnestyProj.DisplayName: Black Amnesty Proj
 	SmokedEyeShooterProj2.DisplayName: Smoked Eye Sprit
 	SmokedEyeShooterProj.DisplayName: Smoked Eye
+	CharredProj.DisplayName: Charred Proj
 }
 
 Events.LevelUp: Level Up: now {0} level
