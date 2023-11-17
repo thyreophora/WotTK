@@ -10,7 +10,7 @@ namespace WotTK.Content.Items.Weapons.Magic.Staffs
 {
 	public class CharredRazormaneWand : LevelLockedItem
     {
-        public override int MininmalLevel => 0;
+        public override int MinimalLevel => 0;
         public override void SetStaticDefaults()
         {
             Item.staff[Type] = true;

@@ -60,10 +60,7 @@ Items: {
 
 	GoblinSmasher: {
 		DisplayName: Goblin Smasher
-		Tooltip:
-			'''
-			[c/87CEEB:Crafting Reagent]
-			'''
+		Tooltip: "[c/87CEEB:Crafting Reagent]"
 	}
 
 	CrackedSledge: {
