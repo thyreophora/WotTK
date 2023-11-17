@@ -197,6 +197,11 @@ Items: {
 			[c/87CEEB:Makes your level maximum]
 			'''
 	}
+
+	FreezingShard: {
+		DisplayName: Freezing Shard
+		Tooltip: ""
+	}
 }
 
 Projectiles: {
@@ -219,6 +224,8 @@ Projectiles: {
 	SmokedEyeShooterProj.DisplayName: Smoked Eye
 	CharredProj.DisplayName: Charred Proj
 	SkycallerProj.DisplayName: Skycaller Proj
+	CharredRazormaneWandProj.DisplayName: Charred Razormane Wand Proj
+	FreezingShardProj.DisplayName: Freezing Shard Proj
 }
 
 Events.LevelUp: Level Up: now {0} level

@@ -233,6 +233,7 @@ namespace WotTK.Content.Items.Weapons.Melee.Mace
         }
         public override void ModifyHitNPC(NPC target, ref NPC.HitModifiers modifiers)
         {
+            SoundEngine.PlaySound(new SoundStyle("WotTK/Sounds/Custom/MaceHit" + Main.rand.Next(1, 5).ToString()), HammerCenter);
             modifiers.HitDirectionOverride = target.position.X > Owner.MountedCenter.X ? 1 : -1;
             SafeModifyHitNPC(target, ref modifiers);
         }

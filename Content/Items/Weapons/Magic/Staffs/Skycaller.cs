@@ -6,12 +6,14 @@ using Microsoft.Xna.Framework;
 using WotTK.Utilities;
 using Microsoft.Xna.Framework.Graphics;
 using System;
+using Terraria.Audio;
 
 namespace WotTK.Content.Items.Weapons.Magic.Staffs
 {
     public class Skycaller : LevelLockedItem
     {
-        public override int MinimalLevel => 10;
+        public override int MinimalLevel => 7;
+        public override bool IsWeapon => true;
         public override void SetStaticDefaults()
         {
             Item.staff[Type] = true;
@@ -25,7 +27,7 @@ namespace WotTK.Content.Items.Weapons.Magic.Staffs
 
             Item.useTime = Item.useAnimation = 60;
             Item.useStyle = ItemUseStyleID.Shoot;
-            Item.UseSound = SoundID.NPCHit8;
+            Item.UseSound = new SoundStyle("WotTK/Sounds/Custom/WandBaseSound");
             Item.autoReuse = true;
 
             Item.mana = 10;
