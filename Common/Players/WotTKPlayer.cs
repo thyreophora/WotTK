@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using SteelSeries.GameSense.DeviceZone;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,10 +31,42 @@ namespace WotTK.Common.Players
         public bool _spawnTentacleSpikesClone2;
         public static Point[] _tentacleSpikesMax5 = new Point[5];
 
-        /*public static readonly List<Func<int>> stages = new()
+        private static int DownedMechBossCount()
         {
-            () => { return }
-        };*/
+            return NPC.downedMechBoss1.ToInt() + NPC.downedMechBoss2.ToInt() + NPC.downedMechBoss3.ToInt();
+        }
+
+        public static readonly List<Func<int>> stages = new()
+        {
+            () => { return NPC.downedSlimeKing ? 5 : 0; },
+            () => { return NPC.downedBoss1 ? 10 : 0; },
+            () => { return NPC.downedQueenBee ? 15 : 0; },
+            () => { return NPC.downedBoss2 ? 20 : 0; },
+            () => { return NPC.downedBoss3 ? 25 : 0; },
+            () => { return NPC.downedDeerclops ? 30 : 0; },
+            () => { return Main.hardMode ? 35 : 0; },
+            () => { return NPC.downedQueenSlime ? 40 : 0; },
+            () => { return WotTKPlayer.DownedMechBossCount() == 1 ? 45 : 0; },
+            () => { return WotTKPlayer.DownedMechBossCount() == 2 ? 50 : 0; },
+            () => { return WotTKPlayer.DownedMechBossCount() == 3 ? 55 : 0; },
+            () => { return NPC.downedPlantBoss ? 60 : 0; },
+            () => { return NPC.downedGolemBoss ? 65 : 0; },
+            () => { return NPC.downedEmpressOfLight ? 70 : 0; },
+            () => { return NPC.downedFishron ? 70 : 0; },
+            () => { return NPC.downedAncientCultist ? 75 : 0; },
+            () => { return NPC.downedMoonlord ? 80 : 0; }
+        };
+        public static int CurrectMaxLevel()
+        {
+            int max = 1;
+            foreach (Func<int> func in stages)
+            {
+                if (func.Invoke() > max)
+                    max = func.Invoke();
+            }
+            return max;
+        }
+        public bool CanUseIfLevelIs(int minlevel) => playerLevel >= minlevel;
         public override void ResetEffects()
         {
             paladinsTeam = -1;
@@ -57,7 +90,7 @@ namespace WotTK.Common.Players
             Item item = Player.HeldItem;
             if (playerLevel <= 0)
                 playerLevel = 1;
-            if (playerLevelPoints >= playerLevelPointsNeed)
+            if (playerLevelPoints >= playerLevelPointsNeed && playerLevel < CurrectMaxLevel())
             {
                 playerLevelPoints -= playerLevelPointsNeed;
                 playerLevel++;
@@ -90,6 +123,12 @@ namespace WotTK.Common.Players
             }*/
 
         }
+        public override void UpdateEquips()
+        {
+            Player.GetDamage<MeleeDamageClass>() += strength * 0.005f;
+            Player.GetDamage<RangedDamageClass>() += agility * 0.005f;
+            Player.GetDamage<MagicDamageClass>() += intellect * 0.005f;
+        }
         public override void OnHitNPCWithItem(Item item, NPC target, NPC.HitInfo hit, int damageDone)
         {
             TriggerPointUp(target, hit);
@@ -100,7 +139,7 @@ namespace WotTK.Common.Players
         }
         private void TriggerPointUp(NPC target, NPC.HitInfo hit)
         {
-            if (target.life <= hit.Damage && target.GetGlobalNPC<WotTKGlobalNPC>().canGetExp)
+            if (target.life <= hit.Damage && target.GetGlobalNPC<WotTKGlobalNPC>().canGetExp && playerLevel < CurrectMaxLevel())
             {
                 int vvalue = (int)target.value / 2;
                 if (target.boss)
@@ -108,6 +147,8 @@ namespace WotTK.Common.Players
                 playerLevelPoints += vvalue;
                 target.GetGlobalNPC<WotTKGlobalNPC>().canGetExp = false;
             }
+            if (playerLevel >= CurrectMaxLevel())
+                playerLevelPoints = 0;
         }
         public override void ModifyShootStats(Item item, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback)
         {
@@ -115,17 +156,17 @@ namespace WotTK.Common.Players
             if (item.DamageType == DamageClass.Melee || item.DamageType == DamageClass.MeleeNoSpeed) 
             {
                 velocity *= (1f + agility * 0.01f + strength * 0.01f); 
-                damage = (int)(damage * (1f + strength * 0.01f));
+                //damage = (int)(damage * (1f + strength * 0.01f));
             }
             if (item.DamageType == DamageClass.Ranged)
             {
                 velocity *= (1f + agility * 0.01f);
-                damage = (int)(damage * (1f + agility * 0.01f));
+                //damage = (int)(damage * (1f + agility * 0.01f));
             }
             if (item.DamageType == DamageClass.Magic || item.DamageType == DamageClass.MagicSummonHybrid)
             {
                 velocity *= (1f + intellect * 0.01f);
-                damage = (int)(damage * (1f + intellect * 0.01f));
+                //damage = (int)(damage * (1f + intellect * 0.01f));
             }
         }
         public override void ModifyManaCost(Item item, ref float reduce, ref float mult)

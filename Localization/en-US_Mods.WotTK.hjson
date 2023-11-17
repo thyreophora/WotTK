@@ -172,7 +172,6 @@ Items: {
 		DisplayName: Smoked Eye Shooter
 		Tooltip:
 			'''
-			Requires [c/00FF00:Level 10]
 			[c/FFD700:+3] Intellect
 			Shoots a homing eye which splits into bloody fragments on impact
 			'''
@@ -242,11 +241,14 @@ Configs: {
 	}
 }
 
-UI.LevelBar:
-	'''
-	Level: {0}
-	Points: {1}/{2}
-	'''
+UI: {
+	LevelBar:
+		'''
+		Level: {0}
+		Points: {1}/{2}
+		'''
+	LevelLock: Requires [c/{1}:Level {0}]
+}
 
 Tiles: {
 	DarkIronOre.MapEntry: Dark Iron Ore
@@ -262,6 +264,6 @@ Buffs: {
 
 	BlinkCooldown: {
 		DisplayName: Blink Cooldown
-		Description: Mods.WotTK.Buffs.BlinkCooldown.Description
+		Description: Yoy can't use a blink
 	}
 }

@@ -36,6 +36,12 @@ namespace WotTK.Content.Items.Accessories
                 .AddIngredient(ItemID.Shackle, 1)
                 .AddTile<Tiles.BlackAnvil>()
                 .Register();
+            CreateRecipe()
+                .AddIngredient(ModContent.ItemType<DarkIronBar>(), 8)
+                .AddIngredient(ItemID.GoldBar, 8)
+                .AddIngredient(ItemID.Shackle, 1)
+                .AddTile<Tiles.BlackAnvil>()
+                .Register();
         }
     }
 }

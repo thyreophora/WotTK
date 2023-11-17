@@ -4,12 +4,13 @@ using Terraria;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
-using WotTK.Common.Utils;
+using WotTK.Utilities;
 
 namespace WotTK.Content.Items.Weapons.Magic.Staffs
 {
-    public class SmokedEyeShooter : ModItem
+    public class SmokedEyeShooter : LevelLockedItem
     {
+        public override int MininmalLevel => 10;
         public override void SetStaticDefaults()
         {
             Item.staff[Type] = true;

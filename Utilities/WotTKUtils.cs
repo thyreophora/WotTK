@@ -1,7 +1,8 @@
 ﻿using Microsoft.Xna.Framework;
 using Terraria;
+using WotTK.Common.Players;
 
-namespace WotTK.Common.Utils
+namespace WotTK.Utilities
 {
     public static class WotTKUtils
     {
@@ -52,10 +53,10 @@ namespace WotTK.Common.Utils
                         float num3 = Main.npc[index].width / 2f + Main.npc[index].height / 2f;
                         bool flag = true;
                         if (num3 < num1 && !ignoreTiles)
-                            flag = Collision.CanHit(origin, 1, 1, ((Entity)Main.npc[index]).Center, 1, 1);
-                        if (Vector2.Distance(origin, ((Entity)Main.npc[index]).Center) < num1 + num3 & flag)
+                            flag = Collision.CanHit(origin, 1, 1, Main.npc[index].Center, 1, 1);
+                        if (Vector2.Distance(origin, Main.npc[index].Center) < num1 + num3 & flag)
                         {
-                            num1 = Vector2.Distance(origin, ((Entity)Main.npc[index]).Center);
+                            num1 = Vector2.Distance(origin, Main.npc[index].Center);
                             npc = Main.npc[index];
                         }
                     }
@@ -64,5 +65,6 @@ namespace WotTK.Common.Utils
             return npc;
         }
         public static Vector2 RotatedByFullRandom(this Vector2 v) => v.RotatedByRandom(MathHelper.TwoPi);
+        public static WotTKPlayer WotTKPlayer(this Player player) => player.GetModPlayer<WotTKPlayer>();
     }
 }
