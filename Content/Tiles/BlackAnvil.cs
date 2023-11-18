@@ -28,6 +28,7 @@ namespace WotTK.Content.Tiles
             Language.GetText("Black Anvil"));
             TileID.Sets.DisableSmartCursor[Type] = true;
 
+            AdjTiles = new int[] { TileID.Anvils };
         }
 
         public override void NumDust(int i, int j, bool fail, ref int num)

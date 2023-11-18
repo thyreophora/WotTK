@@ -1,3 +1,3 @@
 displayName = [c/FFD700:Wrath of the Terrarian King]
-author = thyreo
-version = 0.1
+author = thyreo, WitherTaco
+version = 1.0

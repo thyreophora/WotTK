@@ -25,9 +25,24 @@ namespace WotTK.Content.Items.Test
         }
         public override bool? UseItem(Player player)
         {
-            player.GetModPlayer<WotTKPlayer>().playerLevel = 80;
-            player.GetModPlayer<WotTKPlayer>().playerLevelPoints = 0;
-            Main.NewText("Level is maximazed (80 level)");
+            
+            if (player.altFunctionUse == 2)
+            {
+                player.GetModPlayer<WotTKPlayer>().playerLevel += 1;
+                player.GetModPlayer<WotTKPlayer>().playerLevelPoints = 0;
+                Main.NewText("Level increased by 1 level");
+
+            }
+            else
+            {
+                player.GetModPlayer<WotTKPlayer>().playerLevel = 80;
+                player.GetModPlayer<WotTKPlayer>().playerLevelPoints = 0;
+                Main.NewText("Level is maximazed (80 level)");
+            }
+            return true;
+        }
+        public override bool AltFunctionUse(Player player)
+        {
             return true;
         }
     }

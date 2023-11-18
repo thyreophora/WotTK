@@ -19,8 +19,8 @@ namespace WotTK.Content.Items.Weapons.Magic.Staffs
         public override bool IsWeapon => true;
         public override void SetDefaults()
         {
-            Item.width = 46;
-            Item.height = 42;
+            Item.width = 60;
+            Item.height = 10;
             Item.value = 10000;
             Item.rare = ItemRarityID.Orange;
 

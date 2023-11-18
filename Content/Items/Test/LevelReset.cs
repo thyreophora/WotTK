@@ -26,9 +26,28 @@ namespace WotTK.Content.Items.Test
         public override bool? UseItem(Player player)
         {
             //Main.NewText("Level: " + player.GetModPlayer<WotTKPlayer>().playerLevel + "\n Points: " + player.GetModPlayer<WotTKPlayer>().playerLevelPoints + "/" + player.GetModPlayer<WotTKPlayer>().playerLevelPointsNeed);
-            player.GetModPlayer<WotTKPlayer>().playerLevel = 1;
-            player.GetModPlayer<WotTKPlayer>().playerLevelPoints = 0;
-            Main.NewText("Progress is reseted");
+            //player.GetModPlayer<WotTKPlayer>().playerLevel = 1;
+            //player.GetModPlayer<WotTKPlayer>().playerLevelPoints = 0;
+            //Main.NewText("Progress is reseted");
+
+            if (player.altFunctionUse == 2)
+            {
+                player.GetModPlayer<WotTKPlayer>().playerLevel -= 1;
+                player.GetModPlayer<WotTKPlayer>().playerLevelPoints = 0;
+                Main.NewText("Level decreased by 1 level");
+
+            }
+            else
+            {
+                player.GetModPlayer<WotTKPlayer>().playerLevel = 1;
+                player.GetModPlayer<WotTKPlayer>().playerLevelPoints = 0;
+                Main.NewText("Progress is reseted");
+            }
+
+            return true;
+        }
+        public override bool AltFunctionUse(Player player)
+        {
             return true;
         }
     }

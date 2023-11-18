@@ -7,6 +7,7 @@ using WotTK.Utilities;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using Terraria.Audio;
+using WotTK.Common;
 
 namespace WotTK.Content.Items.Weapons.Magic.Staffs
 {
@@ -49,6 +50,15 @@ namespace WotTK.Content.Items.Weapons.Magic.Staffs
             Vector2 vel = new Vector2(0, Item.shootSpeed).RotatedByRandom(0.33f);
             Projectile.NewProjectile(source, Main.MouseWorld - vel * 40f, vel, type, damage, knockback, player.whoAmI);
             return false;
+        }
+        public override void AddRecipes()
+        {
+            CreateRecipe()
+                .AddIngredient(ItemID.FallenStar, 5)
+                .AddRecipeGroup("Wood", 6)
+                .AddTile(TileID.Anvils)
+                .AddCondition(LevelLockedRecipe.ConstructRecipeCondition(MinimalLevel, out Func<bool> condition), condition)
+                .Register();
         }
     }
     public class SkycallerProj : ModProjectile 

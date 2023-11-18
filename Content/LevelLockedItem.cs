@@ -31,22 +31,22 @@ namespace WotTK.Content
             int index = tooltips.FindLastIndex(tt => tt.Mod.Equals("Terraria") && tt.Name.Equals("Tooltip0"));
             if (index != -1 && MinimalLevel != 0)
             {
-                int stage = 1;
+                int stage = -1;
                 if (MinimalLevel != 0)
                 {
                     if (IsWeapon)
                     {
-                        stage = -1;
+                        //stage = -1;
                         if (MinimalLevel <= 10)
                             stage = 1;
                         if (MinimalLevel > 10)
                         {
-                            if (MinimalLevel - level > 0)
+                            if (MinimalLevel - level > 0 && MinimalLevel - level <= 10)
                                 stage = 0;
                             if (level >= MinimalLevel)
                                 stage = 1;
                         }
-                            //stage = ((MinimalLevel - level) <= 10 && (MinimalLevel - level) > 0) ? 0 : 1;
+                        //stage = ((MinimalLevel - level) <= 10 && (MinimalLevel - level) > 0) ? 0 : 1;
 
                     }
                     else
@@ -54,8 +54,10 @@ namespace WotTK.Content
                         stage = level >= MinimalLevel ? 1 : -1;
                     }
                 }
+                else if (MinimalLevel == 0 || WotTKConfig.Instance.Debug)
+                    stage = 1;
                 //tooltips.Insert(index, new TooltipLine(Mod, "LevelLock", LangHelper.GetText("UI.LevelLock", MinimalLevel, Main.LocalPlayer.WotTKPlayer().playerLevel >= MinimalLevel ? "00FF00" : "FF0000")));
-                tooltips.Insert(index, new TooltipLine(Mod, "LevelLock", LangHelper.GetText("UI.LevelLock", MinimalLevel, stage == -1 ? "FF0000" : (stage == 0 ? "00FF00" : "FFFF00"))));
+                tooltips.Insert(index, new TooltipLine(Mod, "LevelLock", LangHelper.GetText("UI.LevelLock", MinimalLevel, stage == -1 ? "FF0000" : (stage == 1 ? "00FF00" : "FFFF00"))));
 
             }
         }

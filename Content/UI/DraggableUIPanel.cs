@@ -10,7 +10,7 @@ namespace WotTK.Content.UI
         public Vector2 offset;
         public bool dragging;
         public bool mouseOn;
-        public void SetConfigValue(ref float refX, ref float refY)
+        /*public void SetConfigValue(ref float refX, ref float refY)
         {
             if (dragging)
             {
@@ -18,6 +18,10 @@ namespace WotTK.Content.UI
                 refY = (float)Main.mouseY / Main.screenHeight;
                 //Recalculate();
             }
+        }*/
+        public virtual void UpdateConfigs(float posX, float posY)
+        {
+
         }
 
         public override void LeftMouseDown(UIMouseEvent evt)
@@ -75,6 +79,9 @@ namespace WotTK.Content.UI
                 Left.Set(Main.mouseX - offset.X, 0f); // Main.MouseScreen.X and Main.mouseX are the same
                 Top.Set(Main.mouseY - offset.Y, 0f);
                 Recalculate();
+
+                UpdateConfigs((float)Left.Pixels / Main.screenWidth, (float)Top.Pixels / Main.screenHeight);
+                WotTK.SaveConfig(WotTKConfig.Instance);
             }
 
             var parentSpace = Parent.GetDimensions().ToRectangle();
@@ -84,6 +91,7 @@ namespace WotTK.Content.UI
                 Top.Pixels = Utils.Clamp(Top.Pixels, 0, parentSpace.Bottom - Height.Pixels);
                 Recalculate();
             }
+
         }
     }
 }

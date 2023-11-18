@@ -43,7 +43,8 @@ Items: {
 		Tooltip:
 			'''
 			[c/8B0000:DEBUG ITEM]
-			[c/87CEEB:Resets your Level]
+			[c/87CEEB:Left Click to resets your Level]
+			[c/87CEEB:Right Click to decrease level by 1]
 			'''
 	}
 
@@ -194,7 +195,8 @@ Items: {
 		Tooltip:
 			'''
 			[c/8B0000:DEBUG ITEM]
-			[c/87CEEB:Makes your level maximum]
+			[c/87CEEB:Left Click to makes your level maximum]
+			[c/87CEEB:Right Click to increase level by 1]
 			'''
 	}
 
@@ -288,3 +290,5 @@ Buffs: {
 		Description: Yoy can't use a blink
 	}
 }
+
+Misc.LevelRecipeCondition: Need {0} level

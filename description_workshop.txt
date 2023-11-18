@@ -2,6 +2,8 @@
 
 Team:
 [list]
-	[*] thyreo - Owner
-	[*] WitherTaco - Programmer
+	[*] thyreo - Owner, Coder, Spriter
+	[*] WitherTaco - Co-Owner, Coder
+	[*] authar_vaill - Spriter
+	[*] sweetberries - Spriter
 [/list]

@@ -34,6 +34,18 @@ namespace WotTK.Content.UI.LevelBar
 
         }
     }
+    public class LevelBarDragPanel : DraggableUIPanel
+    {
+        public LevelBarDragPanel() : base() { 
+        
+        }
+        public override void UpdateConfigs(float posX, float posY)
+        {
+            WotTKConfig.Instance.LevelBarX = posX;
+            WotTKConfig.Instance.LevelBarY = posY;
+
+        }
+    }
     public class LevelBar : UIState
     {
         public DraggableUIPanel dragPanel;
@@ -48,7 +60,7 @@ namespace WotTK.Content.UI.LevelBar
         {
             string way = "WotTK/Content/UI/LevelBar/";
 
-            dragPanel = new DraggableUIPanel();
+            dragPanel = new LevelBarDragPanel();
             dragPanel.SetPadding(0);
             SetRectangle(dragPanel, left: WotTKConfig.Instance.LevelBarX * Main.screenWidth, top: WotTKConfig.Instance.LevelBarY * Main.screenHeight, width: 512f, height: 20f);
             //SetRectangle(dragPanel, left: 400, top: 100, width: 208f, height: 16f);
@@ -94,11 +106,16 @@ namespace WotTK.Content.UI.LevelBar
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
-            dragPanel.SetConfigValue(ref WotTKConfig.Instance.LevelBarX, ref WotTKConfig.Instance.LevelBarY);
+            //dragPanel.SetConfigValue(ref WotTKConfig.Instance.LevelBarX, ref WotTKConfig.Instance.LevelBarY);
 
             var modPlayer = Main.LocalPlayer.GetModPlayer<WotTKPlayer>();
             text2.SetText(modPlayer.playerLevel.ToString());
             text3.SetText(modPlayer.playerLevelPoints.ToString() + "/" + modPlayer.playerLevelPointsNeed.ToString());
+            if (modPlayer.playerLevel >= 80)
+            {
+                text2.SetText("80 (Max)");
+                text3.SetText("Max");
+            }
 
             if (dragPanel.mouseOn)
             {
@@ -109,6 +126,7 @@ namespace WotTK.Content.UI.LevelBar
                 text.SetText("");
             }
         }
+        
         private void SetRectangle(UIElement uiElement, float left, float top, float width, float height)
         {
             uiElement.Left.Set(left, 0f);
