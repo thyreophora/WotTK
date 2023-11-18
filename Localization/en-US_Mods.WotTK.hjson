@@ -204,6 +204,16 @@ Items: {
 		DisplayName: Freezing Shard
 		Tooltip: ""
 	}
+
+	WoolCloth: {
+		Tooltip: ""
+		DisplayName: Wool Cloth
+	}
+
+	SilkCloth: {
+		Tooltip: ""
+		DisplayName: Silk Cloth
+	}
 }
 
 Projectiles: {
