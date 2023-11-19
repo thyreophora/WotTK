@@ -1,11 +1,11 @@
 ﻿using Microsoft.Xna.Framework;
-using WotTK.Content.Materials;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
+using WotTK.Content.Items.Materials;
 
 namespace WotTK.Content.Tiles
 {

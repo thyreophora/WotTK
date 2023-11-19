@@ -61,7 +61,11 @@ Items: {
 
 	GoblinSmasher: {
 		DisplayName: Goblin Smasher
-		Tooltip: "[c/87CEEB:Crafting Reagent]"
+		Tooltip:
+			'''
+			[c/87CEEB:Crafting Reagent]
+			Increases damage by [c/FFD700:50%] while invasion is active
+			'''
 	}
 
 	CrackedSledge: {
@@ -119,7 +123,6 @@ Items: {
 		DisplayName: Underworld Band
 		Tooltip:
 			'''
-			Requires [c/00FF00:Level 5]
 			[c/87CEEB:Crafting Reagent]
 			[c/FFD700:+4] Agility
 			[c/FFD700:+6] Intellect
@@ -130,7 +133,6 @@ Items: {
 		DisplayName: Mystic Bracelet
 		Tooltip:
 			'''
-			Requires [c/00FF00:Level 5]
 			[c/87CEEB:Crafting Reagent]
 			[c/FFD700:+10] Agility
 			[c/FFD700:+6] Strength
@@ -141,7 +143,6 @@ Items: {
 		DisplayName: Archaedic Stone
 		Tooltip:
 			'''
-			Requires [c/00FF00:Level 10]
 			[c/FFD700:+12] Agility
 			[c/FFD700:+10] Strength
 			[c/FFD700:+10] Intellect
@@ -149,11 +150,10 @@ Items: {
 			'''
 	}
 
-	BlackAnvilItem: {
+	BlackAnvil: {
 		DisplayName: Black Anvil
 		Tooltip:
 			'''
-			Requires [c/00FF00:Level 13]
 			Guarded by [c/87CEEB:Lord Incendius,] this anvil is required to craft all Dark Iron items. 
 			It is made up of only the purest Dark iron, smelted and refined with secrets only revealed
 			                     to the Dark Iron clan's most trusted miners and blacksmiths.
@@ -175,7 +175,6 @@ Items: {
 		DisplayName: Blink
 		Tooltip:
 			'''
-			Requires [c/00FF00:Level 25]
 			[c/FFD700:Teleports you forward your mouse position]
 			'''
 	}
@@ -202,7 +201,7 @@ Items: {
 
 	FreezingShard: {
 		DisplayName: Freezing Shard
-		Tooltip: ""
+		Tooltip: Shoots a three homing ice shards
 	}
 }
 

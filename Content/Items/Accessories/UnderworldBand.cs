@@ -1,16 +1,19 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using WotTK.Content.Materials;
-using WotTK.Content.Tiles;
 using WotTK.Common.Players;
+using WotTK.Content.Items.Placeble;
+using WotTK.Content.Items.Materials;
+using System;
+using WotTK.Common;
 
 namespace WotTK.Content.Items.Accessories
 {
-    public class UnderworldBand : ModItem
-	{
+    public class UnderworldBand : LevelLockedItem
+    {
+        public override int MinimalLevel => 17;
 
-		public override void SetDefaults()
+        public override void SetDefaults()
 		{
 			Item.width = 24;
 			Item.height = 24;
@@ -31,7 +34,8 @@ namespace WotTK.Content.Items.Accessories
             CreateRecipe()
                 .AddIngredient(ModContent.ItemType<DarkIronBar>(), 6)
                 .AddIngredient(ItemID.Obsidian, 8)
-                .AddTile<Tiles.BlackAnvil>()
+                .AddTile<BlackAnvilTile>()
+                .AddCondition(LevelLockedRecipe.ConstructRecipeCondition(MinimalLevel, out Func<bool> condition), condition)
                 .Register();
         }
     }

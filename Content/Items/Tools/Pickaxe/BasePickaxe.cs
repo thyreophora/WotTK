@@ -9,7 +9,7 @@ using System;
 
 namespace WotTK.Content.Items.Tools.Pickaxe
 {
-    public class BasePickaxe : ModItem
+    public abstract class BasePickaxe : ModItem
     {
         
         public override void SetDefaults()
@@ -27,7 +27,7 @@ namespace WotTK.Content.Items.Tools.Pickaxe
         }
 
     }
-    public class BasePickaxeProj<T> : ModProjectile where T : ModItem
+    public abstract class BasePickaxeProj<T> : ModProjectile where T : ModItem
     {
         public override string Texture => ModContent.GetInstance<T>().Texture;
         public Player Owner => Main.player[Projectile.owner];

@@ -12,6 +12,7 @@ namespace WotTK.Content
     {
         public virtual int MinimalLevel => 0;
         public virtual bool IsWeapon => false;
+        public int GetLevel(Player player) => player.WotTKPlayer().playerLevel;
         public override bool CanUseItem(Player player)
         {
             int level = player.WotTKPlayer().playerLevel;
@@ -38,7 +39,11 @@ namespace WotTK.Content
                     {
                         //stage = -1;
                         if (MinimalLevel <= 10)
-                            stage = 1;
+                        {
+                            stage = 0;
+                            if (level >= MinimalLevel)
+                                stage = 1;
+                        }
                         if (MinimalLevel > 10)
                         {
                             if (MinimalLevel - level > 0 && MinimalLevel - level <= 10)
@@ -92,6 +97,22 @@ namespace WotTK.Content
                 damage = (int)(damage * percent);
                 if (WotTKConfig.Instance.Debug)
                     damage = damage2;
+            }
+        }
+        public override void UpdateEquip(Player player)
+        {
+            if (GetLevel(player) < MinimalLevel && Item.accessory)
+            {
+                for (int i = 0; i < player.armor.Length; i++)
+                {
+                    ref Item itm = ref player.armor[i];
+                    //Item itm2 = player.armor[i];
+                    if (itm.type == Item.type)
+                    {
+                        player.QuickSpawnItemDirect(Player.GetSource_None(), itm);
+                        itm = new Item();
+                    }
+                }
             }
         }
     }

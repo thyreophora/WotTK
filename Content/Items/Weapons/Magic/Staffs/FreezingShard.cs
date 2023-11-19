@@ -73,7 +73,7 @@ namespace WotTK.Content.Items.Weapons.Magic.Staffs
                 }
                 else
                 {
-                    Vector2 value = Projectile.SafeDirectionTo(Main.npc[TargetIndex].Center) * (Projectile.velocity.Length() + 3.5f);
+                    Vector2 value = Projectile.SafeDirectionTo(Main.npc[TargetIndex].Center) * (Projectile.velocity.Length() * 2f);
                     Projectile.velocity = Vector2.Lerp(Projectile.velocity, value, 0.03f);
                 }
             }

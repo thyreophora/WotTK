@@ -1,16 +1,18 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using WotTK.Content.Materials;
-using WotTK.Content.Tiles;
 using WotTK.Common.Players;
+using WotTK.Content.Items.Placeble;
+using WotTK.Content.Items.Materials;
+using System;
+using WotTK.Common;
 
 namespace WotTK.Content.Items.Accessories
 {
-    public class ArchaedicStone : ModItem
-	{
-
-		public override void SetDefaults()
+    public class ArchaedicStone : LevelLockedItem
+    {
+        public override int MinimalLevel => 27;
+        public override void SetDefaults()
 		{
 			Item.width = 32;
 			Item.height = 30;
@@ -39,7 +41,8 @@ namespace WotTK.Content.Items.Accessories
                 .AddIngredient(ModContent.ItemType<UnderworldBand>(), 1)
                 .AddIngredient(ModContent.ItemType<DarkIronBar>(), 14)
                 .AddIngredient(ItemID.HellstoneBar, 8)
-                .AddTile<Tiles.BlackAnvil>()
+                .AddTile<BlackAnvilTile>()
+                .AddCondition(LevelLockedRecipe.ConstructRecipeCondition(MinimalLevel, out Func<bool> condition), condition)
                 .Register();
         }
     }

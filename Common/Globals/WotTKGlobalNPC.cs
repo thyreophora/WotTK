@@ -2,6 +2,7 @@
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
+using WotTK.Content.Items.Weapons.Magic.Staffs;
 using WotTK.Content.Items.Weapons.Melee.Mace;
 
 namespace WotTK.Common.Globals
@@ -19,10 +20,17 @@ namespace WotTK.Common.Globals
         }
         public override void ModifyNPCLoot(NPC npc, NPCLoot npcLoot)
         {
+            Conditions.NotExpert notExpert = new Conditions.NotExpert();
             switch (npc.type)
             {
                 case NPCID.GoblinWarrior:
                     npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<GoblinSmasher>(), 50));
+                    break;
+                case NPCID.EyeofCthulhu:
+                    npcLoot.Add(ItemDropRule.ByCondition(notExpert, ModContent.ItemType<SmokedEyeShooter>(), 2));
+                    break;
+                case NPCID.Deerclops:
+                    npcLoot.Add(ItemDropRule.ByCondition(notExpert, ModContent.ItemType<FreezingShard>(), 4));
                     break;
             }
         }
