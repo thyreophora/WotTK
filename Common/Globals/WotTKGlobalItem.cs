@@ -3,8 +3,10 @@ using Mono.Cecil;
 using System.Collections.ObjectModel;
 using Terraria;
 using Terraria.DataStructures;
+using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
+using WotTK.Content.Items.Weapons.Magic.Staffs;
 using WotTK.Content.Items.Weapons.Melee.Mace;
 
 namespace WotTK.Common.Globals
@@ -50,33 +52,6 @@ namespace WotTK.Common.Globals
             item.noUseGraphic = true;
             item.noMelee = true;
         }
-        /*public override bool Shoot(Item item, Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
-        {
-            if (item.type == ItemID.WaffleIron && WotTKConfig.Instance.ChangeVanillaWeaponsToMace)
-            {
-                Projectile.NewProjectile(source, position, velocity, type, damage, knockback, player.whoAmI);
-            }
-            return base.Shoot(item, player, source, position, velocity, type, damage, knockback);
-        }*/
-        public override void ModifyShootStats(Item item, Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback)
-        {
-            /*if (item.type == ItemID.WaffleIron && WotTKConfig.Instance.ChangeVanillaWeaponsToMace)
-            {
-                Vector2 vel = (Main.MouseWorld - position).SafeNormalize(Vector2.Zero) * 11f;
-                Projectile.NewProjectile(player.GetSource_ItemUse(item), position, vel, 1020, damage, knockback, player.whoAmI);
-            }*/
-        }
-        public override bool Shoot(Item item, Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
-        {
-            /*if (item.type == ItemID.WaffleIron && WotTKConfig.Instance.ChangeVanillaWeaponsToMace)
-            {
-                Vector2 vel = (Main.MouseWorld - position).SafeNormalize(Vector2.Zero) * 11f;
-                Projectile.NewProjectile(player.GetSource_ItemUse(item), position, vel, type, damage, knockback, player.whoAmI);
-                Projectile.NewProjectile(player.GetSource_ItemUse(item), position, vel, type, damage, knockback, player.whoAmI);
-                return false;
-            }*/
-            return true;
-        }
         /*public override bool PreDrawTooltip(Item item, ReadOnlyCollection<TooltipLine> lines, ref int x, ref int y)
         {
             foreach (TooltipLine line in lines) 
@@ -90,5 +65,18 @@ namespace WotTK.Common.Globals
             }
             return true;
         }*/
+        public override void ModifyItemLoot(Item item, ItemLoot itemLoot)
+        {
+            //LeadingConditionRule rule = new LeadingConditionRule(new DropsEnabled());
+            switch (item.type)
+            {
+                case ItemID.EyeOfCthulhuBossBag:
+                    itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<SmokedEyeShooter>(), 2));
+                    break;
+                case ItemID.DeerclopsBossBag:
+                    itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<FreezingShard>(), 4));
+                    break;
+            }
+        }
     }
 }

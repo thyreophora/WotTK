@@ -2,13 +2,13 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace WotTK.Content.Materials
+namespace WotTK.Content.Items.Materials
 {
     public class DarkIronBar : ModItem
     {
         public override void SetStaticDefaults()
         {
-            Item.ResearchUnlockCount = 5;
+            Item.ResearchUnlockCount = 25;
         }
 
         public override void SetDefaults()

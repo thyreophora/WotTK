@@ -1,5 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
+using System;
 using Terraria;
+using Terraria.GameContent.ItemDropRules;
 using WotTK.Common.Players;
 
 namespace WotTK.Utilities
@@ -66,5 +68,27 @@ namespace WotTK.Utilities
         }
         public static Vector2 RotatedByFullRandom(this Vector2 v) => v.RotatedByRandom(MathHelper.TwoPi);
         public static WotTKPlayer WotTKPlayer(this Player player) => player.GetModPlayer<WotTKPlayer>();
+        public class IItemDropRuleByFunc : IItemDropRuleCondition, IProvideItemConditionDescription
+        {
+            public Func<bool> func;
+            public IItemDropRuleByFunc(Func<bool> func)
+            {
+                this.func = func;
+            }
+            public bool CanDrop(DropAttemptInfo info)
+            {
+                return func.Invoke();
+            }
+
+            public bool CanShowItemDropInUI()
+            {
+                return true;
+            }
+
+            public string GetConditionDescription()
+            {
+                return null;
+            }
+        }
     }
 }

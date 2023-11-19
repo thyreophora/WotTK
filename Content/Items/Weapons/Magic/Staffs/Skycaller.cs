@@ -37,7 +37,7 @@ namespace WotTK.Content.Items.Weapons.Magic.Staffs
             Item.DamageType = DamageClass.Magic;
 
             Item.shoot = ModContent.ProjectileType<SkycallerProj>();
-            Item.shootSpeed = 10;
+            Item.shootSpeed = 20;
         }
         public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback)
         {
@@ -70,16 +70,22 @@ namespace WotTK.Content.Items.Weapons.Magic.Staffs
             Projectile.friendly = true;
             Projectile.timeLeft = 600;
             Projectile.DamageType = DamageClass.Magic;
-            Projectile.tileCollide = true;
+            Projectile.tileCollide = false;
 
             ProjectileID.Sets.TrailingMode[Projectile.type] = 2;
             ProjectileID.Sets.TrailCacheLength[Projectile.type] = 6;
+        }
+        public override void OnSpawn(IEntitySource source)
+        {
+            Projectile.ai[0] = Main.MouseWorld.Y + 2;
         }
         public int TargetIndex = -1;
         public override void AI()
         {
             Projectile.rotation += 0.2f;
             Projectile.velocity.Y += 0.1f;
+            if (Projectile.Center.Y > Projectile.ai[0])
+                Projectile.tileCollide = true;
             if (Projectile.velocity.Y > 0)
             {
                 if (TargetIndex >= 0)
@@ -90,7 +96,7 @@ namespace WotTK.Content.Items.Weapons.Magic.Staffs
                     }
                     else
                     {
-                        Vector2 value = Projectile.SafeDirectionTo(Main.npc[TargetIndex].Center) * (Projectile.velocity.Length() + 3.5f);
+                        Vector2 value = Projectile.SafeDirectionTo(Main.npc[TargetIndex].Center) * (Projectile.velocity.Length() + 1.5f);
                         Projectile.velocity = Vector2.Lerp(Projectile.velocity, value, 0.05f);
                     }
                 }
