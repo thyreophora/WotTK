@@ -2,7 +2,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace WotTK.Content.Materials
+namespace WotTK.Content.Items.Materials
 {
     public class WoolCloth : ModItem
     {
