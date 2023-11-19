@@ -173,10 +173,7 @@ Items: {
 
 	Blink: {
 		DisplayName: Blink
-		Tooltip:
-			'''
-			[c/FFD700:Teleports you forward your mouse position]
-			'''
+		Tooltip: "[c/FFD700:Teleports you forward your mouse position]"
 	}
 
 	CharredRazormaneWand: {
@@ -212,6 +209,11 @@ Items: {
 	SilkCloth: {
 		Tooltip: ""
 		DisplayName: Silk Cloth
+	}
+
+	MediumLeather: {
+		Tooltip: ""
+		DisplayName: Medium Leather
 	}
 }
 

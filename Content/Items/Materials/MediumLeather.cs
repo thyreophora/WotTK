@@ -4,7 +4,7 @@ using Terraria.ModLoader;
 
 namespace WotTK.Content.Items.Materials
 {
-    public class SilkCloth : ModItem
+    public class MediumLeather : ModItem
     {
         public override void SetStaticDefaults()
         {
@@ -13,11 +13,11 @@ namespace WotTK.Content.Items.Materials
 
         public override void SetDefaults()
         {
-            Item.width = 34;
-            Item.height = 32;
+            Item.width = 48;
+            Item.height = 36;
             Item.maxStack = 9999;
             Item.value = Item.sellPrice(0, 0, 3, 0);
-            Item.rare = 5;
+            Item.rare = 2;
         }
     }
 }

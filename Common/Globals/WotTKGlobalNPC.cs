@@ -2,8 +2,10 @@
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
+using WotTK.Content.Items.Materials;
 using WotTK.Content.Items.Weapons.Magic.Staffs;
 using WotTK.Content.Items.Weapons.Melee.Mace;
+using WotTK.Utilities;
 
 namespace WotTK.Common.Globals
 {
@@ -25,6 +27,14 @@ namespace WotTK.Common.Globals
             {
                 case NPCID.GoblinWarrior:
                     npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<GoblinSmasher>(), 50));
+                    break;
+                case NPCID.BloodZombie:
+                case NPCID.Drippler:
+                    npcLoot.Add(ItemDropRule.ByCondition(new WotTKUtils.IItemDropRuleByFunc(() => NPC.downedSlimeKing), ModContent.ItemType<MediumLeather>(), 3));
+                    break;
+                case NPCID.ZombieEskimo:
+                case NPCID.TheBride:
+                    npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<WoolCloth>(), 1));
                     break;
                 case NPCID.EyeofCthulhu:
                     npcLoot.Add(ItemDropRule.ByCondition(notExpert, ModContent.ItemType<SmokedEyeShooter>(), 2));

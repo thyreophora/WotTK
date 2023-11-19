@@ -8,7 +8,7 @@ namespace WotTK.Content.Items.Materials
     {
         public override void SetStaticDefaults()
         {
-            Item.ResearchUnlockCount = 5;
+            Item.ResearchUnlockCount = 25;
         }
 
         public override void SetDefaults()
