@@ -203,6 +203,16 @@ Items: {
 		DisplayName: Freezing Shard
 		Tooltip: Shoots a three homing ice shards
 	}
+
+	WoolCloth: {
+		Tooltip: ""
+		DisplayName: Wool Cloth
+	}
+
+	SilkCloth: {
+		Tooltip: ""
+		DisplayName: Silk Cloth
+	}
 }
 
 Projectiles: {
