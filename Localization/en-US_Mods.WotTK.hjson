@@ -239,6 +239,7 @@ Projectiles: {
 	SkycallerProj.DisplayName: Skycaller Proj
 	CharredRazormaneWandProj.DisplayName: Charred Razormane Wand Proj
 	FreezingShardProj.DisplayName: Freezing Shard Proj
+	ExpertiseProj.DisplayName: Expertise Proj
 }
 
 Events.LevelUp: Level Up: now {0} level
