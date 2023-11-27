@@ -215,6 +215,16 @@ Items: {
 		Tooltip: ""
 		DisplayName: Medium Leather
 	}
+
+	ThickLeather: {
+		Tooltip: ""
+		DisplayName: Thick Leather
+	}
+
+	OrdilWood: {
+		Tooltip: ""
+		DisplayName: Ordil Wood
+	}
 }
 
 Projectiles: {
