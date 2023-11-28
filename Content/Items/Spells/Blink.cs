@@ -1,8 +1,6 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using Terraria;
 using Terraria.Audio;
 using Terraria.ID;
@@ -12,13 +10,10 @@ namespace WotTK.Content.Items.Spells
 {
     public class Blink : LevelLockedItem
     {
-        public override int MinimalLevel => 25;
+        public override int MinimalLevel => 15;
 
         public override void SetDefaults()
         {
-            Item.damage = 0;
-            Item.noMelee = true;
-            Item.channel = true;
             Item.rare = ItemRarityID.Pink;
             Item.width = 48;
             Item.height = 48;
@@ -28,11 +23,9 @@ namespace WotTK.Content.Items.Spells
             Item.autoReuse = false;
             Item.shootSpeed = 0f;
             Item.noUseGraphic = true;
-
         }
 
-        public override bool CanUseItem(Player player) => !player.HasBuff(ModContent.BuffType<BlinkCooldown>());
-
+        public override bool CanUseItem(Player player) => !player.HasBuff(ModContent.BuffType<BlinkCooldown>()) && player.velocity.Y == 0;
 
         public override bool? UseItem(Player player)
         {
@@ -43,9 +36,19 @@ namespace WotTK.Content.Items.Spells
 
         private void BlinkTeleport(Player player)
         {
-            if (!Collision.SolidCollision(Main.MouseWorld, player.width, player.height))
+            Vector2 blinkPosition = Main.MouseWorld;
+
+            float maxDistance = 20f * 16f;
+            Vector2 teleportDirection = blinkPosition - player.Center;
+            if (teleportDirection.Length() > maxDistance)
             {
-                RunTeleport(player, Main.MouseWorld);
+                teleportDirection.Normalize();
+                blinkPosition = player.Center + teleportDirection * maxDistance;
+            }
+
+            if (!Collision.SolidCollision(blinkPosition, player.width, player.height))
+            {
+                RunTeleport(player, blinkPosition);
                 player.AddBuff(ModContent.BuffType<BlinkCooldown>(), 10 * 60);
             }
         }
@@ -54,8 +57,6 @@ namespace WotTK.Content.Items.Spells
         {
             player.Teleport(pos, 2, 0);
             player.velocity = Vector2.Zero;
-
-
         }
 
         public override void PostDrawInWorld(SpriteBatch spriteBatch, Color lightColor, Color alphaColor, float rotation, float scale, int whoAmI)
@@ -72,6 +73,7 @@ namespace WotTK.Content.Items.Spells
             }
         }
     }
+
     public class BlinkCooldown : ModBuff
     {
         public override void SetStaticDefaults()
