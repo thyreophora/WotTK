@@ -155,8 +155,8 @@ Items: {
 		Tooltip:
 			'''
 			Guarded by [c/87CEEB:Lord Incendius,] this anvil is required to craft all Dark Iron items. 
-			It is made up of only the purest Dark iron, smelted and refined with secrets only revealed
-			                     to the Dark Iron clan's most trusted miners and blacksmiths.
+			It is made up of only the purest Dark iron, smelted and refined with secrets only
+			Revealed to the Dark Iron clan's most trusted miners and blacksmiths.
 			The clan considers the anvil to be sacred,
 			and Dark Iron dwarves may sometimes say [c/87CEEB:"May the Black Anvil bless ye."]
 			'''
@@ -222,8 +222,28 @@ Items: {
 	}
 
 	OrdilWood: {
-		Tooltip: ""
-		DisplayName: Ordil Wood
+		DisplayName: Heartswood
+		Tooltip:
+			'''
+			In preparation for your coming, I used my sight to look over the world and through the mists of time. 
+			I have found what it is you seek.
+			In the War of the Ancients, two lovers fell together in battle. Where they took their last breaths
+			A tree known as the [c/FFD700:"heartswood"] grew, a symbol of their undying love.
+			'''
+	}
+
+	DarkRuby: {
+		DisplayName: Dark Ruby
+		Tooltip:
+			'''
+			[c/FFD700:+3] Agility
+			                     Slightly Increases Life Regen
+			'''
+	}
+
+	DarkBelt: {
+		DisplayName: Dark Belt
+		Tooltip: "[c/FFD700:+6] Agility"
 	}
 }
 

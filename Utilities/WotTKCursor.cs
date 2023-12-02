@@ -1,58 +1,50 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using ReLogic.Content;
+using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using Terraria;
 using Terraria.ModLoader;
-using Terraria.ModLoader.Config;
 using Terraria.UI;
 
 namespace WotTK.Utilities
 {
+    [Autoload(Side = ModSide.Client)]
     public class WotTKCursor : ModSystem
     {
-        public override void ModifyInterfaceLayers(List<GameInterfaceLayer> layers)
+        private static Asset<Texture2D> meterTexture;
+        private static LegacyGameInterfaceLayer layer;
+        public override void Load()
         {
-            int cursorLayerIndex = layers.FindIndex(layer => layer.Name == "Vanilla: Cursor");
+            meterTexture = Mod.Assets.Request<Texture2D>("Textures/LichCursor");
 
-            if (cursorLayerIndex != -1)
-            {
-                layers[cursorLayerIndex] = new LegacyGameInterfaceLayer(
-                    "WotTK: LichCursor",
-                    delegate
-                    {
-                        return true;
-                    },
-                    InterfaceScaleType.UI
-                );
-            }
+            layer = new LegacyGameInterfaceLayer($"{nameof(WotTK)}: My Cursor", () => {
+
+                if (!meterTexture.IsLoaded)
+                {
+                    return true;
+                }
+
+                var texture = meterTexture.Value;
+                var basePosition = new Vector2(Main.mouseX, Main.mouseY);
+
+                var drawColor = new Color(255, 255, 255, 255);
+                var srcRect = new Rectangle(0, 0, 30, 28);
+
+                Main.spriteBatch.Draw(texture, basePosition, srcRect, drawColor, 0f, new Vector2(6f, 6f), 1f, SpriteEffects.None, 0f);
+
+                return true;
+            });
         }
 
-        public class WotTKCursorMod
+        public override void ModifyInterfaceLayers(List<GameInterfaceLayer> layers)
         {
-            private int cursorX;
-            private int cursorY;
-
-            private Texture2D defaultcursor;
-
-            private int cursorWidth = 30;
-            private int cursorHeight = 28;
-
-            public WotTKCursorMod()
-            {
-                defaultcursor = (Texture2D)ModContent.Request<Texture2D>("WotTK/Textures/LichCursor");
-            }
-
-            public void Update()
-            {
-                cursorX = Main.mouseX;
-                cursorY = Main.mouseY;
-
-            }
-
-            public void Draw()
-            {
-                Main.spriteBatch.Draw(defaultcursor, new Vector2(cursorX, cursorY), Color.White);
-            }
+            int preferredIndex = layers.FindIndex(l => l.Name == "Vanilla: Cursor");
+            if (preferredIndex >= 0)
+                layers[preferredIndex] = layer;
         }
     }
 }
