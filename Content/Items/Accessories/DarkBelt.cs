@@ -16,8 +16,8 @@ namespace WotTK.Content.Items.Accessories
 		{
 			Item.width = 28;
 			Item.height = 24;
-			Item.value = Item.sellPrice(0, 0, 40, 0);
-			Item.rare = ItemRarityID.LightRed;
+            Item.value = Item.sellPrice(silver: 1);
+            Item.rare = ItemRarityID.LightRed;
             Item.defense = 2;
 
             Item.accessory = true;

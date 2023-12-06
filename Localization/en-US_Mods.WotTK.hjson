@@ -245,6 +245,11 @@ Items: {
 		DisplayName: Dark Belt
 		Tooltip: "[c/FFD700:+6] Agility"
 	}
+
+	DarkIronGreatsword: {
+		Tooltip: ""
+		DisplayName: Dark Iron Greatsword
+	}
 }
 
 Projectiles: {
@@ -270,6 +275,10 @@ Projectiles: {
 	CharredRazormaneWandProj.DisplayName: Charred Razormane Wand Proj
 	FreezingShardProj.DisplayName: Freezing Shard Proj
 	ExpertiseProj.DisplayName: Expertise Proj
+	DarkIronProj.DisplayName: Dark Iron Proj
+	DarkIronGreatswordProj.DisplayName: Dark Iron Greatsword Proj
+	DarkIronGreatsword_Proj.DisplayName: Dark Iron Greatsword_ Proj
+	DarkIronGreatswordSlash_Proj.DisplayName: Dark Iron Greatsword Slash_ Proj
 }
 
 Events.LevelUp: Level Up: now {0} level
