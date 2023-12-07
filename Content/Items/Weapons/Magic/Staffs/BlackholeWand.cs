@@ -53,7 +53,6 @@ namespace WotTK.Content.Items.Weapons.Magic.Staffs
         public override void AddRecipes()
         {
             CreateRecipe()
-            .AddIngredient(ItemID.BottledWater)
             .AddIngredient(ModContent.ItemType<OrdilWood>(), 6)
             .AddTile(TileID.Bottles)
             .Register();

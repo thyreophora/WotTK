@@ -91,5 +91,16 @@ namespace WotTK.Content.Items.Weapons.Magic.Staffs
         {
             Projectile.frame = Main.rand.Next(3);
         }
+
+        public override void OnKill(int timeLeft)
+        {
+            SoundEngine.PlaySound(SoundID.NPCDeath1, Projectile.position);
+            if (Projectile.owner == Main.myPlayer)
+            {
+
+            }
+            for (int i = 0; i < 10; i++)
+                Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, DustID.ToxicBubble, Alpha: 100);
+        }
     }
 }

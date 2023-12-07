@@ -45,62 +45,6 @@ namespace WotTK.Content.Items.Weapons.Magic.Staffs
             for (int i = 0; i < 10; i++)
                 Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, DustID.ToxicBubble, Alpha: 100);
         }
-    }
-    public class DigestiveAcid_Mist : ModProjectile
-    {
-        public override string Texture => "Redemption/Textures/IceMist";
-        public override void SetStaticDefaults()
-        {
-            // DisplayName.SetDefault("Acid Mist");
-        }
-
-        public override void SetDefaults()
-        {
-            Projectile.width = 150;
-            Projectile.height = 150;
-            Projectile.DamageType = DamageClass.Magic;
-            Projectile.penetrate = -1;
-            Projectile.hostile = false;
-            Projectile.friendly = false;
-            Projectile.tileCollide = false;
-            Projectile.alpha = 255;
-            Projectile.timeLeft = 240;
-            Projectile.scale = Main.rand.NextFloat(0.5f, 1f);
-        }
-        public override void AI()
-        {
-            if (Projectile.localAI[0] == 0)
-                Projectile.localAI[0] = Main.rand.Next(1, 3);
-
-            if (Projectile.localAI[0] == 1)
-                Projectile.rotation -= 0.003f;
-            else if (Projectile.localAI[0] == 2)
-                Projectile.rotation += 0.003f;
-
-            Projectile.velocity *= 0.98f;
-            if (Projectile.timeLeft < 80)
-            {
-                Projectile.alpha += 20;
-                if (Projectile.alpha >= 255)
-                    Projectile.Kill();
-            }
-            else
-            {
-                if (Projectile.alpha > 0)
-                    Projectile.alpha -= 5;
-
-                for (int i = 0; i < Main.maxNPCs; i++)
-                {
-                    NPC target = Main.npc[i];
-                    if (!target.active || !target.CanBeChasedBy())
-                        continue;
-
-                    if (!Projectile.Hitbox.Intersects(target.Hitbox))
-                        continue;
-
-                }
-            }
-        }
 
         public override bool PreDraw(ref Color lightColor)
         {
