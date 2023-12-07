@@ -5,7 +5,7 @@ using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace WotTK.Content.Items.Weapons.Magic
+namespace WotTK.Content.Items.Weapons.Magic.Staffs
 {
     public class BlackholeWand : ModItem
     {
@@ -35,7 +35,7 @@ namespace WotTK.Content.Items.Weapons.Magic
             Item.value = Item.sellPrice(0, 2, 0, 0);
             Item.rare = ItemRarityID.LightRed;
             Item.shootSpeed = 19;
-            Item.shoot = ModContent.ProjectileType<DigestiveVat_Proj>();
+            Item.shoot = ModContent.ProjectileType<BlackholeWand_Proj>();
             Item.UseSound = SoundID.NPCHit20;
         }
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)

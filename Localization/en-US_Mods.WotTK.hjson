@@ -250,6 +250,11 @@ Items: {
 		Tooltip: ""
 		DisplayName: Dark Iron Greatsword
 	}
+
+	BlackholeWand: {
+		Tooltip: ""
+		DisplayName: Blackhole Wand
+	}
 }
 
 Projectiles: {
@@ -279,6 +284,8 @@ Projectiles: {
 	DarkIronGreatswordProj.DisplayName: Dark Iron Greatsword Proj
 	DarkIronGreatsword_Proj.DisplayName: Dark Iron Greatsword_ Proj
 	DarkIronGreatswordSlash_Proj.DisplayName: Dark Iron Greatsword Slash_ Proj
+	DigestiveAcid_Mist.DisplayName: Digestive Acid_ Mist
+	BlackholeWand_Proj.DisplayName: Blackhole Wand_ Proj
 }
 
 Events.LevelUp: Level Up: now {0} level
