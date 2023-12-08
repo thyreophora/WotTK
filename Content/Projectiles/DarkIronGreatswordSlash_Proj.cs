@@ -12,7 +12,7 @@ namespace WotTK.Content.Projectiles
     {
         public override void SetStaticDefaults()
         {
-            ProjectileID.Sets.TrailCacheLength[Projectile.type] = 12;
+            ProjectileID.Sets.TrailCacheLength[Projectile.type] = 6;
             ProjectileID.Sets.TrailingMode[Projectile.type] = 0;
         }
         public override void SetDefaults()
@@ -26,7 +26,7 @@ namespace WotTK.Content.Projectiles
             Projectile.DamageType = DamageClass.Melee;
             Projectile.timeLeft = 180;
             Projectile.usesLocalNPCImmunity = true;
-            Projectile.scale = 1.5f;
+            Projectile.scale = 1f;
         }
         private float squish;
         public override void AI()

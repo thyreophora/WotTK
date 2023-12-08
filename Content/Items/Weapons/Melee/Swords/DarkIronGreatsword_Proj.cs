@@ -17,8 +17,8 @@ namespace WotTK.Content.Items.Weapons.Melee.Swords
 
         public override void SetStaticDefaults()
         {
-            ProjectileID.Sets.TrailCacheLength[Projectile.type] = 2;
-            ProjectileID.Sets.TrailingMode[Projectile.type] = 0;
+            ProjectileID.Sets.TrailCacheLength[Projectile.type] = 6;
+            ProjectileID.Sets.TrailingMode[Projectile.type] = 2;
         }
 
         public override bool ShouldUpdatePosition() => false;
@@ -32,7 +32,7 @@ namespace WotTK.Content.Items.Weapons.Melee.Swords
             Projectile.friendly = true;
 
             Projectile.penetrate = -1;
-            Length = 66;
+            Length = 46;
             Rot = MathHelper.ToRadians(2);
             Projectile.alpha = 255;
             Projectile.usesLocalNPCImmunity = true;
@@ -221,7 +221,7 @@ namespace WotTK.Content.Items.Weapons.Melee.Swords
             target.immune[Projectile.owner] = 0;
 
             if (Main.rand.NextBool(3))
-                target.AddBuff(BuffID.DryadsWardDebuff, 300);
+                target.AddBuff(BuffID.BrokenArmor, 300);
         }
 
         public override bool PreDraw(ref Color lightColor)
@@ -238,7 +238,7 @@ namespace WotTK.Content.Items.Weapons.Melee.Swords
             for (int k = 0; k < Projectile.oldPos.Length; k++)
             {
                 Vector2 drawPos = Projectile.oldPos[k] - Main.screenPosition + trialOrigin + new Vector2(0f, Projectile.gfxOffY);
-                Color color = Color.LimeGreen * ((Projectile.oldPos.Length - k) / (float)Projectile.oldPos.Length);
+                Color color = Color.Black * ((Projectile.oldPos.Length - k) / (float)Projectile.oldPos.Length);
                 Main.EntitySpriteDraw(texture, drawPos, null, color * Projectile.Opacity * glow, oldrot[k], origin, Projectile.scale, spriteEffects, 0);
             }
 
