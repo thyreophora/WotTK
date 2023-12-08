@@ -9,13 +9,13 @@ using WotTK.Common;
 
 namespace WotTK.Content.Items.Accessories
 {
-    public class DarkBelt : LevelLockedItem
+    public class DarkIronGauntlet : LevelLockedItem
     {
         public override int MinimalLevel => 40;
         public override void SetDefaults()
 		{
 			Item.width = 28;
-			Item.height = 24;
+			Item.height = 44;
             Item.value = Item.sellPrice(silver: 1);
             Item.rare = ItemRarityID.LightRed;
 
@@ -24,16 +24,17 @@ namespace WotTK.Content.Items.Accessories
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-			player.GetModPlayer<WotTKPlayer>().agility += 10;
-            player.GetDamage(DamageClass.Summon) *= 1.05f;
-            player.GetCritChance(DamageClass.Summon) += 5;
+			player.GetModPlayer<WotTKPlayer>().agility += 15;
 
+            player.GetDamage(DamageClass.Melee) *= 1.07f;
+            player.GetCritChance(DamageClass.Melee) += 7;
+            player.GetAttackSpeed(DamageClass.Melee) += 0.08f;
         }
 
         public override void AddRecipes()
         {
             CreateRecipe()
-                .AddIngredient(ModContent.ItemType<DarkIronBar>(), 2)
+                .AddIngredient(ModContent.ItemType<DarkIronBar>(), 8)
                 .AddIngredient(ModContent.ItemType<MediumLeather>(), 6)
                 .AddTile<BlackAnvilTile>()
                 .AddCondition(LevelLockedRecipe.ConstructRecipeCondition(MinimalLevel, out Func<bool> condition), condition)

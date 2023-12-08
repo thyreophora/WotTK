@@ -27,7 +27,10 @@ namespace WotTK.Content.Items.Weapons.Melee.Swords
         {
             Projectile.width = 48;
             Projectile.height = 48;
+
+            Projectile.tileCollide = false;
             Projectile.friendly = true;
+
             Projectile.penetrate = -1;
             Length = 66;
             Rot = MathHelper.ToRadians(2);
@@ -59,13 +62,14 @@ namespace WotTK.Content.Items.Weapons.Melee.Swords
             if (player.noItems || player.CCed || player.dead || !player.active)
                 Projectile.Kill();
 
-            SwingSpeed = 1f; // Ajusta la velocidad de oscilación según sea necesario
+            SwingSpeed = 1f;
 
             player.heldProj = Projectile.whoAmI;
             player.itemTime = 2;
             player.itemAnimation = 2;
 
             Projectile.spriteDirection = player.direction;
+
 
             if (Projectile.ai[0] < 2)
             {
