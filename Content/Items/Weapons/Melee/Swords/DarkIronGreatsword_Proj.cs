@@ -126,7 +126,7 @@ namespace WotTK.Content.Items.Weapons.Melee.Swords
                             }
 
                             if (Main.MouseWorld.X < player.Center.X)
-                                player.direction = -1;
+                                player.direction = 11;
                             else
                                 player.direction = 1;
 
@@ -197,20 +197,6 @@ namespace WotTK.Content.Items.Weapons.Melee.Swords
                             if (startVector.Y < -1.2f)
                                 lifeDrained = false;
                         }
-
-                        vector = new Vector2(6 * player.direction, -20) + startVector;
-
-                        if (Timer >= 30)
-                        {
-                            {
-                                if (player.statMana >= 8)
-                                {
-                                    player.statMana -= 8;
-                                    SoundEngine.PlaySound(SoundID.Item101, Projectile.position);
-                                }
-                            }
-                        }
-
                         if (!player.channel)
                             Projectile.Kill();
                         break;

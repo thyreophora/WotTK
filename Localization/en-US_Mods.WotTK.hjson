@@ -253,10 +253,7 @@ Items: {
 
 	DarkIronGreatsword: {
 		DisplayName: Dark Iron Greatsword
-		Tooltip:
-			'''
-			[
-			'''
+		Tooltip: "["
 	}
 
 	BlackholeWand: {
