@@ -13,7 +13,7 @@ namespace WotTK.Content.Projectiles
         public override void SetStaticDefaults()
         {
             ProjectileID.Sets.TrailCacheLength[Projectile.type] = 6;
-            ProjectileID.Sets.TrailingMode[Projectile.type] = 0;
+            ProjectileID.Sets.TrailingMode[Projectile.type] = 3;
         }
         public override void SetDefaults()
         {
@@ -24,7 +24,7 @@ namespace WotTK.Content.Projectiles
             Projectile.tileCollide = false;
             Projectile.penetrate = -1;
             Projectile.DamageType = DamageClass.Melee;
-            Projectile.timeLeft = 180;
+            Projectile.timeLeft = 220;
             Projectile.usesLocalNPCImmunity = true;
             Projectile.scale = 1f;
         }
@@ -34,7 +34,7 @@ namespace WotTK.Content.Projectiles
             if (Projectile.spriteDirection == 1)
                 Projectile.rotation = Projectile.velocity.ToRotation() + MathHelper.PiOver4;
             else
-                Projectile.rotation = Projectile.velocity.ToRotation() + MathHelper.ToRadians(135f);
+                Projectile.rotation = Projectile.velocity.ToRotation() + MathHelper.ToRadians(90f);
 
             if (Projectile.ai[0] == 1)
                 squish -= 0.02f;

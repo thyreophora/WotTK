@@ -233,12 +233,12 @@ namespace WotTK.Content.Items.Weapons.Melee.Swords
             Vector2 trialOrigin = new(texture.Width / 2f - 8, Projectile.height / 2f);
 
             if (Projectile.ai[0] == 2)
-                origin = new(texture.Width / 2f - (30 * player.direction), texture.Height / 2f + 34);
+                origin = new(texture.Width / 2f - (48 * player.direction), texture.Height / 2f + 48);
 
             for (int k = 0; k < Projectile.oldPos.Length; k++)
             {
                 Vector2 drawPos = Projectile.oldPos[k] - Main.screenPosition + trialOrigin + new Vector2(0f, Projectile.gfxOffY);
-                Color color = Color.Black * ((Projectile.oldPos.Length - k) / (float)Projectile.oldPos.Length);
+                Color color = Color.Gray * ((Projectile.oldPos.Length - k) / (float)Projectile.oldPos.Length);
                 Main.EntitySpriteDraw(texture, drawPos, null, color * Projectile.Opacity * glow, oldrot[k], origin, Projectile.scale, spriteEffects, 0);
             }
 
