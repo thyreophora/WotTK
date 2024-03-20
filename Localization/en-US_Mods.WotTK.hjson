@@ -257,8 +257,8 @@ Items: {
 	}
 
 	BlackholeWand: {
-		Tooltip: ""
 		DisplayName: Blackhole Wand
+		Tooltip: ""
 	}
 
 	RingoftheDarkestDay: {
@@ -280,11 +280,6 @@ Items: {
 			[c/FFD700:+7] Melee Damage
 			[c/FFD700:+7] Melee Crit Chance
 			'''
-	}
-
-	BlackholeWand: {
-		DisplayName: Blackhole Wand
-		Tooltip: ""
 	}
 }
 
