@@ -1,6 +1,6 @@
 using Microsoft.Xna.Framework;
-using WotTK.Content.Items.Materials;
 using Terraria;
+using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -10,10 +10,6 @@ namespace WotTK.Content.Items.Weapons.Magic.Staffs
 {
     public class BlackholeWand : LevelLockedItem
     {
-        public override bool IsLoadingEnabled(Mod mod)
-        {
-            return false;
-        }
         public override int MinimalLevel => 32;
         public override bool IsWeapon => true;
         public override void SetDefaults()
@@ -32,20 +28,6 @@ namespace WotTK.Content.Items.Weapons.Magic.Staffs
             Item.damage = 50;
             Item.knockBack = 2f;
             Item.DamageType = DamageClass.Magic;
-            Item.mana = 20;
-            Item.width = 28;
-            Item.height = 28;
-            Item.useTime = 6;
-            Item.useAnimation = 24;
-            Item.reuseDelay = 30;
-            Item.useStyle = ItemUseStyleID.Shoot;
-            Item.noMelee = true;
-            Item.autoReuse = true;
-            Item.knockBack = 4;
-            Item.value = Item.sellPrice(0, 2, 0, 0);
-            Item.rare = ItemRarityID.LightRed;
-            //Item.shoot = ModContent.ProjectileType<DigestiveVat_Proj>();
-            Item.UseSound = SoundID.NPCHit20;
 
             Item.shoot = ModContent.ProjectileType<BlackholeWand_Proj>();
             Item.shootSpeed = 20;
