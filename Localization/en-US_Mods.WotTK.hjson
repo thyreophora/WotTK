@@ -250,6 +250,11 @@ Items: {
 		Tooltip: ""
 		DisplayName: Dark Iron Greatsword
 	}
+
+	BlackholeWand: {
+		DisplayName: Blackhole Wand
+		Tooltip: ""
+	}
 }
 
 Projectiles: {

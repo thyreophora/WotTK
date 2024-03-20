@@ -69,7 +69,7 @@ namespace WotTK.Content.Items.Weapons.Melee.Swords
                             mouseOrig = Main.MouseWorld;
                             SoundEngine.PlaySound(SoundID.Item71, player.position);
                             startVector = (mouseOrig - player.Center).SafeNormalize(Vector2.UnitX);
-                            speed = MathHelper.ToRadians(Main.rand.Next(6, 3));
+                            speed = MathHelper.ToRadians(Main.rand.Next(3, 6));
                         }
                         if (Timer++ == (int)(5 * SwingSpeed))
                         {
