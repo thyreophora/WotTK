@@ -125,7 +125,7 @@ Items: {
 			'''
 			[c/87CEEB:Crafting Reagent]
 			[c/FFD700:+4] Agility
-			[c/FFD700:+6] Intellect
+			[c/FFD700:+3] Intellect
 			'''
 	}
 
@@ -134,7 +134,7 @@ Items: {
 		Tooltip:
 			'''
 			[c/87CEEB:Crafting Reagent]
-			[c/FFD700:+10] Agility
+			[c/FFD700:+8] Agility
 			[c/FFD700:+6] Strength
 			'''
 	}
@@ -143,7 +143,7 @@ Items: {
 		DisplayName: Archaedic Stone
 		Tooltip:
 			'''
-			[c/FFD700:+12] Agility
+			[c/FFD700:+15] Agility
 			[c/FFD700:+10] Strength
 			[c/FFD700:+10] Intellect
 			[c/FFD700:+25] Mana
@@ -236,19 +236,50 @@ Items: {
 		DisplayName: Dark Ruby
 		Tooltip:
 			'''
-			[c/FFD700:+3] Agility
-			                     Slightly Increases Life Regen
+			[c/FFD700:+8] Agility
+			[c/FFD700:+3] Life Regen
 			'''
 	}
 
 	DarkBelt: {
 		DisplayName: Dark Belt
-		Tooltip: "[c/FFD700:+6] Agility"
+		Tooltip:
+			'''
+			[c/FFD700:+10] Agility
+			[c/FFD700:+5] Summon Damage
+			[c/FFD700:+5] Summon Crit Chance
+			'''
 	}
 
 	DarkIronGreatsword: {
-		Tooltip: ""
 		DisplayName: Dark Iron Greatsword
+		Tooltip: "["
+	}
+
+	BlackholeWand: {
+		Tooltip: ""
+		DisplayName: Blackhole Wand
+	}
+
+	RingoftheDarkestDay: {
+		DisplayName: Ring ofthe Darkest Day
+		Tooltip:
+			'''
+			[c/FFD700:+10] Intellect
+			[c/FFD700:+5] Magic Damage
+			[c/FFD700:+7] Magic Crit Chance
+			'''
+	}
+
+	DarkIronGauntlet: {
+		DisplayName: Dark Iron Gauntlet
+		Tooltip:
+			'''
+			[c/FFD700:+15] Agility
+			[c/FFD700:+8] Melee Speed
+			[c/FFD700:+7] Melee Damage
+			[c/FFD700:+7] Melee Crit Chance
+			'''
 	}
 
 	BlackholeWand: {
@@ -284,10 +315,12 @@ Projectiles: {
 	DarkIronGreatswordProj.DisplayName: Dark Iron Greatsword Proj
 	DarkIronGreatsword_Proj.DisplayName: Dark Iron Greatsword_ Proj
 	DarkIronGreatswordSlash_Proj.DisplayName: Dark Iron Greatsword Slash_ Proj
+	DigestiveAcid_Mist.DisplayName: Digestive Acid_ Mist
+	BlackholeWand_Proj.DisplayName: Blackhole Wand_ Proj
 }
 
 Events.LevelUp: Level Up: now {0} level
-DamageClasses.PaladinDamageType.DisplayName: paladin`s melee damage
+DamageClasses.PaladinDamageType.DisplayName: Paladin Damage
 
 Configs: {
 	WotTKConfig: {

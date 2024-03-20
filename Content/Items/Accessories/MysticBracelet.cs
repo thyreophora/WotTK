@@ -11,7 +11,7 @@ namespace WotTK.Content.Items.Accessories
 {
     public class MysticBracelet : LevelLockedItem
 	{
-        public override int MinimalLevel => 14;
+        public override int MinimalLevel => 30;
         public override void SetDefaults()
 		{
 			Item.width = 32;
@@ -25,7 +25,7 @@ namespace WotTK.Content.Items.Accessories
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-			player.GetModPlayer<WotTKPlayer>().agility += 10;
+			player.GetModPlayer<WotTKPlayer>().agility += 8;
 
             player.GetModPlayer<WotTKPlayer>().strength += 6;
         }

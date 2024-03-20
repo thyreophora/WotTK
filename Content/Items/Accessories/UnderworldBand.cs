@@ -11,7 +11,7 @@ namespace WotTK.Content.Items.Accessories
 {
     public class UnderworldBand : LevelLockedItem
     {
-        public override int MinimalLevel => 17;
+        public override int MinimalLevel => 25;
 
         public override void SetDefaults()
 		{
@@ -26,13 +26,13 @@ namespace WotTK.Content.Items.Accessories
         {
 			player.GetModPlayer<WotTKPlayer>().agility += 4;
 
-            player.GetModPlayer<WotTKPlayer>().intellect += 6;
+            player.GetModPlayer<WotTKPlayer>().intellect += 3;
         }
 
         public override void AddRecipes()
         {
             CreateRecipe()
-                .AddIngredient(ModContent.ItemType<DarkIronBar>(), 6)
+                .AddIngredient(ModContent.ItemType<DarkIronBar>(), 8)
                 .AddIngredient(ItemID.Obsidian, 8)
                 .AddTile<BlackAnvilTile>()
                 .AddCondition(LevelLockedRecipe.ConstructRecipeCondition(MinimalLevel, out Func<bool> condition), condition)
