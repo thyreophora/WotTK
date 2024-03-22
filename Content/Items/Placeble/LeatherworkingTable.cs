@@ -1,7 +1,8 @@
-﻿using Terraria;
+﻿﻿using Terraria;
 using Terraria.ModLoader;
 using Terraria.ID;
 using System.Collections.Generic;
+using Terraria.DataStructures;
 using Terraria.Localization;
 using Terraria.ObjectData;
 using Microsoft.Xna.Framework;
@@ -38,12 +39,13 @@ namespace WotTK.Content.Items.Placeble
         public override void AddRecipes()
         {
             CreateRecipe()
-                .AddIngredient(ModContent.ItemType<OrdilWood>(), 12)
-                .AddIngredient(ModContent.ItemType<ThicLeather>(), 4)
-                .AddIngredient(ItemID.Sawmill)
+                .AddIngredient(ModContent.ItemType<ThickLeather>(), 4)
+                .AddIngredient(ModContent.ItemType<OrdilWood>(), 8)
+                .AddIngredient(ItemID.IronAnvil)
                 .AddTile(TileID.Anvils)
                 .AddCondition(LevelLockedRecipe.ConstructRecipeCondition(MinimalLevel, out Func<bool> condition), condition)
                 .Register();
+
 
         }
     }
@@ -67,11 +69,12 @@ namespace WotTK.Content.Items.Placeble
             Language.GetText("Leatherworking Table"));
             TileID.Sets.DisableSmartCursor[Type] = true;
 
-            TileID.Sets.DisableSmartCursor[Type] = true;
-            DustType = DustID.DynastyWood; // 207
+            AdjTiles = new int[] { TileID.Anvils };
+        }
 
-
-            }
+        public override void NumDust(int i, int j, bool fail, ref int num)
+        {
+            num = fail ? 1 : 3;
         }
     }
 }

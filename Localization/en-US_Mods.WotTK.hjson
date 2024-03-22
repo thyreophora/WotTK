@@ -281,6 +281,11 @@ Items: {
 			[c/FFD700:+7] Melee Crit Chance
 			'''
 	}
+
+	LeatherworkingTable: {
+		DisplayName: Leatherworking Table
+		Tooltip: ""
+	}
 }
 
 Projectiles: {
