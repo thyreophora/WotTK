@@ -41,8 +41,7 @@ namespace WotTK.Content.Items.Placeble
             CreateRecipe()
                 .AddIngredient(ModContent.ItemType<ThickLeather>(), 4)
                 .AddIngredient(ModContent.ItemType<OrdilWood>(), 8)
-                .AddIngredient(ItemID.IronAnvil)
-                .AddTile(TileID.Anvils)
+                .AddTile(TileID.Sawmill)
                 .AddCondition(LevelLockedRecipe.ConstructRecipeCondition(MinimalLevel, out Func<bool> condition), condition)
                 .Register();
 
@@ -69,7 +68,6 @@ namespace WotTK.Content.Items.Placeble
             Language.GetText("Leatherworking Table"));
             TileID.Sets.DisableSmartCursor[Type] = true;
 
-            AdjTiles = new int[] { TileID.Anvils };
         }
 
         public override void NumDust(int i, int j, bool fail, ref int num)

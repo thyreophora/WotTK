@@ -284,7 +284,12 @@ Items: {
 
 	LeatherworkingTable: {
 		DisplayName: Leatherworking Table
-		Tooltip: ""
+		Tooltip:
+			'''
+			What's more convenient than a Crafting Bench?
+			A Leatherworking Table!
+			Used to craft [c/5e2727:"Leather"] equipment.
+			'''
 	}
 }
 
