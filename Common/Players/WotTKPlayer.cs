@@ -138,6 +138,33 @@ namespace WotTK.Common.Players
         }
         private void TriggerPointUp(NPC target, NPC.HitInfo hit)
         {
+            if (!target.TryGetGlobalNPC<NPCLevels>(out var globalNPC)) {
+                return;
+            }
+            
+            var difference = Math.Abs(playerLevel - globalNPC.Level);
+            
+            var chance = 0;
+        
+            switch (difference) {
+                case 3:
+                    chance = 0;
+                    break;
+                case 2:
+                    chance = 4;
+                    break;
+                case 1:
+                    chance = 3;
+                    break;
+                case 0:
+                    chance = 1;
+                    break;
+            }
+
+            if (chance == 0 || !Main.rand.NextBool(chance)) {
+                return;
+            }
+            
             if (target.life <= hit.Damage && target.GetGlobalNPC<WotTKGlobalNPC>().canGetExp && playerLevel < CurrectMaxLevel())
             {
                 int vvalue = (int)target.value / 2;
@@ -146,9 +173,11 @@ namespace WotTK.Common.Players
                 playerLevelPoints += vvalue;
                 target.GetGlobalNPC<WotTKGlobalNPC>().canGetExp = false;
             }
+            
             if (playerLevel >= CurrectMaxLevel())
                 playerLevelPoints = 0;
         }
+        
         public override void ModifyShootStats(Item item, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback)
         {
             //Main.ViewSize
