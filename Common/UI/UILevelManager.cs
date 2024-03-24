@@ -32,7 +32,7 @@ public sealed class UILevelManager : ModSystem
     }
 
     public override void ModifyInterfaceLayers(List<GameInterfaceLayer> layers) {
-        var index = layers.FindIndex(l => l.Name == "Vanilla: Mouse Text");
+        var index = layers.FindIndex(l => l.Name == "Vanilla: Resource Bars");
 
         if (index == -1) {
             return;

@@ -7,6 +7,7 @@ using ReLogic.Content;
 using Terraria;
 using Terraria.GameContent;
 using Terraria.GameContent.UI.Elements;
+using Terraria.GameInput;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.UI;
@@ -138,14 +139,24 @@ public sealed class UILevelDisplay : UIState
         
         Panel.Append(SkullImage);
     }
+    
+    public override void Draw(SpriteBatch spriteBatch) {
+        PlayerInput.SetZoom_World();
 
-    public override void Update(GameTime gameTime) {
-        base.Update(gameTime);
-
+        spriteBatch.End();
+        spriteBatch.Begin(default, default, default, default, default, default, Main.GameViewMatrix.TransformationMatrix);
+        
         UpdateColors();
         UpdateElements();
-    }
+        
+        base.Draw(spriteBatch);
 
+        PlayerInput.SetZoom_UI();
+
+        spriteBatch.End();
+        spriteBatch.Begin(default, default, default, default, default, default, Main.UIScaleMatrix);
+    }
+    
     private void UpdateColors() {
         PanelLeft.Color = Color.White * Opacity;
         Panel.Color = Color.White * Opacity;
@@ -257,25 +268,34 @@ public sealed class UILevelDisplay : UIState
         var foundNPC = false;
 
         npc = null;
-
+        
         for (var i = 0; i < Main.maxNPCs; i++) {
             npc = Main.npc[i];
 
             if (!npc.active) {
                 continue;
             }
+            
+            Main.instance.LoadNPC(npc.type);
 
-            var position = Main.MouseWorld.ToPoint();
+            npc.position += npc.netOffset;
+
+            var zoom = Main.GameViewMatrix.Zoom;
+            
+            var mousePosition = new Rectangle((int)((float)Main.mouseX + Main.screenPosition.X), (int)((float)Main.mouseY + Main.screenPosition.Y), 1, 1);
 
             var npcHitbox = new Rectangle((int)npc.Bottom.X - npc.frame.Width / 2, (int)npc.Bottom.Y - npc.frame.Height, npc.frame.Width, npc.frame.Height);
-            var mouseHitbox = new Rectangle(position.X, position.Y, 1, 1);
+            var mouseHitbox = new Rectangle(mousePosition.X, mousePosition.Y, 1, 1);
 
             NPCLoader.ModifyHoverBoundingBox(npc, ref npcHitbox);
 
             if (mouseHitbox.Intersects(npcHitbox)) {
+                npc.position -= npc.netOffset;
                 foundNPC = true;
                 break;
             }
+            
+            npc.position -= npc.netOffset;
         }
 
         return foundNPC;
