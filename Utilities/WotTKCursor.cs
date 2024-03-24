@@ -32,7 +32,7 @@ namespace WotTK.Utilities
                 var basePosition = new Vector2(Main.mouseX, Main.mouseY);
 
                 var drawColor = new Color(255, 255, 255, 255);
-                var srcRect = new Rectangle(0, 0, 30, 28);
+                var srcRect = new Rectangle(0, 0, 32, 32);
 
                 Main.spriteBatch.Draw(texture, basePosition, srcRect, drawColor, 0f, new Vector2(6f, 6f), 1f, SpriteEffects.None, 0f);
 
@@ -43,7 +43,7 @@ namespace WotTK.Utilities
         public override void ModifyInterfaceLayers(List<GameInterfaceLayer> layers)
         {
             int preferredIndex = layers.FindIndex(l => l.Name == "Vanilla: Cursor");
-            if (preferredIndex >= 0)
+            if (preferredIndex >= 1)
                 layers[preferredIndex] = layer;
         }
     }

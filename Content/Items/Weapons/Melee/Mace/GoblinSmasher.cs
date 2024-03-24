@@ -18,6 +18,7 @@ namespace WotTK.Content.Items.Weapons.Melee.Mace
         {
             Item.width = Item.height = 50;
             Item.value = 4000;
+            Item.autoReuse = true;
             Item.rare = ItemRarityID.Green;
             Item.scale = 1.1f;
 
