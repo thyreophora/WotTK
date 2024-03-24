@@ -14,6 +14,7 @@ namespace WotTK.Content.Items.Weapons.Melee.Mace
     {
         public override int MaceUseTime => 50;
         public override int MinimalLevel => 3;
+        public override bool IsWeapon => true;
         public override void SafeSetDefaults()
         {
             Item.width = Item.height = 50;

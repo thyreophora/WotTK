@@ -73,14 +73,14 @@ namespace WotTK.Content.Items.Weapons.Magic.Staffs
                 }
                 else
                 {
-                    Vector2 value = Projectile.SafeDirectionTo(Main.npc[TargetIndex].Center) * (Projectile.velocity.Length() * 2f);
-                    Projectile.velocity = Vector2.Lerp(Projectile.velocity, value, 0.03f);
+                    Vector2 value = Projectile.SafeDirectionTo(Main.npc[TargetIndex].Center) * (Projectile.velocity.Length() * 1.5f);
+                    Projectile.velocity = Vector2.Lerp(Projectile.velocity, value, 0.09f);
                 }
             }
 
             if (TargetIndex == -1)
             {
-                NPC nPC = Projectile.Center.ClosestNPCAt(1600f);
+                NPC nPC = Projectile.Center.ClosestNPCAt(125f);
                 if (nPC != null)
                 {
                     TargetIndex = nPC.whoAmI;
@@ -102,10 +102,9 @@ namespace WotTK.Content.Items.Weapons.Magic.Staffs
                 int index2 = Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, 68, 0f, 0f, 0, new Color(), 1f);
                 Main.dust[index2].noGravity = true;
                 Main.dust[index2].velocity *= 1.5f;
-                Main.dust[index2].scale *= 0.9f;
+                Main.dust[index2].scale *= 1f;
             }
         }
-        
         public override void Kill(int timeLeft)
         {
             for (int k = 0; k < 5; k++)

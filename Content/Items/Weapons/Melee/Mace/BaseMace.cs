@@ -33,7 +33,7 @@ namespace WotTK.Content.Items.Weapons.Melee.Mace
 
             Item.useTime = Item.useAnimation = MaceUseTime;
             Item.useStyle = ItemUseStyleID.Shoot;
-            Item.UseSound = SoundID.Item1;
+            Item.UseSound = new SoundStyle("WotTK/Sounds/Swings/HammerSwing1");
             Item.noUseGraphic = true;
             Item.noMelee = true;
             //Item.channel = true;
