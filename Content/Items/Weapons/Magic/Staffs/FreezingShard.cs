@@ -91,5 +91,27 @@ namespace WotTK.Content.Items.Weapons.Magic.Staffs
         {
             Projectile.frame = Main.rand.Next(3);
         }
+        
+        public override void OnKill(int timeLeft)
+        {
+            SoundStyle impactSound = new SoundStyle("WotTK/Sounds/SpellImpacts/FreezingShardImpact");
+
+            SoundEngine.PlaySound(impactSound, Projectile.position);
+            for (int index1 = 0; index1 < 5; ++index1)
+            {
+                int index2 = Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, 68, 0f, 0f, 0, new Color(), 1f);
+                Main.dust[index2].noGravity = true;
+                Main.dust[index2].velocity *= 1.5f;
+                Main.dust[index2].scale *= 0.9f;
+            }
+        }
+        
+        public override void Kill(int timeLeft)
+        {
+            for (int k = 0; k < 5; k++)
+            {
+                Dust.NewDust(Projectile.position + Projectile.velocity, Projectile.width, Projectile.height, DustID.SnowflakeIce, Projectile.oldVelocity.X * 0.5f, Projectile.oldVelocity.Y * 0.5f);
+            }
+        }
     }
 }
