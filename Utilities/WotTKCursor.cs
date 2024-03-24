@@ -17,6 +17,10 @@ namespace WotTK.Utilities
     {
         private static Asset<Texture2D> meterTexture;
         private static LegacyGameInterfaceLayer layer;
+
+        // new property for mouse scale
+        private static float scale = 0.8f;
+
         public override void Load()
         {
             meterTexture = Mod.Assets.Request<Texture2D>("Textures/LichCursor");
@@ -34,7 +38,8 @@ namespace WotTK.Utilities
                 var drawColor = new Color(255, 255, 255, 255);
                 var srcRect = new Rectangle(0, 0, 32, 32);
 
-                Main.spriteBatch.Draw(texture, basePosition, srcRect, drawColor, 0f, new Vector2(6f, 6f), 1f, SpriteEffects.None, 0f);
+                // apply scale for mouse drawing
+                Main.spriteBatch.Draw(texture, basePosition, srcRect, drawColor, 0f, new Vector2(16f, 16f), scale, SpriteEffects.None, 0f);
 
                 return true;
             });
@@ -45,6 +50,12 @@ namespace WotTK.Utilities
             int preferredIndex = layers.FindIndex(l => l.Name == "Vanilla: Cursor");
             if (preferredIndex >= 1)
                 layers[preferredIndex] = layer;
+        }
+
+        // Método para cambiar la escala del cursor
+        public static void SetCursorScale(float newScale)
+        {
+            scale = newScale;
         }
     }
 }
