@@ -10,13 +10,17 @@ using Microsoft.Xna.Framework;
 using Terraria.DataStructures;
 using WotTK.Utilities;
 using Terraria.Audio;
+using WotTK.Common;
 
 namespace WotTK.Content.Items.Weapons.Magic.Staffs
 {
     public class FreezingShard : LevelLockedItem
     {
-        public override int MinimalLevel => 32;
-        public override bool IsWeapon => true;
+        public override int MinimalLevel => 35;
+        public override void SetStaticDefaults()
+        {
+            Item.ResearchUnlockCount = 1;
+        }
         public override void SetDefaults()
         {
             Item.width = 60;
@@ -30,7 +34,7 @@ namespace WotTK.Content.Items.Weapons.Magic.Staffs
             Item.autoReuse = true;
 
             Item.mana = 10;
-            Item.damage = 30;
+            Item.damage = 45;
             Item.knockBack = 2f;
             Item.DamageType = DamageClass.Magic;
 

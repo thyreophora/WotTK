@@ -5,13 +5,13 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using WotTK.Utilities;
+using WotTK.Common;
 
 namespace WotTK.Content.Items.Weapons.Magic.Staffs
 {
     public class SmokedEyeShooter : LevelLockedItem
     {
-        public override int MinimalLevel => 16;
-        public override bool IsWeapon => true;
+        public override int MinimalLevel => 15;
         public override void SetStaticDefaults()
         {
             Item.staff[Type] = true;
@@ -28,8 +28,8 @@ namespace WotTK.Content.Items.Weapons.Magic.Staffs
             Item.UseSound = SoundID.NPCHit8;
             Item.autoReuse = true;
 
-            Item.mana = 6;
-            Item.damage = 10;
+            Item.mana = 8;
+            Item.damage = 18;
             Item.knockBack = 1f;
             Item.DamageType = DamageClass.Magic;
 
@@ -96,7 +96,7 @@ namespace WotTK.Content.Items.Weapons.Magic.Staffs
 
             if (TargetIndex == -1)
             {
-                NPC nPC = Projectile.Center.ClosestNPCAt(1600f);
+                NPC nPC = Projectile.Center.ClosestNPCAt(125f);
                 if (nPC != null)
                 {
                     TargetIndex = nPC.whoAmI;

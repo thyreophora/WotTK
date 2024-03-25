@@ -18,7 +18,7 @@ namespace WotTK.Utilities
         private static Asset<Texture2D> meterTexture;
         private static LegacyGameInterfaceLayer layer;
 
-        // new property for mouse scale
+        // new property for mouse scale (default is 1f)
         private static float scale = 0.8f;
 
         public override void Load()
@@ -52,7 +52,7 @@ namespace WotTK.Utilities
                 layers[preferredIndex] = layer;
         }
 
-        // Método para cambiar la escala del cursor
+        // method for changing cursor scale
         public static void SetCursorScale(float newScale)
         {
             scale = newScale;

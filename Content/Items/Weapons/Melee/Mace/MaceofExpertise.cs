@@ -7,13 +7,14 @@ using System.Threading.Tasks;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using WotTK.Common;
 
 namespace WotTK.Content.Items.Weapons.Melee.Mace
 {
     public class MaceofExpertise : BaseMace
     {
         public override int MaceUseTime => 50;
-        public override int MinimalLevel => 3;
+        public override int MinimalLevel => 5;
         public override bool IsWeapon => true;
         public override void SafeSetDefaults()
         {

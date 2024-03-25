@@ -28,19 +28,36 @@ namespace WotTK.Common.Globals
                 case NPCID.GoblinWarrior:
                     npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<GoblinSmasher>(), 50));
                     break;
+
                 case NPCID.BloodZombie:
                 case NPCID.Drippler:
+                case NPCID.TheGroom:
                     npcLoot.Add(ItemDropRule.ByCondition(new WotTKUtils.IItemDropRuleByFunc(() => NPC.downedSlimeKing), ModContent.ItemType<MediumLeather>(), 3));
                     break;
+
+                case NPCID.PirateCrossbower:
+                case NPCID.PirateCorsair:
+                case NPCID.Parrot:
+                case NPCID.PirateDeadeye:
+                case NPCID.PirateDeckhand:
+                    npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<ThickLeather>(), 6));
+                    break;
+
                 case NPCID.ZombieEskimo:
                 case NPCID.TheBride:
                     npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<WoolCloth>(), 1));
                     break;
+
                 case NPCID.EyeofCthulhu:
                     npcLoot.Add(ItemDropRule.ByCondition(notExpert, ModContent.ItemType<SmokedEyeShooter>(), 2));
                     break;
+
                 case NPCID.Deerclops:
                     npcLoot.Add(ItemDropRule.ByCondition(notExpert, ModContent.ItemType<FreezingShard>(), 4));
+                    break;
+
+                case NPCID.BlackRecluse:
+                    npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<SilkCloth>(), 6));
                     break;
             }
         }
