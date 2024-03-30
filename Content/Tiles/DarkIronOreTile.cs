@@ -12,6 +12,7 @@ namespace WotTK.Content.Tiles
 {
     public class DarkIronOreTile : ModTile
     {
+        public static readonly SoundStyle MineSound = new("WotTK/Sounds/Custom/DarkIronMine", 3);
         public byte[,] tileAdjacency;
         public override void SetStaticDefaults()
         {
@@ -20,14 +21,14 @@ namespace WotTK.Content.Tiles
             Main.tileBlockLight[Type] = true;
             Main.tileOreFinderPriority[Type] = 690;
             TileID.Sets.Ore[Type] = true;
-            Main.tileShine[Type] = 600;
+            Main.tileShine[Type] = 2500;
             Main.tileShine2[Type] = true;
 
             AddMapEntry(new Color(48, 48, 48), CreateMapEntryName());
             MineResist = 4f;
             MinPick = 100;
             
-            HitSound = new SoundStyle("WotTK/Sounds/Custom/WandBaseSound");
+            HitSound = MineSound;
 
             Main.tileSpelunker[Type] = true;
 
@@ -45,9 +46,9 @@ namespace WotTK.Content.Tiles
 
         public override void ModifyLight(int i, int j, ref float r, ref float g, ref float b)
         {
-            r = 224f / 900f;
-            g = 219f / 900f;
-            b = 124f / 900f;
+            r = 224f / 2500f;
+            g = 219f / 2500f;
+            b = 124f / 2500f;
         }
     }
 }

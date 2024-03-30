@@ -17,6 +17,7 @@ namespace WotTK.Content.Items.Weapons.Magic.Staffs
 {
     public class FreezingShard : LevelLockedItem
     {
+        public static readonly SoundStyle iceCast = new("WotTK/Sounds/Casts/FreezingCast", 5);
         public override int MinimalLevel => 35;
         public override void SetStaticDefaults()
         {
@@ -31,7 +32,7 @@ namespace WotTK.Content.Items.Weapons.Magic.Staffs
 
             Item.useTime = Item.useAnimation = 20;
             Item.useStyle = ItemUseStyleID.Shoot;
-            Item.UseSound = new SoundStyle("WotTK/Sounds/Custom/WandBaseSound");
+            Item.UseSound = iceCast;
             Item.autoReuse = true;
 
             Item.mana = 10;
@@ -120,10 +121,11 @@ namespace WotTK.Content.Items.Weapons.Magic.Staffs
         {
             Projectile.frame = Main.rand.Next(3);
         }
-        
+
+        public static readonly SoundStyle Impacts = new("WotTK/Sounds/SpellImpacts/FreezingShardImpact", 5);
         public override void OnKill(int timeLeft)
         {
-            SoundStyle impactSound = new SoundStyle("WotTK/Sounds/SpellImpacts/FreezingShardImpact2");
+            SoundStyle impactSound = Impacts;
 
             SoundEngine.PlaySound(impactSound, Projectile.position);
             for (int index1 = 0; index1 < 5; ++index1)
