@@ -1,11 +1,15 @@
+using System;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using WotTK.Content.Items.Placeble;
+using WotTK.Common;
 
 namespace WotTK.Content.Items.Materials
 {
-    public class DarkIronBar : ModItem
+    public class DarkIronBar : LevelLockedItem
     {
+        public override int MinimalLevel => 35;
         public override void SetStaticDefaults()
         {
             Item.ResearchUnlockCount = 25;
@@ -19,20 +23,14 @@ namespace WotTK.Content.Items.Materials
             Item.value = Item.sellPrice(0, 0, 5, 0);
             Item.rare = -11;
         }
-
         public override void AddRecipes()
         {
             CreateRecipe()
-                .AddIngredient(ItemID.IronBar, 2)
-                .AddIngredient(ItemID.DemoniteBar, 2)
-                .AddTile(TileID.Anvils)
+                .AddIngredient(ModContent.ItemType<DarkIronOre>(), 4)
+                .AddIngredient(ItemID.Hellstone, 2)
+                .AddTile<BlackAnvilTile>()
+                .AddCondition(LevelLockedRecipe.ConstructRecipeCondition(MinimalLevel, out Func<bool> condition), condition)
                 .Register();
-            CreateRecipe()
-                .AddIngredient(ItemID.IronBar, 2)
-                .AddIngredient(ItemID.CrimtaneBar, 2)
-                .AddTile(TileID.Anvils)
-                .Register();
-
         }
     }
 }

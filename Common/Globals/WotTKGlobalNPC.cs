@@ -1,4 +1,4 @@
-﻿using Terraria;
+using Terraria;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -45,7 +45,7 @@ namespace WotTK.Common.Globals
 
                 case NPCID.ZombieEskimo:
                 case NPCID.TheBride:
-                    npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<WoolCloth>(), 1));
+                    npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<LinenCloth>(), 6));
                     break;
 
                 case NPCID.EyeofCthulhu:

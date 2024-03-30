@@ -26,7 +26,7 @@ namespace WotTK.Content.Items.Weapons.Magic.Staffs
             Item.value = 10000;
             Item.rare = ItemRarityID.Green;
 
-            Item.useTime = Item.useAnimation = 60;
+            Item.useTime = Item.useAnimation = 25;
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.UseSound = new SoundStyle("WotTK/Sounds/Custom/WandBaseSound");
             Item.autoReuse = true;
@@ -37,7 +37,7 @@ namespace WotTK.Content.Items.Weapons.Magic.Staffs
             Item.DamageType = DamageClass.Magic;
 
             Item.shoot = ModContent.ProjectileType<SkycallerProj>();
-            Item.shootSpeed = 20;
+            Item.shootSpeed = 25;
         }
         public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback)
         {

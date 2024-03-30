@@ -31,8 +31,6 @@ public static class NPCSets
         (1, 3),
         NPCID.RainbowSlime,
         (1, 3),
-        NPCID.PurpleSlime,
-        (1, 3),
         NPCID.SpikedIceSlime,
         (1, 3),
         NPCID.SpikedJungleSlime,

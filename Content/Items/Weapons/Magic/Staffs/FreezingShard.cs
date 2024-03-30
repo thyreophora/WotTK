@@ -7,6 +7,7 @@ using Terraria.ID;
 using Terraria;
 using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using Terraria.DataStructures;
 using WotTK.Utilities;
 using Terraria.Audio;
@@ -64,7 +65,31 @@ namespace WotTK.Content.Items.Weapons.Magic.Staffs
             Projectile.friendly = true;
             Projectile.timeLeft = 600;
             Projectile.DamageType = DamageClass.Magic;
+
+            ProjectileID.Sets.TrailingMode[Projectile.type] = 2;
+            ProjectileID.Sets.TrailCacheLength[Projectile.type] = 6;
         }
+        public override bool PreDraw(ref Color lightColor)
+        { 
+            SpriteBatch spriteBatch = Main.spriteBatch;
+            Texture2D texture = (Texture2D)ModContent.Request<Texture2D>("WotTK/Textures/FreezingTrail");
+            Vector2 drawOrigin = new Vector2(texture.Width * 0.4f, texture.Height * 0.4f);
+            SpriteEffects effects = (Projectile.spriteDirection == -1) ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
+            for (int k = 0; k < Projectile.oldPos.Length - 1; k++)
+            {
+                Vector2 drawPos = Projectile.oldPos[k] + new Vector2(Projectile.width, Projectile.height) / 2f + Vector2.UnitY * Projectile.gfxOffY - Main.screenPosition;
+                Color color = new Color(157, 255, 255); // R, G, B 
+                spriteBatch.Draw(texture, drawPos, null, color * 0.45f, Projectile.oldRot[k] + (float)Math.PI / 2, drawOrigin, Projectile.scale - k / (float)Projectile.oldPos.Length, effects, 0f);
+                spriteBatch.Draw(texture, drawPos - Projectile.oldPos[k] * 0.5f + Projectile.oldPos[k + 1] * 0.5f, null, color * 0.45f, Projectile.oldRot[k] * 0.5f + Projectile.oldRot[k + 1] * 0.5f + (float)Math.PI / 2, drawOrigin, Projectile.scale - k / (float)Projectile.oldPos.Length, effects, 0f);
+            }
+            return true;
+        }
+
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
+        {
+            target.AddBuff(BuffID.Frostburn2, 320);
+        }
+
         public int TargetIndex = -1;
         public override void AI()
         {
@@ -98,7 +123,7 @@ namespace WotTK.Content.Items.Weapons.Magic.Staffs
         
         public override void OnKill(int timeLeft)
         {
-            SoundStyle impactSound = new SoundStyle("WotTK/Sounds/SpellImpacts/FreezingShardImpact");
+            SoundStyle impactSound = new SoundStyle("WotTK/Sounds/SpellImpacts/FreezingShardImpact2");
 
             SoundEngine.PlaySound(impactSound, Projectile.position);
             for (int index1 = 0; index1 < 5; ++index1)

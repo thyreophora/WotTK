@@ -54,7 +54,6 @@ namespace WotTK.Content.Items.Weapons.Magic.Staffs
 
         }
 
-
         public override bool PreDraw(ref Color lightColor)
         { // doing light trail
             SpriteBatch spriteBatch = Main.spriteBatch;
@@ -103,49 +102,7 @@ namespace WotTK.Content.Items.Weapons.Magic.Staffs
                 }
             }
         }
-        public override void OnKill(int timeLeft)
-        {
-            for (int i = 0; i < 3; i++)
-            {
-                Projectile.NewProjectile(Projectile.GetSource_FromThis(), Projectile.Center, new Vector2(10, 0).RotatedByFullRandom(), ModContent.ProjectileType<SmokedEyeShooterProj2>(), Projectile.damage / 2, Projectile.knockBack / 2, Projectile.owner);
-            }
-        }
-    }
-    public class SmokedEyeShooterProj2 : ModProjectile
-    {
-        public override void SetDefaults()
-        {
-            Projectile.width = 16;
-            Projectile.height = 16;
-            Projectile.aiStyle = -1;
-            Projectile.friendly = true;
-            Projectile.alpha = 255;
-            Projectile.timeLeft = 600;
-            Projectile.DamageType = DamageClass.Magic;
-            Projectile.tileCollide = true;
 
-            //ProjectileID.Sets.TrailingMode[Projectile.type] = 2;
-            //ProjectileID.Sets.TrailCacheLength[Projectile.type] = 4;
-        }
-
-        public override void AI()
-        {
-            Dust dust = Dust.NewDustPerfect(Projectile.Center, DustID.Blood, Projectile.velocity / 2);
-            //dust.scale = 2f;
-            Projectile.velocity.Y += 0.1f;
-            if (Projectile.timeLeft == 580)
-            {
-                foreach (NPC npc in Main.npc)
-                {
-                    if (npc == null || !npc.active) continue;
-                    float distance = (npc.Center - Projectile.Center).Length();
-                    if (distance < 1600f)
-                    {
-                        Projectile.velocity = (npc.Center - Projectile.Center).SafeNormalize(Vector2.Zero) * Projectile.velocity.Length();
-                    }
-                }
-            }
-        }
         public override bool? CanHitNPC(NPC target)
         {
             return Projectile.timeLeft < 580;

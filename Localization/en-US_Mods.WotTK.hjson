@@ -52,7 +52,6 @@ Items: {
 		DisplayName: Dark Iron Bar
 		Tooltip:
 			'''
-			Requires [c/00FF00:Level 10]
 			[c/87CEEB:Crafting Reagent]
 			Max Stack - 1000
 			Sell Price - [i/s5:72]
@@ -80,6 +79,11 @@ Items: {
 
 	DarkIronOreItem: {
 		DisplayName: Dark Iron Ore Item
+		Tooltip: ""
+	}
+
+	DarkIronOre: {
+		DisplayName: Dark Iron Ore
 		Tooltip: ""
 	}
 
@@ -400,6 +404,7 @@ Tiles: {
 	DarkIronOre.MapEntry: Dark Iron Ore
 	ObsidiumOre.MapEntry: Obsidium Ore
 	SaroniteOre.MapEntry: Saronite Ore
+	DarkIronOreTile.MapEntry: Dark Iron Ore Tile
 }
 
 Buffs: {
