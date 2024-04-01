@@ -12,16 +12,16 @@ namespace WotTK.Content.Items.Weapons.Melee.Mace
 {
     public class DemonicBoneCrusher : BaseMace
     {
-        public override int MaceUseTime => 80;
-        public override int MinimalLevel => 28;
+        public override int MaceUseTime => 30;
+        public override int MinimalLevel => 30;
         public override void SafeSetDefaults()
         {
-            Item.width = Item.height = 60;
+            Item.width = Item.height = 54;
             Item.value = 17500;
             Item.autoReuse = true;
             Item.rare = ItemRarityID.Green;
 
-            Item.damage = 25;
+            Item.damage = 30;
             Item.knockBack = 1f;
 
             Item.shoot = ModContent.ProjectileType<DemonicBoneCrusherProj>();

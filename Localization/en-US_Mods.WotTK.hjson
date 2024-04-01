@@ -329,6 +329,11 @@ Items: {
 		DisplayName: Leather Boots
 		Tooltip: ""
 	}
+
+	TheUnstoppableForce: {
+		DisplayName: The Unstoppable Force
+		Tooltip: ""
+	}
 }
 
 Projectiles: {
@@ -360,6 +365,8 @@ Projectiles: {
 	DarkIronGreatswordSlash_Proj.DisplayName: Dark Iron Greatsword Slash_ Proj
 	DigestiveAcid_Mist.DisplayName: Digestive Acid_ Mist
 	BlackholeWand_Proj.DisplayName: Blackhole Wand_ Proj
+	TheUnstoppableForceProj.DisplayName: The Unstoppable Force Proj
+	SmookedTrail.DisplayName: Smooked Trail
 }
 
 Events.LevelUp: Level Up: now {0} level

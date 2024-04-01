@@ -3,6 +3,7 @@ using Terraria.ModLoader;
 using Terraria;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Terraria.Audio;
 using System;
 using WotTK.Utilities;
 using WotTK.Common;
@@ -11,6 +12,7 @@ namespace WotTK.Content.Items.Weapons.Magic.Staffs
 {
     public class SmokedEyeShooter : LevelLockedItem
     {
+        public static readonly SoundStyle smookedCast = new("WotTK/Sounds/Casts/SmookedCast", 3);
         public override int MinimalLevel => 15;
         public override void SetStaticDefaults()
         {
@@ -25,7 +27,7 @@ namespace WotTK.Content.Items.Weapons.Magic.Staffs
 
             Item.useTime = Item.useAnimation = 30;
             Item.useStyle = ItemUseStyleID.Shoot;
-            Item.UseSound = SoundID.NPCHit8;
+            Item.UseSound = smookedCast;
             Item.autoReuse = true;
 
             Item.mana = 8;
@@ -102,10 +104,67 @@ namespace WotTK.Content.Items.Weapons.Magic.Staffs
                 }
             }
         }
+        public static readonly SoundStyle Impacts = new("WotTK/Sounds/SpellImpacts/SmookedImpact", 3);
+        public override void OnKill(int timeLeft)
+        {
+            SoundStyle impactSound = Impacts;
+
+            SoundEngine.PlaySound(impactSound, Projectile.position);
+            for (int index1 = 0; index1 < 5; ++index1)
+            {
+                int index2 = Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, 68, 0f, 0f, 0, new Color(), 1f);
+                Main.dust[index2].noGravity = true;
+                Main.dust[index2].velocity *= 1.5f;
+                Main.dust[index2].scale *= 1f;
+            }
+        }
+        public override void Kill(int timeLeft)
+        {
+            for (int k = 0; k < 5; k++)
+            {
+                Dust.NewDust(Projectile.position + Projectile.velocity, Projectile.width, Projectile.height, DustID.Blood, Projectile.oldVelocity.X * 0.5f, Projectile.oldVelocity.Y * 0.5f);
+            }
+        }
+    }
+    public class SmookedTrail : ModProjectile
+    {
+        public override void SetDefaults()
+        {
+            Projectile.width = 16;
+            Projectile.height = 16;
+            Projectile.aiStyle = -1;
+            Projectile.friendly = true;
+            Projectile.alpha = 255;
+            Projectile.timeLeft = 600;
+            Projectile.DamageType = DamageClass.Magic;
+            Projectile.tileCollide = true;
+
+            //ProjectileID.Sets.TrailingMode[Projectile.type] = 2;
+            //ProjectileID.Sets.TrailCacheLength[Projectile.type] = 4;
+        }
+
+        public override void AI()
+        {
+            Dust dust = Dust.NewDustPerfect(Projectile.Center, DustID.Blood, Projectile.velocity / 3);
+            //dust.scale = 2f;
+            Projectile.velocity.Y += 0.2f;
+            if (Projectile.timeLeft == 580)
+            {
+                foreach (NPC npc in Main.npc)
+                {
+                    if (npc == null || !npc.active) continue;
+                    float distance = (npc.Center - Projectile.Center).Length();
+                    if (distance < 300f)
+                    {
+                        Projectile.velocity = (npc.Center - Projectile.Center).SafeNormalize(Vector2.Zero) * Projectile.velocity.Length();
+                    }
+                }
+            }
+        }
 
         public override bool? CanHitNPC(NPC target)
         {
-            return Projectile.timeLeft < 580;
+            return Projectile.timeLeft < 250;
         }
     }
 }
