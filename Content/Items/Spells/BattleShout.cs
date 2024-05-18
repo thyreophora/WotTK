@@ -33,7 +33,7 @@ namespace WotTK.Content.Items.Spells
             player.AddBuff(ModContent.BuffType<BattleBuff>(), 7200); // 2 minutes in ticks
             player.AddBuff(ModContent.BuffType<BattleShoutCooldown>(), 900); // 2 minutes in ticks
 
-            // Mostrar texto flotante
+
             CombatText.NewText(player.getRect(), Color.Red, "Battle Shout Activated!", true, false);
 
             return true;
