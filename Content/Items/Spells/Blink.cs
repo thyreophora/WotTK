@@ -1,5 +1,6 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using WotTK.Common;
 using System;
 using Terraria;
 using Terraria.Audio;

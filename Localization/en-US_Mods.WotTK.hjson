@@ -334,6 +334,11 @@ Items: {
 		DisplayName: The Unstoppable Force
 		Tooltip: ""
 	}
+
+	RogueScarf: {
+		DisplayName: Rogue Scarf
+		Tooltip: ""
+	}
 }
 
 Projectiles: {

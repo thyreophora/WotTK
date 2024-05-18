@@ -80,7 +80,7 @@ namespace WotTK.Content.Items.Weapons.Magic.Staffs
             int num623 = Dust.NewDust(Projectile.Center, 4, 4, DustID.Blood, 0f, 0f, 0, default, 1f);
 
 
-            Color dustColor = new Color(255, 0, 0); // R, G, B 
+            Color dustColor = new Color(157, 41, 41); // R, G, B 
 
             if (TargetIndex >= 0)
             {

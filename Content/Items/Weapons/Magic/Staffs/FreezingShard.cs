@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -32,6 +32,7 @@ namespace WotTK.Content.Items.Weapons.Magic.Staffs
 
             Item.useTime = Item.useAnimation = 20;
             Item.useStyle = ItemUseStyleID.Shoot;
+            
             Item.UseSound = iceCast;
             Item.autoReuse = true;
 
