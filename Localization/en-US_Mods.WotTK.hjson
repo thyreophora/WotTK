@@ -344,6 +344,11 @@ Items: {
 		DisplayName: Battle Shout
 		Tooltip: ""
 	}
+
+	Sprint: {
+		DisplayName: Sprint
+		Tooltip: ""
+	}
 }
 
 Projectiles: {
@@ -377,6 +382,7 @@ Projectiles: {
 	BlackholeWand_Proj.DisplayName: Blackhole Wand_ Proj
 	TheUnstoppableForceProj.DisplayName: The Unstoppable Force Proj
 	SmookedTrail.DisplayName: Smooked Trail
+	SprintTrail.DisplayName: Sprint Trail
 }
 
 Events.LevelUp: Level Up: now {0} level
@@ -448,6 +454,16 @@ Buffs: {
 	BattleShoutCooldown: {
 		DisplayName: Battle Shout Cooldown
 		Description: Mods.WotTK.Buffs.BattleShoutCooldown.Description
+	}
+
+	SprintBuff: {
+		DisplayName: Sprint Buff
+		Description: Mods.WotTK.Buffs.SprintBuff.Description
+	}
+
+	SprintBuffCooldown: {
+		DisplayName: Sprint Buff Cooldown
+		Description: Mods.WotTK.Buffs.SprintBuffCooldown.Description
 	}
 }
 

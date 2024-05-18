@@ -62,14 +62,14 @@ namespace WotTK.Content.Items.Weapons.Magic.Staffs
         }
         public override void SetDefaults()
         {
-            Projectile.width = 22; Projectile.height = 14;
+            Projectile.width = 1; Projectile.height = 32;
             Projectile.aiStyle = -1;
             Projectile.friendly = true;
             Projectile.timeLeft = 600;
             Projectile.DamageType = DamageClass.Magic;
 
             ProjectileID.Sets.TrailingMode[Projectile.type] = 2;
-            ProjectileID.Sets.TrailCacheLength[Projectile.type] = 6;
+            ProjectileID.Sets.TrailCacheLength[Projectile.type] = 10;
         }
         public override bool PreDraw(ref Color lightColor)
         { 
