@@ -339,6 +339,11 @@ Items: {
 		DisplayName: Rogue Scarf
 		Tooltip: ""
 	}
+
+	BattleShout: {
+		DisplayName: Battle Shout
+		Tooltip: ""
+	}
 }
 
 Projectiles: {
@@ -433,6 +438,16 @@ Buffs: {
 	BlinkCooldown: {
 		DisplayName: Blink Cooldown
 		Description: Yoy can't use a blink
+	}
+
+	BattleBuff: {
+		DisplayName: Battle Buff
+		Description: Mods.WotTK.Buffs.BattleBuff.Description
+	}
+
+	BattleShoutCooldown: {
+		DisplayName: Battle Shout Cooldown
+		Description: Mods.WotTK.Buffs.BattleShoutCooldown.Description
 	}
 }
 

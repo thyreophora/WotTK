@@ -29,8 +29,7 @@ namespace WotTK.Content.Items.Accessories
         public override void AddRecipes()
         {
             CreateRecipe()
-                .AddIngredient(ModContent.ItemType<WoolCloth>(), 3)
-                .AddIngredient(ModContent.ItemType<MediumLeather>(), 8)
+                .AddIngredient(ModContent.ItemType<LinenCloth>(), 3)
                 .AddTile<LeatherworkingTile>()
                 .AddCondition(LevelLockedRecipe.ConstructRecipeCondition(MinimalLevel, out Func<bool> condition), condition)
                 .Register();
