@@ -11,27 +11,27 @@ using System;
 
 namespace WotTK.Content.Items.Weapons.Melee.Swords
 {
-    public class DarkIronGreatsword : LevelLockedItem
+    public class HeartswoodSword : LevelLockedItem
     {
         public static readonly SoundStyle swordSwing = new("WotTK/Sounds/Swings/SwordSwing", 2);
-        public override int MinimalLevel => 15;
+        public override int MinimalLevel => 2;
         public override void SetStaticDefaults()
         {
             Item.ResearchUnlockCount = 1;
         }
         public override void SetDefaults()
         {
-            Item.width = 48;
-            Item.height = 48;
-            Item.damage = 45;
-            Item.useAnimation = 20;
+            Item.width = 26;
+            Item.height = 36;
+            Item.damage = 15;
+            Item.useAnimation = 22;
 
             Item.useStyle = ItemUseStyleID.Swing;
             Item.DamageType = DamageClass.Melee;
-            Item.useTime = 20;
+            Item.useTime = 22;
             Item.useTurn = true;
 
-            Item.knockBack = 3f;
+            Item.knockBack = 1f;
             Item.UseSound = swordSwing;
             Item.autoReuse = true;
             Item.shootSpeed = 10f;
@@ -43,8 +43,8 @@ namespace WotTK.Content.Items.Weapons.Melee.Swords
         public override void AddRecipes()
         {
             CreateRecipe()
-                .AddIngredient(ModContent.ItemType<DarkIronBar>(), 18)
-                .AddIngredient(ItemID.PlatinumBroadsword, 1)
+                .AddIngredient(ModContent.ItemType<OrdilWood>(), 6)
+                .AddIngredient(ItemID.Acorn, 1)
                 .AddTile<BlackAnvilTile>()
                 .AddCondition(LevelLockedRecipe.ConstructRecipeCondition(MinimalLevel, out Func<bool> condition), condition)
                 .Register();

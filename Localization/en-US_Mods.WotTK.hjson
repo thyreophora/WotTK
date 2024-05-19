@@ -354,6 +354,11 @@ Items: {
 		DisplayName: Stealth
 		Tooltip: ""
 	}
+
+	HeartswoodSword: {
+		DisplayName: Heartswood Sword
+		Tooltip: ""
+	}
 }
 
 Projectiles: {
