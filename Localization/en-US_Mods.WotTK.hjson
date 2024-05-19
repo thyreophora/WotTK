@@ -349,6 +349,11 @@ Items: {
 		DisplayName: Sprint
 		Tooltip: ""
 	}
+
+	Stealth: {
+		DisplayName: Stealth
+		Tooltip: ""
+	}
 }
 
 Projectiles: {
@@ -464,6 +469,16 @@ Buffs: {
 	SprintBuffCooldown: {
 		DisplayName: Sprint Buff Cooldown
 		Description: Mods.WotTK.Buffs.SprintBuffCooldown.Description
+	}
+
+	StealthBuff: {
+		DisplayName: Stealth Buff
+		Description: Mods.WotTK.Buffs.StealthBuff.Description
+	}
+
+	StealthBuffCooldown: {
+		DisplayName: Stealth Buff Cooldown
+		Description: Mods.WotTK.Buffs.StealthBuffCooldown.Description
 	}
 }
 
