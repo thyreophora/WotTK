@@ -39,7 +39,7 @@ namespace WotTK.Utilities
                 var srcRect = new Rectangle(0, 0, 32, 32);
 
                 // apply scale for mouse drawing
-                Main.spriteBatch.Draw(texture, basePosition, srcRect, drawColor, 0f, new Vector2(16f, 16f), scale, SpriteEffects.None, 0f);
+                Main.spriteBatch.Draw(texture, basePosition, srcRect, drawColor, 0f, new Vector2(3f, 3f), scale, SpriteEffects.None, 0f);
 
                 return true;
             });
