@@ -2,6 +2,7 @@ using Terraria;
 using Terraria.ModLoader;
 using Terraria.ID;
 using WotTK.Common.Players;
+using Microsoft.Xna.Framework;
 using WotTK.Content.Items.Placeble;
 using WotTK.Content.Items.Materials;
 using System;
@@ -13,10 +14,6 @@ namespace WotTK.Content.Items.Accessories
     public class RogueScarf : LevelLockedItem
     {
         public override int MinimalLevel => 3;
-        public override void SetStaticDefaults()
-        {
-
-        }
 
         public override void SetDefaults()
         {
@@ -25,6 +22,11 @@ namespace WotTK.Content.Items.Accessories
             Item.accessory = true;
             Item.rare = ItemRarityID.Blue;
         }
+
+        		public override void UpdateAccessory(Player player, bool hideVisual) {
+
+			player.GetModPlayer<RogueScarfPlayer>().canDash = true;
+		}
 
         public override void AddRecipes()
         {
@@ -35,6 +37,5 @@ namespace WotTK.Content.Items.Accessories
                 .AddCondition(LevelLockedRecipe.ConstructRecipeCondition(MinimalLevel, out Func<bool> condition), condition)
                 .Register();
         }
-
     }
 }
