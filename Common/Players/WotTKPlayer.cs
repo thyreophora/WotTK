@@ -223,9 +223,9 @@ namespace WotTK.Common.Players
 		public const int DashLeft = 3;
 
 		public const int DashCooldown = 50;
-		public const int DashDuration = 35;
+		public const int DashDuration = 5;
 
-		public const float DashVelocity = 10f;
+		public const float DashVelocity = 8f;
 
 		public int DashDir = -1;
 
