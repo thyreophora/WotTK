@@ -16,8 +16,8 @@ namespace WotTK.Content.Items.Spells
         public override void SetDefaults()
         {
             Item.rare = ItemRarityID.Pink;
-            Item.width = 48;
-            Item.height = 48;
+            Item.width = 64;
+            Item.height = 64;
             Item.useTime = Item.useAnimation = 12;
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.expert = true;
