@@ -102,6 +102,11 @@ Items: {
 		Tooltip: ""
 	}
 
+	SaroniteOre: {
+		Tooltip: ""
+		DisplayName: Saronite Ore
+	}
+
 	DarkIronNugget: {
 		DisplayName: Dark Iron Nugget
 		Tooltip:
@@ -456,6 +461,7 @@ Tiles: {
 	ObsidiumOre.MapEntry: Obsidium Ore
 	SaroniteOre.MapEntry: Saronite Ore
 	DarkIronOreTile.MapEntry: Dark Iron Ore Tile
+	SaroniteOreTile.MapEntry: Saronite Ore Tile
 }
 
 Buffs: {

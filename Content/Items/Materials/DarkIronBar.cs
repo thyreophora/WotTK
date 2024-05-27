@@ -2,7 +2,7 @@ using System;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using WotTK.Content.Items.Placeble;
+using WotTK.Content.Items.Placeables;
 using WotTK.Common;
 
 namespace WotTK.Content.Items.Materials

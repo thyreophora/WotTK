@@ -3,7 +3,7 @@ using Terraria.ModLoader;
 using Terraria.ID;
 using WotTK.Common.Players;
 using Microsoft.Xna.Framework;
-using WotTK.Content.Items.Placeble;
+using WotTK.Content.Items.Placeables;
 using WotTK.Content.Items.Materials;
 using System;
 using WotTK.Common;

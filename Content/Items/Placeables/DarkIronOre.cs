@@ -1,15 +1,39 @@
-﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using System;
-using Terraria;
+﻿﻿using Terraria;
 using Terraria.ID;
-using Terraria.Localization;
-using Terraria.ModLoader;
-using WotTK.Content.Items.Placeble;
 using Terraria.Audio;
+using Terraria.ModLoader;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using WotTK.Content.Items.Materials;
+using WotTK.Common;
 
-namespace WotTK.Content.Tiles
+namespace WotTK.Content.Items.Placeables
 {
+    public class DarkIronOre : ModItem
+    {
+        
+        public override void SetStaticDefaults()
+        {
+            Item.ResearchUnlockCount = 100;
+        }
+
+        public override void SetDefaults()
+        {
+            Item.createTile = ModContent.TileType<DarkIronOreTile>();
+            Item.useStyle = ItemUseStyleID.Swing;
+            Item.useTurn = true;
+            Item.useAnimation = 15;
+            Item.useTime = 10;
+            Item.autoReuse = true;
+            Item.consumable = true;
+            Item.width = 13;
+            Item.height = 10;
+            Item.maxStack = 9999;
+            Item.value = Item.sellPrice(silver: 5);
+            Item.rare = ItemRarityID.Pink;
+        }
+    }
+
     public class DarkIronOreTile : ModTile
     {
         public static readonly SoundStyle MineSound = new("WotTK/Sounds/Custom/DarkIronMine", 3);
