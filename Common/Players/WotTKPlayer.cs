@@ -218,7 +218,7 @@ namespace WotTK.Common.Players
 
 	public class RogueScarfPlayer : ModPlayer
 	{
-		// These indicate what direction is what in the timer arrays used
+
 		public const int DashRight = 2;
 		public const int DashLeft = 3;
 

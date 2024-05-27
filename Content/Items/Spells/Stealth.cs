@@ -61,6 +61,7 @@ namespace WotTK.Content.Items.Spells
         }
     }
 
+
     public class StealthBuffCooldown : ModBuff
     {
         public override void SetStaticDefaults()

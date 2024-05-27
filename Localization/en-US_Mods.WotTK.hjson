@@ -290,7 +290,7 @@ Items: {
 	}
 
 	RingoftheDarkestDay: {
-		DisplayName: Ring ofthe Darkest Day
+		DisplayName: Ring of the Darkest Day
 		Tooltip:
 			'''
 			[c/FFD700:+10] Intellect
@@ -342,17 +342,30 @@ Items: {
 
 	BattleShout: {
 		DisplayName: Battle Shout
-		Tooltip: ""
+		Tooltip:
+			'''
+			[c/FFD700:Instant	15 sec cooldown]
+			Increases the attack power of party members by 5%
+			'''
 	}
 
 	Sprint: {
 		DisplayName: Sprint
-		Tooltip: ""
+		Tooltip:
+			'''
+			[c/FFD700:Instant	2 min cooldown]
+			Increases your movement speed by 50% for 8 sec.
+			'''
 	}
 
 	Stealth: {
 		DisplayName: Stealth
-		Tooltip: ""
+		Tooltip:
+			'''
+			[c/FFD700:Instant	2 sec cooldown]
+			Conceals you in the shadows until cancelled,
+			allowing you to stalk enemies without being seen.
+			'''
 	}
 
 	HeartswoodSword: {

@@ -10,7 +10,7 @@ using WotTK.Common;
 
 namespace WotTK.Content.Items.Accessories
 {
-    [AutoloadEquip(EquipType.Neck)]
+    [AutoloadEquip(EquipType.Front)]
     public class RogueScarf : LevelLockedItem
     {
         public override int MinimalLevel => 3;
@@ -24,6 +24,7 @@ namespace WotTK.Content.Items.Accessories
         }
 
         		public override void UpdateAccessory(Player player, bool hideVisual) {
+
 
 			player.GetModPlayer<RogueScarfPlayer>().canDash = true;
 		}
