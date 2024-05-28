@@ -47,7 +47,7 @@ namespace WotTK.Utilities
 
         public override void ModifyInterfaceLayers(List<GameInterfaceLayer> layers)
         {
-            int preferredIndex = layers.FindIndex(l => l.Name == "Vanilla: Mouse Over");
+            int preferredIndex = layers.FindIndex(l => l.Name == "Vanilla: Cursor");
             if (preferredIndex >= 1)
                 layers[preferredIndex] = layer;
         }

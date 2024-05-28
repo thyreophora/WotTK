@@ -13,7 +13,6 @@ Items: {
 		DisplayName: Demonic Bone-Crusher
 		Tooltip:
 			'''
-			[c/87CEEB:Crafting Reagent]
 			[c/FFD700:+1] Agility
 			Your Attacks will spawn bones!
 			'''
@@ -23,7 +22,6 @@ Items: {
 		DisplayName: Mace of Expertise
 		Tooltip:
 			'''
-			[c/87CEEB:Crafting Reagent]
 			[c/FFD700:+1] Agility
 			Deals Sacred Damage on Hit, healing you 5hp per hit.
 			'''
@@ -52,7 +50,6 @@ Items: {
 		DisplayName: Dark Iron Bar
 		Tooltip:
 			'''
-			[c/87CEEB:Crafting Reagent]
 			Max Stack - 1000
 			Sell Price - [i/s5:72]
 			'''
@@ -71,7 +68,6 @@ Items: {
 		DisplayName: Cracked Sledge
 		Tooltip:
 			'''
-			[c/87CEEB:Crafting Reagent]
 			[c/FFD700:+2] Agility
 			Huge Knockback, Summons rocks on hit.
 			'''
@@ -111,8 +107,6 @@ Items: {
 		DisplayName: Dark Iron Nugget
 		Tooltip:
 			'''
-			Requires [c/00FF00:Level 8]
-			[c/87CEEB:Crafting Reagent]
 			Max Stack - 1000
 			Sell Price - [i/s3:72]
 			'''
@@ -132,7 +126,6 @@ Items: {
 		DisplayName: Underworld Band
 		Tooltip:
 			'''
-			[c/87CEEB:Crafting Reagent]
 			[c/FFD700:+4] Agility
 			[c/FFD700:+3] Intellect
 			'''
@@ -142,7 +135,6 @@ Items: {
 		DisplayName: Mystic Bracelet
 		Tooltip:
 			'''
-			[c/87CEEB:Crafting Reagent]
 			[c/FFD700:+8] Agility
 			[c/FFD700:+6] Strength
 			'''
