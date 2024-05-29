@@ -1,6 +1,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
+using System;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.GameInput;
@@ -120,9 +121,26 @@ namespace WotTK.Utilities
 
         public override void ModifyInterfaceLayers(List<GameInterfaceLayer> layers)
         {
-            int cursorIndex = layers.FindIndex(l => l.Name == "Vanilla: Cursor");
-            if (cursorIndex >= 0)
-                layers[cursorIndex] = cursorLayer;
+            List<string> VanillaCursors =
+            [   
+                "Cursor",
+                //"Mouse Text",
+                //"Draw Layers",
+                //"Interface Layers",
+                "Mouse Over",
+                "Cursor Info"
+                //"Mouse Item / NPC Head"
+
+            ];
+
+            int cursorIndex;
+
+            foreach (string CurrentCursor in VanillaCursors) 
+            {
+                cursorIndex = layers.FindIndex(l => l.Name == $"Vanilla: {CurrentCursor}");
+                if (cursorIndex >= 0)
+                    layers[cursorIndex] = cursorLayer;
+            }
         }
 
         public static void SetCursorPosition(Vector2 position)
