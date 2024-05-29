@@ -22,8 +22,11 @@ namespace WotTK.Utilities
         
         private static Asset<Texture2D> arrowCursorTexture;
         private static Asset<Texture2D> arrowSmartCursorTexture;
-        private static LegacyGameInterfaceLayer cursorLayer;
 
+        private static Asset<Texture2D> hammerCursorTexture;
+        private static Asset<Texture2D> hammerSmartCursorTexture;
+        private static LegacyGameInterfaceLayer cursorLayer;
+    
         private static Vector2 cursorPosition = Vector2.Zero;
         private static float cursorScale = 1f;
 
@@ -35,6 +38,9 @@ namespace WotTK.Utilities
 
         private static readonly int arrowCursorWidth = 32;
         private static readonly int arrowCursorHeight = 32;
+
+        private static readonly int hammerCursorWidth = 32;
+        private static readonly int hammerCursorHeight = 32;
 
         public override void Load()
         {
@@ -50,6 +56,9 @@ namespace WotTK.Utilities
             arrowCursorTexture = Mod.Assets.Request<Texture2D>("Textures/Cursors/ArrowCursor");
             arrowSmartCursorTexture = Mod.Assets.Request<Texture2D>("Textures/Cursors/ArrowSmartCursor");
 
+            hammerCursorTexture = Mod.Assets.Request<Texture2D>("Textures/Cursors/HammerCursor");
+            hammerSmartCursorTexture = Mod.Assets.Request<Texture2D>("Textures/Cursors/HammerSmartCursor");
+
             cursorLayer = new LegacyGameInterfaceLayer($"{nameof(WotTK)}: My Cursor", () => {
                 if (!normalCursorTexture.IsLoaded || !smartCursorTexture.IsLoaded || !oreCursorTexture.IsLoaded || !oreSmartCursorTexture.IsLoaded || !swordCursorTexture.IsLoaded || !swordSmartCursorTexture.IsLoaded || !arrowCursorTexture.IsLoaded || !arrowSmartCursorTexture.IsLoaded)
                 {
@@ -60,6 +69,7 @@ namespace WotTK.Utilities
                 Rectangle srcRect = new Rectangle(0, 0, 32, 32); // default cursor size
 
                 bool isUsingPickaxe = Main.LocalPlayer.HeldItem.pick > 0;
+                bool isUsingHammer = Main.LocalPlayer.HeldItem.hammer > 0;
                 bool isUsingMeleeWeapon = Main.LocalPlayer.HeldItem.CountsAsClass(DamageClass.Melee);
                 bool isUsingRangedWeapon = Main.LocalPlayer.HeldItem.CountsAsClass(DamageClass.Ranged);
 
@@ -72,6 +82,19 @@ namespace WotTK.Utilities
                     else
                     {
                         texture = oreCursorTexture.Value;
+                    }
+
+                    srcRect = new Rectangle(0, 0, pickaxeCursorWidth, pickaxeCursorHeight);
+                }
+                else if (isUsingHammer)
+                {
+                    if (Main.SmartCursorIsUsed)
+                    {
+                        texture = hammerSmartCursorTexture.Value;
+                    }
+                    else
+                    {
+                        texture = hammerCursorTexture.Value;
                     }
 
                     srcRect = new Rectangle(0, 0, pickaxeCursorWidth, pickaxeCursorHeight);

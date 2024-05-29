@@ -1,12 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
-using SteelSeries.GameSense.DeviceZone;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Terraria;
-using Terraria.ID;
 using Terraria.Audio;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
@@ -28,6 +23,8 @@ namespace WotTK.Common.Players
         public int intellect;
         public int strength;
         public int stamina;
+        public int haste;
+        public int armor;
 
         public bool _spawnTentacleSpikesClone;
         public bool _spawnTentacleSpikesClone2;
@@ -67,7 +64,9 @@ namespace WotTK.Common.Players
             }
             return max;
         }
+
         public bool CanUseIfLevelIs(int minlevel) => playerLevel >= minlevel;
+
         public override void ResetEffects()
         {
             paladinsTeam = -1;
@@ -77,16 +76,12 @@ namespace WotTK.Common.Players
             intellect = 0;
             strength = 0;
             stamina = 0;
+            haste = 0;
+            armor = 0; // Reiniciar Armor
         }
-        /*public override void UpdateEquips()
-        {
-            if (Player.HeldItem.type == 5094 && Player.itemAnimation == 2 && !_spawnTentacleSpikesClone)
-            {
-                Main.NewText("Trigger");
-                _spawnTentacleSpikesClone = true;
-            }
-        }*/
+
         public static readonly SoundStyle LevelUpSound = new SoundStyle("WotTK/Sounds/Custom/LevelUp");
+
         public override void PostUpdateEquips()
         {
             Item item = Player.HeldItem;
@@ -118,16 +113,10 @@ namespace WotTK.Common.Players
                     }
                 }
             }
-
-            /*if (item.DamageType == DamageClass.Melee || item.DamageType == DamageClass.MeleeNoSpeed || item.DamageType == DamageClass.Ranged)
-            {
-                velocity *= 1f + agility * 0.01f;
-            }*/
-
         }
+
         public override void UpdateEquips()
         {
-            
             Player.GetDamage<MeleeDamageClass>() += strength * 0.005f;
             Player.GetDamage<RangedDamageClass>() += agility * 0.005f;
             Player.GetDamage<MagicDamageClass>() += intellect * 0.005f;
@@ -142,16 +131,24 @@ namespace WotTK.Common.Players
             {
                 Player.statLife = Player.statLifeMax;
             }
-            
+
+            // Efecto del atributo Haste
+            Player.pickSpeed -= haste * 0.005f;
+
+            // Efecto del atributo Armor
+            Player.endurance += armor * 0.005f;
         }
+
         public override void OnHitNPCWithItem(Item item, NPC target, NPC.HitInfo hit, int damageDone)
         {
             TriggerPointUp(target, hit);
         }
+
         public override void OnHitNPCWithProj(Projectile proj, NPC target, NPC.HitInfo hit, int damageDone)
         {
             TriggerPointUp(target, hit);
         }
+
         private void TriggerPointUp(NPC target, NPC.HitInfo hit)
         {
             if (!target.TryGetGlobalNPC<NPCLevels>(out var globalNPC)) {
@@ -196,33 +193,32 @@ namespace WotTK.Common.Players
         
         public override void ModifyShootStats(Item item, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback)
         {
-            //Main.ViewSize
             if (item.DamageType == DamageClass.Melee || item.DamageType == DamageClass.MeleeNoSpeed) 
             {
                 velocity *= (1f + agility * 0.01f + strength * 0.01f); 
-                //damage = (int)(damage * (1f + strength * 0.01f));
             }
             if (item.DamageType == DamageClass.Ranged)
             {
                 velocity *= (1f + agility * 0.01f);
-                //damage = (int)(damage * (1f + agility * 0.01f));
             }
             if (item.DamageType == DamageClass.Magic || item.DamageType == DamageClass.MagicSummonHybrid)
             {
                 velocity *= (1f + intellect * 0.01f);
-                //damage = (int)(damage * (1f + intellect * 0.01f));
             }
         }
+
         public override void ModifyManaCost(Item item, ref float reduce, ref float mult)
         {
             base.ModifyManaCost(item, ref reduce, ref mult);
             mult -= intellect * 0.01f;
         }
+
         public override void SaveData(TagCompound tag)
         {
             tag.Add("WoWLevel", playerLevel);
             tag.Add("WoWLevelPoints", playerLevelPoints);
         }
+
         public override void LoadData(TagCompound tag)
         {
             playerLevel = tag.GetInt("WoWLevel");
