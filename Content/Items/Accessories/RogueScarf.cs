@@ -26,7 +26,7 @@ namespace WotTK.Content.Items.Accessories
         		public override void UpdateAccessory(Player player, bool hideVisual) {
 
 
-			player.GetModPlayer<RogueScarfPlayer>().canDash = true;
+			player.GetModPlayer<WotTKDash>().canDash = true;
 		}
 
         public override void AddRecipes()

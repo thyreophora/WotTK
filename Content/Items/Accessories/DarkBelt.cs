@@ -24,7 +24,7 @@ namespace WotTK.Content.Items.Accessories
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-			player.GetModPlayer<WotTKPlayer>().agility += 10;
+			player.GetModPlayer<WotTKPlayer>().stamina += 10;
             player.GetDamage(DamageClass.Summon) *= 1.05f;
             player.GetCritChance(DamageClass.Summon) += 5;
 

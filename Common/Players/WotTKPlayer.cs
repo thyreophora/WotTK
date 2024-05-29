@@ -27,7 +27,7 @@ namespace WotTK.Common.Players
         public int agility;
         public int intellect;
         public int strength;
-
+        public int stamina;
 
         public bool _spawnTentacleSpikesClone;
         public bool _spawnTentacleSpikesClone2;
@@ -76,6 +76,7 @@ namespace WotTK.Common.Players
             agility = 0;
             intellect = 0;
             strength = 0;
+            stamina = 0;
         }
         /*public override void UpdateEquips()
         {
@@ -126,9 +127,22 @@ namespace WotTK.Common.Players
         }
         public override void UpdateEquips()
         {
+            
             Player.GetDamage<MeleeDamageClass>() += strength * 0.005f;
             Player.GetDamage<RangedDamageClass>() += agility * 0.005f;
             Player.GetDamage<MagicDamageClass>() += intellect * 0.005f;
+
+            float lifeIncreasePercentage = stamina * 0.005f;
+            int lifeIncrease = (int)(Player.statLifeMax2 * lifeIncreasePercentage);
+
+            Player.statLifeMax2 += lifeIncrease;
+            Player.statLifeMax = Player.statLifeMax2;
+
+            if (Player.statLife > Player.statLifeMax)
+            {
+                Player.statLife = Player.statLifeMax;
+            }
+            
         }
         public override void OnHitNPCWithItem(Item item, NPC target, NPC.HitInfo hit, int damageDone)
         {
@@ -215,83 +229,4 @@ namespace WotTK.Common.Players
             playerLevelPoints = tag.GetInt("WoWLevelPoints");
         }
     }
-
-	public class RogueScarfPlayer : ModPlayer
-	{
-
-		public const int DashRight = 2;
-		public const int DashLeft = 3;
-
-		public const int DashCooldown = 50;
-		public const int DashDuration = 5;
-
-		public const float DashVelocity = 8f;
-
-		public int DashDir = -1;
-
-		public bool canDash;
-		public int DashDelay = 0;
-		public int DashTimer = 0;
-
-		public override void ResetEffects() {
-
-			canDash = false;
-
-			if (Player.controlRight && Player.releaseRight && Player.doubleTapCardinalTimer[DashRight] < 15) {
-				DashDir = DashRight;
-			}
-			else if (Player.controlLeft && Player.releaseLeft && Player.doubleTapCardinalTimer[DashLeft] < 15) {
-				DashDir = DashLeft;
-			}
-			else {
-				DashDir = -1;
-			}
-		}
-
-		public override void PreUpdateMovement() {
-
-			if (CanUseDash() && DashDir != -1 && DashDelay == 0) {
-				Vector2 newVelocity = Player.velocity;
-
-				switch (DashDir) {
-
-
-					case DashLeft when Player.velocity.X > -DashVelocity:
-					case DashRight when Player.velocity.X < DashVelocity: {
-
-							float dashDirection = DashDir == DashRight ? 1 : -1;
-							newVelocity.X = dashDirection * DashVelocity;
-							break;
-						}
-					default:
-						return; 
-				}
-
-
-				DashDelay = DashCooldown;
-				DashTimer = DashDuration;
-				Player.velocity = newVelocity;
-
-
-			}
-
-			if (DashDelay > 0)
-				DashDelay--;
-
-			if (DashTimer > 0) { 
-
-				Player.eocDash = DashTimer;
-				Player.armorEffectDrawShadowEOCShield = true;
-
-				DashTimer--;
-			}
-		}
-
-		private bool CanUseDash() {
-			return canDash
-				&& Player.dashType == DashID.None
-				&& !Player.setSolar
-				&& !Player.mount.Active;
-		}
-	}
 }

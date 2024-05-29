@@ -13,10 +13,13 @@ namespace WotTK.Utilities
     {
         private static Asset<Texture2D> normalCursorTexture;
         private static Asset<Texture2D> smartCursorTexture;
+
         private static Asset<Texture2D> oreCursorTexture;
         private static Asset<Texture2D> oreSmartCursorTexture;
+
         private static Asset<Texture2D> swordCursorTexture;
         private static Asset<Texture2D> swordSmartCursorTexture;
+        
         private static Asset<Texture2D> arrowCursorTexture;
         private static Asset<Texture2D> arrowSmartCursorTexture;
         private static LegacyGameInterfaceLayer cursorLayer;
@@ -35,14 +38,17 @@ namespace WotTK.Utilities
 
         public override void Load()
         {
-            normalCursorTexture = Mod.Assets.Request<Texture2D>("Textures/HandCursor");
-            smartCursorTexture = Mod.Assets.Request<Texture2D>("Textures/HandSmartCursor");
-            oreCursorTexture = Mod.Assets.Request<Texture2D>("Textures/PickCursor"); 
-            oreSmartCursorTexture = Mod.Assets.Request<Texture2D>("Textures/PickSmartCursor");
-            swordCursorTexture = Mod.Assets.Request<Texture2D>("Textures/SwordCursor");
-            swordSmartCursorTexture = Mod.Assets.Request<Texture2D>("Textures/SwordSmartCursor");
-            arrowCursorTexture = Mod.Assets.Request<Texture2D>("Textures/ArrowCursor");
-            arrowSmartCursorTexture = Mod.Assets.Request<Texture2D>("Textures/ArrowSmartCursor");
+            normalCursorTexture = Mod.Assets.Request<Texture2D>("Textures/Cursors/HandCursor");
+            smartCursorTexture = Mod.Assets.Request<Texture2D>("Textures/Cursors/HandSmartCursor");
+
+            oreCursorTexture = Mod.Assets.Request<Texture2D>("Textures/Cursors/PickCursor"); 
+            oreSmartCursorTexture = Mod.Assets.Request<Texture2D>("Textures/Cursors/PickSmartCursor");
+
+            swordCursorTexture = Mod.Assets.Request<Texture2D>("Textures/Cursors/SwordCursor");
+            swordSmartCursorTexture = Mod.Assets.Request<Texture2D>("Textures/Cursors/SwordSmartCursor");
+            
+            arrowCursorTexture = Mod.Assets.Request<Texture2D>("Textures/Cursors/ArrowCursor");
+            arrowSmartCursorTexture = Mod.Assets.Request<Texture2D>("Textures/Cursors/ArrowSmartCursor");
 
             cursorLayer = new LegacyGameInterfaceLayer($"{nameof(WotTK)}: My Cursor", () => {
                 if (!normalCursorTexture.IsLoaded || !smartCursorTexture.IsLoaded || !oreCursorTexture.IsLoaded || !oreSmartCursorTexture.IsLoaded || !swordCursorTexture.IsLoaded || !swordSmartCursorTexture.IsLoaded || !arrowCursorTexture.IsLoaded || !arrowSmartCursorTexture.IsLoaded)
@@ -115,7 +121,6 @@ namespace WotTK.Utilities
             // Eliminar capas de cursor predeterminadas
             List<string> vanillaCursors = new List<string> {
                 "Cursor",
-                "Mouse Over",
                 "Cursor Info",
                 "Mouse Item"
             };
