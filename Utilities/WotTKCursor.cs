@@ -52,7 +52,7 @@ namespace WotTK.Utilities
                 Rectangle srcRect = new Rectangle(0, 0, 32, 32); // default cursor size, yes
 
                 bool isUsingPickaxe = Main.LocalPlayer.HeldItem.pick > 0; // make sure if layer is using any pickaxe // fuck my life
-                bool isUsingMeleeWeapon = Main.LocalPlayer.HeldItem.CountsAsClass(DamageClass.Melee); // the same for this shit... (will add more cursors for classes)
+                bool isUsingMeleeWeapon = Main.LocalPlayer.HeldItem.CountsAsClass(DamageClass.Melee); // the same for this shit... (will add more cursors for)
 
                 if (isUsingPickaxe)
                 {
@@ -101,7 +101,7 @@ namespace WotTK.Utilities
                     var basePosition = Main.MouseScreen + cursorPosition;
                     var drawColor = new Color(255, 255, 255, 255);
 
-                    Main.spriteBatch.Draw(texture, basePosition, srcRect, drawColor, 0f, new Vector2(3f, 3f), cursorScale, SpriteEffects.None, 0f);
+                    Main.spriteBatch.Draw(texture, basePosition, srcRect, drawColor, 0f, Vector2.Zero, cursorScale, SpriteEffects.None, 0f);
 
                     return true;
                 }
@@ -110,7 +110,7 @@ namespace WotTK.Utilities
                     var basePosition = Main.MouseScreen + cursorPosition;
                     var drawColor = new Color(255, 255, 255, 255);
 
-                    Main.spriteBatch.Draw(texture, basePosition, srcRect, drawColor, 0f, new Vector2(3f, 3f), cursorScale, SpriteEffects.None, 0f);
+                    Main.spriteBatch.Draw(texture, basePosition, srcRect, drawColor, 0f, Vector2.Zero, cursorScale, SpriteEffects.None, 0f);
 
                     return true;
                 }
