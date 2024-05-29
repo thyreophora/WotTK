@@ -83,7 +83,16 @@ namespace WotTK.Content.Items.Placeables
             }
             else
             {
-                if (player.itemAnimation > 0 && player.itemTime == 0)
+                Main.NewText(Main.SmartCursorIsUsed+"|"+player.itemAnimation + "|" + player.itemTime);
+                if (Main.SmartCursorIsUsed)
+                {
+                    if (player.itemAnimation < 19 && player.itemAnimation > 11 && player.itemTime < 9)
+                    {
+                        SoundEngine.PlaySound(InvulnerableSound, player.position);
+                        return false;
+                    }
+                }
+                else if (player.itemAnimation <= 19 && player.itemAnimation > 0 && player.itemTime == 0)
                 {
                     SoundEngine.PlaySound(InvulnerableSound, player.position);
                     return false;
