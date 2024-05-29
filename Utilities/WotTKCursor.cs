@@ -40,6 +40,7 @@ namespace WotTK.Utilities
             oreSmartCursorTexture = Mod.Assets.Request<Texture2D>("Textures/LichOreSmartCursor");
             swordCursorTexture = Mod.Assets.Request<Texture2D>("Textures/LichSwordCursor");
             swordSmartCursorTexture = Mod.Assets.Request<Texture2D>("Textures/LichSwordSmartCursor");
+            
 
             cursorLayer = new LegacyGameInterfaceLayer($"{nameof(WotTK)}: My Cursor", () => {
 

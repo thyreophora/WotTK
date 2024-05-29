@@ -3,15 +3,12 @@ using Terraria.ID;
 using Terraria.Audio;
 using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using WotTK.Content.Items.Materials;
 using WotTK.Common;
 
 namespace WotTK.Content.Items.Placeables
 {
     public class DarkIronOre : ModItem
     {
-        
         public override void SetStaticDefaults()
         {
             Item.ResearchUnlockCount = 100;
@@ -37,7 +34,8 @@ namespace WotTK.Content.Items.Placeables
     public class DarkIronOreTile : ModTile
     {
         public static readonly SoundStyle MineSound = new("WotTK/Sounds/Custom/DarkIronMine", 3);
-        public byte[,] tileAdjacency;
+        public static readonly SoundStyle InvulnerableSound = new("WotTK/Sounds/Custom/Invulnerable", 1);
+
         public override void SetStaticDefaults()
         {
             Main.tileLighted[Type] = true;
@@ -51,11 +49,10 @@ namespace WotTK.Content.Items.Placeables
             AddMapEntry(new Color(48, 48, 48), CreateMapEntryName());
             MineResist = 4f;
             MinPick = 100;
-            
+
             HitSound = MineSound;
 
             Main.tileSpelunker[Type] = true;
-
         }
 
         public override bool CanExplode(int i, int j)
@@ -73,6 +70,26 @@ namespace WotTK.Content.Items.Placeables
             r = 224f / 2500f;
             g = 219f / 2500f;
             b = 124f / 2500f;
+        }
+
+        public override bool CanKillTile(int i, int j, ref bool blockDamaged)
+        {
+            Player player = Main.LocalPlayer;
+            Item pick = player.inventory[player.selectedItem];
+
+            if (pick.pick >= MinPick)
+            {
+                return true;
+            }
+            else
+            {
+                if (player.itemAnimation > 0 && player.itemTime == 0)
+                {
+                    SoundEngine.PlaySound(InvulnerableSound, player.position);
+                    return false;
+                }
+                return true;
+            }
         }
     }
 }
