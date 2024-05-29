@@ -26,6 +26,7 @@ namespace WotTK.Content.Items.Accessories
         {
 			player.GetModPlayer<WotTKPlayer>().stamina += 10;
             player.GetModPlayer<WotTKPlayer>().armor += 10;
+            player.GetModPlayer<WotTKPlayer>().agility += 10;
 
         }
 
