@@ -1,11 +1,8 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
-using System;
 using System.Collections.Generic;
 using Terraria;
-using Terraria.GameInput;
-using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.UI;
 
@@ -20,18 +17,21 @@ namespace WotTK.Utilities
         private static Asset<Texture2D> oreSmartCursorTexture;
         private static Asset<Texture2D> swordCursorTexture;
         private static Asset<Texture2D> swordSmartCursorTexture;
+        private static Asset<Texture2D> arrowCursorTexture;
+        private static Asset<Texture2D> arrowSmartCursorTexture;
         private static LegacyGameInterfaceLayer cursorLayer;
 
-
         private static Vector2 cursorPosition = Vector2.Zero;
-        private static float cursorScale = 0.9f;
-
+        private static float cursorScale = 1f;
 
         private static readonly int pickaxeCursorWidth = 32;
         private static readonly int pickaxeCursorHeight = 32;
 
         private static readonly int swordCursorWidth = 32;
         private static readonly int swordCursorHeight = 32;
+
+        private static readonly int arrowCursorWidth = 32;
+        private static readonly int arrowCursorHeight = 32;
 
         public override void Load()
         {
@@ -41,20 +41,21 @@ namespace WotTK.Utilities
             oreSmartCursorTexture = Mod.Assets.Request<Texture2D>("Textures/LichOreSmartCursor");
             swordCursorTexture = Mod.Assets.Request<Texture2D>("Textures/LichSwordCursor");
             swordSmartCursorTexture = Mod.Assets.Request<Texture2D>("Textures/LichSwordSmartCursor");
-            
+            arrowCursorTexture = Mod.Assets.Request<Texture2D>("Textures/LichArrowCursor");
+            arrowSmartCursorTexture = Mod.Assets.Request<Texture2D>("Textures/LichArrowSmartCursor");
 
             cursorLayer = new LegacyGameInterfaceLayer($"{nameof(WotTK)}: My Cursor", () => {
-
-                if (!normalCursorTexture.IsLoaded || !smartCursorTexture.IsLoaded || !oreCursorTexture.IsLoaded || !oreSmartCursorTexture.IsLoaded || !swordCursorTexture.IsLoaded || !swordSmartCursorTexture.IsLoaded)
+                if (!normalCursorTexture.IsLoaded || !smartCursorTexture.IsLoaded || !oreCursorTexture.IsLoaded || !oreSmartCursorTexture.IsLoaded || !swordCursorTexture.IsLoaded || !swordSmartCursorTexture.IsLoaded || !arrowCursorTexture.IsLoaded || !arrowSmartCursorTexture.IsLoaded)
                 {
                     return true;
                 }
 
                 var texture = normalCursorTexture.Value;
-                Rectangle srcRect = new Rectangle(0, 0, 32, 32); // default cursor size, yes
+                Rectangle srcRect = new Rectangle(0, 0, 32, 32); // default cursor size
 
-                bool isUsingPickaxe = Main.LocalPlayer.HeldItem.pick > 0; // make sure if layer is using any pickaxe // fuck my life
-                bool isUsingMeleeWeapon = Main.LocalPlayer.HeldItem.CountsAsClass(DamageClass.Melee); // the same for this shit... (will add more cursors for)
+                bool isUsingPickaxe = Main.LocalPlayer.HeldItem.pick > 0;
+                bool isUsingMeleeWeapon = Main.LocalPlayer.HeldItem.CountsAsClass(DamageClass.Melee);
+                bool isUsingRangedWeapon = Main.LocalPlayer.HeldItem.CountsAsClass(DamageClass.Ranged);
 
                 if (isUsingPickaxe)
                 {
@@ -68,13 +69,6 @@ namespace WotTK.Utilities
                     }
 
                     srcRect = new Rectangle(0, 0, pickaxeCursorWidth, pickaxeCursorHeight);
-
-                    var basePosition = Main.MouseScreen + cursorPosition;
-                    var drawColor = new Color(255, 255, 255, 255);
-
-                    Main.spriteBatch.Draw(texture, basePosition, srcRect, drawColor, 0f, Vector2.Zero, cursorScale, SpriteEffects.None, 0f);
-
-                    return true;
                 }
                 else if (isUsingMeleeWeapon)
                 {
@@ -88,58 +82,62 @@ namespace WotTK.Utilities
                     }
 
                     srcRect = new Rectangle(0, 0, swordCursorWidth, swordCursorHeight);
+                }
+                else if (isUsingRangedWeapon)
+                {
+                    if (Main.SmartCursorIsUsed)
+                    {
+                        texture = arrowSmartCursorTexture.Value;
+                    }
+                    else
+                    {
+                        texture = arrowCursorTexture.Value;
+                    }
 
-                    var basePosition = Main.MouseScreen + cursorPosition;
-                    var drawColor = new Color(255, 255, 255, 255);
-
-                    Main.spriteBatch.Draw(texture, basePosition, srcRect, drawColor, 0f, Vector2.Zero, cursorScale, SpriteEffects.None, 0f);
-
-                    return true;
+                    srcRect = new Rectangle(0, 0, arrowCursorWidth, arrowCursorHeight);
                 }
                 else if (Main.SmartCursorIsUsed)
                 {
                     texture = smartCursorTexture.Value;
-
-                    var basePosition = Main.MouseScreen + cursorPosition;
-                    var drawColor = new Color(255, 255, 255, 255);
-
-                    Main.spriteBatch.Draw(texture, basePosition, srcRect, drawColor, 0f, Vector2.Zero, cursorScale, SpriteEffects.None, 0f);
-
-                    return true;
                 }
-                else
-                {
-                    var basePosition = Main.MouseScreen + cursorPosition;
-                    var drawColor = new Color(255, 255, 255, 255);
 
-                    Main.spriteBatch.Draw(texture, basePosition, srcRect, drawColor, 0f, Vector2.Zero, cursorScale, SpriteEffects.None, 0f);
+                var basePosition = Main.MouseScreen + cursorPosition;
+                var drawColor = new Color(255, 255, 255, 255);
 
-                    return true;
-                }
-            });
+                Main.spriteBatch.Draw(texture, basePosition, srcRect, drawColor, 0f, Vector2.Zero, cursorScale, SpriteEffects.None, 0f);
+
+                return true;
+            }, InterfaceScaleType.UI);
         }
 
         public override void ModifyInterfaceLayers(List<GameInterfaceLayer> layers)
         {
-            List<string> VanillaCursors =
-            [   
+            // Eliminar capas de cursor predeterminadas
+            List<string> vanillaCursors = new List<string> {
                 "Cursor",
-                //"Mouse Text",
-                //"Draw Layers",
-                //"Interface Layers",
                 "Mouse Over",
-                "Cursor Info"
-                //"Mouse Item / NPC Head"
+                "Cursor Info",
+                "Mouse Item"
+            };
 
-            ];
-
-            int cursorIndex;
-
-            foreach (string CurrentCursor in VanillaCursors) 
+            foreach (string cursorName in vanillaCursors)
             {
-                cursorIndex = layers.FindIndex(l => l.Name == $"Vanilla: {CurrentCursor}");
-                if (cursorIndex >= 0)
-                    layers[cursorIndex] = cursorLayer;
+                int cursorIndex = layers.FindIndex(layer => layer.Name == $"Vanilla: {cursorName}");
+                if (cursorIndex != -1)
+                {
+                    layers.RemoveAt(cursorIndex);
+                }
+            }
+
+            // Insertar capa de cursor personalizado
+            int defaultCursorIndex = layers.FindIndex(layer => layer.Name == "Vanilla: Cursor");
+            if (defaultCursorIndex != -1)
+            {
+                layers.Insert(defaultCursorIndex, cursorLayer);
+            }
+            else
+            {
+                layers.Add(cursorLayer);
             }
         }
 
