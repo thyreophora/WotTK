@@ -13,6 +13,10 @@ namespace WotTK.Utilities
     {
         private static Asset<Texture2D> normalCursorTexture;
         private static Asset<Texture2D> smartCursorTexture;
+        //private static Asset<Texture2D> favoriteCursorTexture;
+        //private static Asset<Texture2D> trashCursorTexture;
+        //private static Asset<Texture2D> sellCursorTexture;
+        //private static Asset<Texture2D> lootCursorTexture; // future cursor for looting enemies...
 
         private static Asset<Texture2D> oreCursorTexture;
         private static Asset<Texture2D> oreSmartCursorTexture;
@@ -25,6 +29,7 @@ namespace WotTK.Utilities
 
         private static Asset<Texture2D> hammerCursorTexture;
         private static Asset<Texture2D> hammerSmartCursorTexture;
+
         private static LegacyGameInterfaceLayer cursorLayer;
     
         private static Vector2 cursorPosition = Vector2.Zero;
@@ -140,8 +145,7 @@ namespace WotTK.Utilities
         }
 
         public override void ModifyInterfaceLayers(List<GameInterfaceLayer> layers)
-        {
-            // Eliminar capas de cursor predeterminadas
+        {/
             List<string> vanillaCursors = new List<string> {
                 "Cursor",
                 "Cursor Info",
@@ -157,7 +161,6 @@ namespace WotTK.Utilities
                 }
             }
 
-            // Insertar capa de cursor personalizado
             int defaultCursorIndex = layers.FindIndex(layer => layer.Name == "Vanilla: Cursor");
             if (defaultCursorIndex != -1)
             {
