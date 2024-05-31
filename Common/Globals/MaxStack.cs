@@ -1,5 +1,6 @@
 using Terraria;
 using Terraria.ModLoader;
+using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 
 public class MaxStack : GlobalItem
@@ -13,7 +14,7 @@ public class MaxStack : GlobalItem
             string maxStackText = $"Max Stack: {item.maxStack}";
             TooltipLine maxStackLine = new TooltipLine(Mod, "MaxStack", maxStackText)
             {
-                OverrideColor = Microsoft.Xna.Framework.Color.Yellow
+                OverrideColor = new Color(255, 255, 255)
             };
 
             tooltips.Add(maxStackLine);

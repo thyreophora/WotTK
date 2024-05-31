@@ -30,6 +30,12 @@ namespace WotTK.Utilities
         private static Asset<Texture2D> hammerCursorTexture;
         private static Asset<Texture2D> hammerSmartCursorTexture;
 
+        private static Asset<Texture2D> axeCursorTexture;
+        private static Asset<Texture2D> axeSmartCursorTexture;
+
+        private static Asset<Texture2D> throwerCursorTexture;
+        private static Asset<Texture2D> throwerSmartCursorTexture;
+
         private static LegacyGameInterfaceLayer cursorLayer;
     
         private static Vector2 cursorPosition = Vector2.Zero;
@@ -67,6 +73,9 @@ namespace WotTK.Utilities
             hammerCursorTexture = Mod.Assets.Request<Texture2D>("Textures/Cursors/HammerCursor");
             hammerSmartCursorTexture = Mod.Assets.Request<Texture2D>("Textures/Cursors/HammerSmartCursor");
 
+            axeCursorTexture = Mod.Assets.Request<Texture2D>("Textures/Cursors/AxeCursor");
+            axeSmartCursorTexture = Mod.Assets.Request<Texture2D>("Textures/Cursors/AxeSmartCursor");
+
             cursorLayer = new LegacyGameInterfaceLayer($"{nameof(WotTK)}: My Cursor", () => {
                 if (!normalCursorTexture.IsLoaded || !smartCursorTexture.IsLoaded || !oreCursorTexture.IsLoaded || !oreSmartCursorTexture.IsLoaded || !swordCursorTexture.IsLoaded || !swordSmartCursorTexture.IsLoaded || !arrowCursorTexture.IsLoaded || !arrowSmartCursorTexture.IsLoaded)
                 {
@@ -78,6 +87,7 @@ namespace WotTK.Utilities
 
                 bool isUsingPickaxe = Main.LocalPlayer.HeldItem.pick > 0;
                 bool isUsingHammer = Main.LocalPlayer.HeldItem.hammer > 0;
+                bool isUsingAxe = Main.LocalPlayer.HeldItem.axe > 0;
                 
                 bool isUsingMeleeWeapon = Main.LocalPlayer.HeldItem.CountsAsClass(DamageClass.Melee);
                 bool isUsingRangedWeapon = Main.LocalPlayer.HeldItem.CountsAsClass(DamageClass.Ranged);
@@ -104,6 +114,19 @@ namespace WotTK.Utilities
                     else
                     {
                         texture = hammerCursorTexture.Value;
+                    }
+
+                    srcRect = new Rectangle(0, 0, (int)CursorSize.X, (int)CursorSize.Y);
+                }
+                else if (isUsingAxe)
+                {
+                    if (Main.SmartCursorIsUsed)
+                    {
+                        texture = axeSmartCursorTexture.Value;
+                    }
+                    else
+                    {
+                        texture = axeCursorTexture.Value;
                     }
 
                     srcRect = new Rectangle(0, 0, (int)CursorSize.X, (int)CursorSize.Y);

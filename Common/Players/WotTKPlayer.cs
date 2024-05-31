@@ -25,6 +25,7 @@ namespace WotTK.Common.Players
         public int stamina;
         public int haste;
         public int armor;
+        public int spirit; // Nuevo atributo
 
         public bool _spawnTentacleSpikesClone;
         public bool _spawnTentacleSpikesClone2;
@@ -54,6 +55,7 @@ namespace WotTK.Common.Players
             () => { return NPC.downedAncientCultist ? 75 : 0; },
             () => { return NPC.downedMoonlord ? 80 : 0; }
         };
+
         public static int CurrectMaxLevel()
         {
             int max = 5;
@@ -77,7 +79,8 @@ namespace WotTK.Common.Players
             strength = 0;
             stamina = 0;
             haste = 0;
-            armor = 0; // Reiniciar Armor
+            armor = 0;
+            spirit = 0;
         }
 
         public static readonly SoundStyle LevelUpSound = new SoundStyle("WotTK/Sounds/Custom/LevelUp");
@@ -132,11 +135,12 @@ namespace WotTK.Common.Players
                 Player.statLife = Player.statLifeMax;
             }
 
-            // Efecto del atributo Haste
             Player.pickSpeed -= haste * 0.005f;
 
-            // Efecto del atributo Armor
-            Player.endurance += armor * 0.005f;
+            Player.endurance += armor * 0.001f;
+
+            Player.lifeRegen += (int)(Player.lifeRegen * spirit * 0.005f);
+            Player.manaRegen += (int)(Player.manaRegen * spirit * 0.005f);
         }
 
         public override void OnHitNPCWithItem(Item item, NPC target, NPC.HitInfo hit, int damageDone)
