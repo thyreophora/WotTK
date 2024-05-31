@@ -149,8 +149,8 @@ namespace WotTK.Utilities
         }
 
         public override void ModifyInterfaceLayers(List<GameInterfaceLayer> layers)
-        {/
-            List<string> vanillaCursors = new List<string> {
+        {
+            List<string> vanillaCursors = [
                 "Cursor",
                 "Cursor Info",
                 "Mouse Item"
