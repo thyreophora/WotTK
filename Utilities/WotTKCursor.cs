@@ -75,6 +75,7 @@ namespace WotTK.Utilities
 
                 bool isUsingPickaxe = Main.LocalPlayer.HeldItem.pick > 0;
                 bool isUsingHammer = Main.LocalPlayer.HeldItem.hammer > 0;
+                
                 bool isUsingMeleeWeapon = Main.LocalPlayer.HeldItem.CountsAsClass(DamageClass.Melee);
                 bool isUsingRangedWeapon = Main.LocalPlayer.HeldItem.CountsAsClass(DamageClass.Ranged);
 
@@ -145,7 +146,7 @@ namespace WotTK.Utilities
         }
 
         public override void ModifyInterfaceLayers(List<GameInterfaceLayer> layers)
-        {/
+        {
             List<string> vanillaCursors = new List<string> {
                 "Cursor",
                 "Cursor Info",
