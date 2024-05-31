@@ -35,17 +35,20 @@ namespace WotTK.Utilities
         private static Vector2 cursorPosition = Vector2.Zero;
         private static float cursorScale = 1f;
 
-        private static readonly int pickaxeCursorWidth = 32;
-        private static readonly int pickaxeCursorHeight = 32;
 
-        private static readonly int swordCursorWidth = 32;
-        private static readonly int swordCursorHeight = 32;
+        private static readonly Vector2 CursorSize = new(32,32);
 
-        private static readonly int arrowCursorWidth = 32;
-        private static readonly int arrowCursorHeight = 32;
+        //private static readonly int pickaxeCursorWidth = 32;
+        //private static readonly int pickaxeCursorHeight = 32;
 
-        private static readonly int hammerCursorWidth = 32;
-        private static readonly int hammerCursorHeight = 32;
+        //private static readonly int swordCursorWidth = 32;
+        //private static readonly int swordCursorHeight = 32;
+
+        //private static readonly int arrowCursorWidth = 32;
+        //private static readonly int arrowCursorHeight = 32;
+
+        //private static readonly int hammerCursorWidth = 32;
+        //private static readonly int hammerCursorHeight = 32;
 
         public override void Load()
         {
@@ -71,7 +74,7 @@ namespace WotTK.Utilities
                 }
 
                 var texture = normalCursorTexture.Value;
-                Rectangle srcRect = new Rectangle(0, 0, 32, 32); // default cursor size
+                Rectangle srcRect = new(0, 0, 32, 32); // default cursor size
 
                 bool isUsingPickaxe = Main.LocalPlayer.HeldItem.pick > 0;
                 bool isUsingHammer = Main.LocalPlayer.HeldItem.hammer > 0;
@@ -89,7 +92,7 @@ namespace WotTK.Utilities
                         texture = oreCursorTexture.Value;
                     }
 
-                    srcRect = new Rectangle(0, 0, pickaxeCursorWidth, pickaxeCursorHeight);
+                    srcRect = new Rectangle(0, 0, (int)CursorSize.X, (int)CursorSize.Y);
                 }
                 else if (isUsingHammer)
                 {
@@ -102,7 +105,7 @@ namespace WotTK.Utilities
                         texture = hammerCursorTexture.Value;
                     }
 
-                    srcRect = new Rectangle(0, 0, pickaxeCursorWidth, pickaxeCursorHeight);
+                    srcRect = new Rectangle(0, 0, (int)CursorSize.X, (int)CursorSize.Y);
                 }
                 else if (isUsingMeleeWeapon)
                 {
@@ -115,7 +118,7 @@ namespace WotTK.Utilities
                         texture = swordCursorTexture.Value;
                     }
 
-                    srcRect = new Rectangle(0, 0, swordCursorWidth, swordCursorHeight);
+                    srcRect = new Rectangle(0, 0, (int)CursorSize.X, (int)CursorSize.Y);
                 }
                 else if (isUsingRangedWeapon)
                 {
@@ -128,7 +131,7 @@ namespace WotTK.Utilities
                         texture = arrowCursorTexture.Value;
                     }
 
-                    srcRect = new Rectangle(0, 0, arrowCursorWidth, arrowCursorHeight);
+                    srcRect = new Rectangle(0, 0, (int)CursorSize.X, (int)CursorSize.Y);
                 }
                 else if (Main.SmartCursorIsUsed)
                 {
@@ -145,12 +148,12 @@ namespace WotTK.Utilities
         }
 
         public override void ModifyInterfaceLayers(List<GameInterfaceLayer> layers)
-        {/
-            List<string> vanillaCursors = new List<string> {
+        {
+            List<string> vanillaCursors = [
                 "Cursor",
                 "Cursor Info",
                 "Mouse Item"
-            };
+            ];
 
             foreach (string cursorName in vanillaCursors)
             {
@@ -172,14 +175,14 @@ namespace WotTK.Utilities
             }
         }
 
-        public static void SetCursorPosition(Vector2 position)
-        {
-            cursorPosition = position;
-        }
+        //public static void SetCursorPosition(Vector2 position)
+        //{
+        //    cursorPosition = position;
+        //}
 
-        public static void SetCursorScale(float scale)
-        {
-            cursorScale = scale;
-        }
+        //public static void SetCursorScale(float scale)
+        //{
+        //    cursorScale = scale;
+        //}
     }
 }
