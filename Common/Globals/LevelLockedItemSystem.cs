@@ -1,9 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Terraria;
 using Terraria.ModLoader;
 using WotTK.Common.Players;
@@ -22,7 +18,8 @@ namespace WotTK.Common.Globals
 
         public override void SetDefaults(Item item)
         {
-            IsWeapon = item.stack > 0 && item.damage > 0 && (item.CountsAsClass(DamageClass.Generic));
+            if(item.type != ItemID.PlatinumCoin && item.type != ItemID.GoldCoin && item.type != ItemID.SilverCoin && item.type != ItemID.CopperCoin)
+            IsWeapon = item.maxStack == 1 && item.damage > 0 && item.active;
 
 
             if(item.type == ItemID.WoodenSword)
@@ -97,11 +94,25 @@ namespace WotTK.Common.Globals
             int level = Main.LocalPlayer.WotTKPlayer().playerLevel;
 
             int index = tooltips.FindLastIndex(tt => tt.Mod.Equals("Terraria") && tt.Name.Equals("Tooltip0"));
-            if (index != -1 && MinimalLevel != 0)
+            if (index == -1) 
             {
-                int stage = -1;
-                //if (MinimalLevel != 0)
-                //{
+                TooltipLine item2 = new TooltipLine(Mod, "PlaceHolder", "")
+                {
+                    OverrideColor = Color.White
+
+
+                };
+                tooltips.Add(item2);
+
+                index = tooltips.FindLastIndex(tt => tt.Mod.Equals("WotTK") && tt.Name.Equals("PlaceHolder"));
+            }
+            if (IsWeapon)
+            {
+                if (index != -1 && MinimalLevel != 0)
+                {
+                    int stage = -1;
+                    //if (MinimalLevel != 0)
+                    //{
                     if (IsWeapon)
                     {
                         //stage = -1;
@@ -125,12 +136,12 @@ namespace WotTK.Common.Globals
                     {
                         stage = level >= MinimalLevel ? 1 : -1;
                     }
-                //}
-                //else if (MinimalLevel == 0 || WotTKConfig.Instance.Debug)
-                //    stage = 1;
-                //tooltips.Insert(index, new TooltipLine(Mod, "LevelLock", LangHelper.GetText("UI.LevelLock", MinimalLevel, Main.LocalPlayer.WotTKPlayer().playerLevel >= MinimalLevel ? "00FF00" : "FF0000")));
-                tooltips.Insert(index, new TooltipLine(Mod, "LevelLock", LangHelper.GetText("UI.LevelLock", MinimalLevel, stage == -1 ? "FF0000" : (stage == 1 ? "00FF00" : "FFFF00"))));
-
+                    //}
+                    //else if (MinimalLevel == 0 || WotTKConfig.Instance.Debug)
+                    //    stage = 1;
+                    //tooltips.Insert(index, new TooltipLine(Mod, "LevelLock", LangHelper.GetText("UI.LevelLock", MinimalLevel, Main.LocalPlayer.WotTKPlayer().playerLevel >= MinimalLevel ? "00FF00" : "FF0000")));
+                    tooltips.Insert(index, new TooltipLine(Mod, "LevelLock", LangHelper.GetText("UI.LevelLock", MinimalLevel, stage == -1 ? "FF0000" : (stage == 1 ? "00FF00" : "FFFF00"))));
+                }
             }
         }
         public override void ModifyShootStats(Item item, Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback)
