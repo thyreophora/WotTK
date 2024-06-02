@@ -295,6 +295,26 @@ Items: {
 		DisplayName: Heartswood Sword
 		Tooltip: ""
 	}
+
+	DisplayAttributes: {
+		DisplayName: Display Attributes
+		Tooltip: ""
+	}
+
+	NightstalkerCloak: {
+		DisplayName: Nightstalker Cloak
+		Tooltip: ""
+	}
+
+	NightstalkerHoodie: {
+		DisplayName: Nightstalker Hoodie
+		Tooltip: ""
+	}
+
+	NightstalkerPants: {
+		DisplayName: Nightstalker Pants
+		Tooltip: ""
+	}
 }
 
 Projectiles: {

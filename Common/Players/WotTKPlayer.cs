@@ -25,7 +25,7 @@ namespace WotTK.Common.Players
         public int stamina;
         public int haste;
         public int armor;
-        public int spirit; // Nuevo atributo
+        public int spirit;
 
         public bool _spawnTentacleSpikesClone;
         public bool _spawnTentacleSpikesClone2;
@@ -94,6 +94,8 @@ namespace WotTK.Common.Players
             {
                 playerLevelPoints -= playerLevelPointsNeed;
                 playerLevel++;
+                
+                
                 Main.NewText(LangHelper.GetText("Events.LevelUp", playerLevel));
                 Projectile.NewProjectile(Player.GetSource_FromThis(), Player.Center, -Vector2.UnitY * 7f, Main.rand.Next(167, 171), 0, 0, Player.whoAmI);
                 SoundEngine.PlaySound(LevelUpSound, Player.Center);
@@ -112,7 +114,7 @@ namespace WotTK.Common.Players
                     if (!plr.active || plr.whoAmI == paladinsTeam) continue;
                     if (plr.team == paladinsTeam && !Player.dead)
                     {
-                        //Effect for your team
+                        // Effect for your team
                     }
                 }
             }
@@ -155,7 +157,8 @@ namespace WotTK.Common.Players
 
         private void TriggerPointUp(NPC target, NPC.HitInfo hit)
         {
-            if (!target.TryGetGlobalNPC<NPCLevels>(out var globalNPC)) {
+            if (!target.TryGetGlobalNPC<NPCLevels>(out var globalNPC))
+            {
                 return;
             }
             
@@ -163,7 +166,8 @@ namespace WotTK.Common.Players
             
             var chance = 0;
         
-            switch (difference) {
+            switch (difference)
+            {
                 case 3:
                     chance = 0;
                     break;
@@ -178,7 +182,8 @@ namespace WotTK.Common.Players
                     break;
             }
 
-            if (chance == 0 || !Main.rand.NextBool(chance)) {
+            if (chance == 0 || !Main.rand.NextBool(chance))
+            {
                 return;
             }
             
@@ -197,9 +202,9 @@ namespace WotTK.Common.Players
         
         public override void ModifyShootStats(Item item, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback)
         {
-            if (item.DamageType == DamageClass.Melee || item.DamageType == DamageClass.MeleeNoSpeed) 
+            if (item.DamageType == DamageClass.Melee || item.DamageType == DamageClass.MeleeNoSpeed)
             {
-                velocity *= (1f + agility * 0.01f + strength * 0.01f); 
+                velocity *= (1f + agility * 0.01f + strength * 0.01f);
             }
             if (item.DamageType == DamageClass.Ranged)
             {

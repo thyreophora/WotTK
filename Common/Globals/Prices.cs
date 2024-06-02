@@ -10,11 +10,13 @@ public class Prices : GlobalItem
 {
     public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
     {
-        int sellPrice = item.value / 5;
+        int stackSize = item.stack;
+        int sellPricePerUnit = item.value / 5;
+        int totalSellPrice = sellPricePerUnit * stackSize;
 
-        if (sellPrice > 0)
+        if (totalSellPrice > 0)
         {
-            string priceText = "Sell Price: " + GetPriceString(sellPrice, out Color color);
+            string priceText = "Sell Price: " + GetPriceString(totalSellPrice, out Color color);
 
             TooltipLine priceLine = new TooltipLine(Mod, "SellPrice", priceText)
             {
@@ -55,7 +57,7 @@ public class Prices : GlobalItem
         else
         {
             priceString += $"[i:{ItemID.CopperCoin}]{coins[3]} ";
-            color = new Color(184, 115, 51); // copper color in text...
+            color = new Color(184, 115, 51); // copper color in text
         }
 
         return priceString.Trim();
