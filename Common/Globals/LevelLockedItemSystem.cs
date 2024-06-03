@@ -8,6 +8,8 @@ using Terraria.ID;
 
 namespace WotTK.Common.Globals
 {
+    // apply to all items AT ONCE, code level locking by calling a "GetMinimalLevel" function in the "CanUse" function
+    // don't use variable because it depends on itemID.
     public class LevelLockedItemSystem : GlobalItem
     {
         public int MinimalLevel = 0;
@@ -18,11 +20,17 @@ namespace WotTK.Common.Globals
 
         public override void SetDefaults(Item item)
         {
-            if(item.type != ItemID.PlatinumCoin && item.type != ItemID.GoldCoin && item.type != ItemID.SilverCoin && item.type != ItemID.CopperCoin)
-            IsWeapon = item.maxStack == 1 && item.damage > 0 && item.active;
+            if (item.type != ItemID.PlatinumCoin &&
+                item.type != ItemID.GoldCoin &&
+                item.type != ItemID.SilverCoin &&
+                item.type != ItemID.CopperCoin)
+            {
+                IsWeapon = ((item.maxStack == 1) && (item.damage > 0 && item.active));
+            }
 
+            MinimalLevel = 0;
 
-            if(item.type == ItemID.WoodenSword)
+            if (item.type == ItemID.WoodenSword)
                 MinimalLevel = 0;
             if (item.type == ItemID.WoodenHammer)
                 MinimalLevel = 0;

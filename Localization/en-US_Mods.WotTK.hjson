@@ -315,6 +315,11 @@ Items: {
 		DisplayName: Nightstalker Pants
 		Tooltip: ""
 	}
+
+	WoolBandage: {
+		DisplayName: Wool Bandage
+		Tooltip: ""
+	}
 }
 
 Projectiles: {
@@ -441,6 +446,11 @@ Buffs: {
 	StealthBuffCooldown: {
 		DisplayName: Stealth Buff Cooldown
 		Description: Mods.WotTK.Buffs.StealthBuffCooldown.Description
+	}
+
+	BandageBuff: {
+		DisplayName: Bandage Buff
+		Description: Mods.WotTK.Buffs.BandageBuff.Description
 	}
 }
 

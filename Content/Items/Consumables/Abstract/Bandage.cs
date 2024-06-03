@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria;
+using WotTK.Common.Players;
 
 namespace WotTK.Content.Items.Consumables.Abstract
 {
@@ -17,13 +18,19 @@ namespace WotTK.Content.Items.Consumables.Abstract
         {
             DefaultBandage();
         }
-        public void DefaultBandage(int time = 60 * 60, int amount = 100)
+        public void DefaultBandage(int time = 60, int amount = 100)
         {
             Item.consumable = true;
             Item.maxStack = 69;
             Item.width = 24;
             Item.height = 24;
             Item.rare = ItemRarityID.Purple;
+            Item.useStyle = ItemUseStyleID.DrinkLiquid;
+            Item.useAnimation = 15;
+            Item.useTime = 15;
+            Item.useTurn = true;
+            Item.UseSound = SoundID.Item3;
+
             healing_time = time;
             heal_amount = amount;
         }
@@ -31,15 +38,29 @@ namespace WotTK.Content.Items.Consumables.Abstract
         public override bool CanUseItem(Player player)
         {
             // TODO: replace with buff in the UseItem function
-            return !player.HasBuff(BuffID.PotionSickness);
+            return true;//player.HasBuff(BuffID.PotionSickness);
         }
-
         public override bool? UseItem(Player player)
         {
-            // TODO: make a buff that gives healing every X ticks for a total amount
-            player.AddBuff(BuffID.PotionSickness, healing_time);
-            player.Heal(heal_amount);
-            return true;
+            player.AddBuff(BuffID.PotionSickness, 60 * 60);
+            player.AddBuff(ModContent.BuffType<BandageBuff>(), 60);
+
+            player.GetModPlayer<BandagePlayer>().bandageData.HealAmount = heal_amount;
+            player.GetModPlayer<BandagePlayer>().bandageData.HealsLeft = healing_time;
+            return base.UseItem(player);
+        }
+    }
+
+    public class BandageBuff : ModBuff
+    {
+        public override void SetStaticDefaults()
+        {
+            Main.buffNoTimeDisplay[Type] = false;
+            Main.debuff[Type] = true;
+        }
+
+        public override void Update(Player player, ref int buffIndex)
+        {
         }
     }
 }
