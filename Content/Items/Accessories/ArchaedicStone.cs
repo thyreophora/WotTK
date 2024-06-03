@@ -1,18 +1,17 @@
+using System;
 using Terraria;
-using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.ID;
+using WotTK.Common;
 using WotTK.Common.Players;
 using System.Collections.Generic;
 using WotTK.Content.Items.Placeables;
 using WotTK.Content.Items.Materials;
-using System;
-using WotTK.Common;
 
 namespace WotTK.Content.Items.Accessories
 {
     public class ArchaedicStone : LevelLockedItem
     {
-        
         public override int MinimalLevel => 35;
 
         public int agility = 18;
@@ -57,12 +56,8 @@ namespace WotTK.Content.Items.Accessories
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
 			player.GetModPlayer<WotTKPlayer>().agility += 18;
-
             player.GetModPlayer<WotTKPlayer>().stamina += 26;
-
             player.GetModPlayer<WotTKPlayer>().armor += 24;
-
-            player.GetModPlayer<WotTKPlayer>().armor += 15;
         }
 
         public override void AddRecipes()
