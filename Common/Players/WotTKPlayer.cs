@@ -6,6 +6,7 @@ using Terraria.Audio;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 using WotTK.Common.Globals;
+using WotTK.Common.QuestSystem;
 
 namespace WotTK.Common.Players
 {
@@ -30,6 +31,9 @@ namespace WotTK.Common.Players
         public bool _spawnTentacleSpikesClone;
         public bool _spawnTentacleSpikesClone2;
         public static Point[] _tentacleSpikesMax5 = new Point[5];
+
+        private readonly Dictionary<string, Dictionary<string, object>> questProgressDict = new();
+        private readonly HashSet<Quest> activeQuests = new();
 
         private static int DownedMechBossCount()
         {
@@ -232,6 +236,65 @@ namespace WotTK.Common.Players
         {
             playerLevel = tag.GetInt("WoWLevel");
             playerLevelPoints = tag.GetInt("WoWLevelPoints");
+        }
+
+        public void StartQuest(Quest quest)
+        {
+            if (!activeQuests.Contains(quest))
+            {
+                quest.AddPlayer(this);
+                
+                activeQuests.Add(quest);
+            }
+        }
+
+        public bool TryFinishQuest(Quest quest)
+        {
+            if (activeQuests.Contains(quest))
+            {
+                if (quest.Finish(this))
+                {
+                    quest.RemovePlayer(this);
+                
+                    activeQuests.Remove(quest);
+
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        public TDataType GetTaskProgress<TDataType>(string questId, string taskId)
+        {
+            if (questProgressDict.TryGetValue(questId, out var taskProgressDict))
+            {
+                if (taskProgressDict.TryGetValue(taskId, out var progress))
+                {
+                    if (progress is TDataType valid)
+                    {
+                        return valid;
+                    }
+                }
+            }
+
+            return default;
+        }
+        
+        public void SetTaskProgress<TDataType>(string questId, string taskId, TDataType data)
+        {
+            if (!questProgressDict.ContainsKey(questId))
+            {
+                questProgressDict.Add(questId, new Dictionary<string, object>());
+            }
+
+            var taskProgressDict = questProgressDict[questId];
+            taskProgressDict.Add(taskId, data);
+        }
+
+        public void ClearQuestProgress(string questId)
+        {
+            questProgressDict.Remove(questId);
         }
     }
 }

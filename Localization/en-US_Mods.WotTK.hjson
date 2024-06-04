@@ -494,4 +494,22 @@ Buffs: {
 	}
 }
 
+Quests: {
+    Common: {
+        FetchTask: {
+            Title: {0} x{1}
+            Description: Have {0} x{1} in your inventory
+        }
+        SlayTask: {
+            Title: {0} x{1}
+            Description: Kill {0} x{1}
+        }
+        
+        ItemReward: {
+            Title: {0} x{1}
+            Description: You will be given {0} x{1}
+        }
+    }
+}
+
 Misc.LevelRecipeCondition: Need {0} level
