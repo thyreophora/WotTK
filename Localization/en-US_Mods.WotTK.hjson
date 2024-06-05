@@ -365,6 +365,31 @@ Items: {
 		DisplayName: Heartswood Sword
 		Tooltip: ""
 	}
+
+	NightstalkerCloak: {
+		DisplayName: Nightstalker Cloak
+		Tooltip: ""
+	}
+
+	NightstalkerHoodie: {
+		DisplayName: Nightstalker Hoodie
+		Tooltip: ""
+	}
+
+	NightstalkerPants: {
+		DisplayName: Nightstalker Pants
+		Tooltip: ""
+	}
+
+	WoolBandage: {
+		DisplayName: Wool Bandage
+		Tooltip: ""
+	}
+
+	DisplayAttributes: {
+		DisplayName: Display Attributes
+		Tooltip: ""
+	}
 }
 
 Projectiles: {
@@ -492,24 +517,30 @@ Buffs: {
 		DisplayName: Stealth Buff Cooldown
 		Description: Mods.WotTK.Buffs.StealthBuffCooldown.Description
 	}
+
+	BandageBuff: {
+		DisplayName: Bandage Buff
+		Description: Mods.WotTK.Buffs.BandageBuff.Description
+	}
 }
 
 Quests: {
-    Common: {
-        FetchTask: {
-            Title: {0} x{1}
-            Description: Have {0} x{1} in your inventory
-        }
-        SlayTask: {
-            Title: {0} x{1}
-            Description: Kill {0} x{1}
-        }
-        
-        ItemReward: {
-            Title: {0} x{1}
-            Description: You will be given {0} x{1}
-        }
-    }
+	Common: {
+		FetchTask: {
+			Title: "{0} x{1}"
+			Description: Have {0} x{1} in your inventory
+		}
+
+		SlayTask: {
+			Title: "{0} x{1}"
+			Description: Kill {0} x{1}
+		}
+
+		ItemReward: {
+			Title: "{0} x{1}"
+			Description: You will be given {0} x{1}
+		}
+	}
 }
 
 Misc.LevelRecipeCondition: Need {0} level

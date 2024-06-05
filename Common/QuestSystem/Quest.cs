@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using System.Text.RegularExpressions;
 using WotTK.Common.Players;
 
 namespace WotTK.Common.QuestSystem;
@@ -15,6 +16,11 @@ public class Quest
 
     public Quest(string id, QuestTask[] tasks, QuestReward[] rewards)
     {
+        if (Regex.IsMatch(id, @"[^a-zA-Z0-9_]"))
+        {
+            throw new ArgumentException("only latin letters, digits and underscore characters allowed as quest id", nameof(id));
+        }
+        
         foreach (QuestTask task in tasks)
         {
             if (task.QuestId is not null)

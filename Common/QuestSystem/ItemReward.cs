@@ -1,6 +1,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
+using Terraria.ID;
 using WotTK.Common.Players;
 
 namespace WotTK.Common.QuestSystem;
@@ -22,7 +23,7 @@ public class ItemReward : QuestReward
 
     public override void Grant(WotTKPlayer player)
     {
-        player.Player.QuickSpawnItem(null, new Item(ItemType, ItemCount));
+        player.Player.QuickSpawnItem(null, ContentSamples.ItemsByType[ItemType], ItemCount);
     }
 
     public override void Draw(SpriteBatch sb, Vector2 position)

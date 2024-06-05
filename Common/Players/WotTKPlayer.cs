@@ -1,8 +1,11 @@
 ﻿using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text.RegularExpressions;
 using Terraria;
 using Terraria.Audio;
+using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 using WotTK.Common.Globals;
@@ -32,8 +35,8 @@ namespace WotTK.Common.Players
         public bool _spawnTentacleSpikesClone2;
         public static Point[] _tentacleSpikesMax5 = new Point[5];
 
-        private readonly Dictionary<string, Dictionary<string, object>> questProgressDict = new();
-        private readonly HashSet<Quest> activeQuests = new();
+        private Dictionary<string, Dictionary<string, object>> questProgressDict = new();
+        private HashSet<Quest> activeQuests = new();
 
         private static int DownedMechBossCount()
         {
@@ -230,12 +233,77 @@ namespace WotTK.Common.Players
         {
             tag.Add("WoWLevel", playerLevel);
             tag.Add("WoWLevelPoints", playerLevelPoints);
+            
+            tag.Add("QuestProgress", questProgressDict.Aggregate(new TagCompound(), (tc, tasks) =>
+            {
+                tc.Set(tasks.Key, tasks.Value.Aggregate(new TagCompound(), (tc, task) =>
+                {
+                    tc.Set(task.Key, task.Value);
+                    return tc;
+                }));
+                return tc;
+            }));
+            tag.Add("QuestList", activeQuests.Select(quest => quest.Id).ToList());
         }
 
         public override void LoadData(TagCompound tag)
         {
             playerLevel = tag.GetInt("WoWLevel");
             playerLevelPoints = tag.GetInt("WoWLevelPoints");
+
+            questProgressDict = tag.Get<TagCompound>("QuestProgress").Aggregate(new Dictionary<string, Dictionary<string, object>>(),
+                (dict, quests) =>
+                {
+                    if (quests.Value is TagCompound tasks)
+                    {
+                        dict[quests.Key] = tasks.ToDictionary();
+                    }
+
+                    return dict;
+                });
+            activeQuests = tag.Get<List<string>>("QuestList").Select(QuestRegistry.GetQuestById).ToHashSet();
+        }
+
+        public override void PlayerConnect()
+        {
+            InitPlayer();
+        }
+
+        public override void OnEnterWorld()
+        {
+            InitPlayer();
+        }
+
+        private void InitPlayer()
+        {
+            if (Main.netMode == NetmodeID.SinglePlayer || Main.netMode == NetmodeID.Server || Main.LocalPlayer == Player)
+            {
+                foreach (Quest quest in activeQuests)
+                {
+                    quest.AddPlayer(this);
+                }
+            }
+        }
+
+        public override void PlayerDisconnect()
+        {
+            DeinitPlayer();
+        }
+
+        public override void PreSavePlayer()
+        {
+            DeinitPlayer();
+        }
+
+        private void DeinitPlayer()
+        {
+            if (Main.netMode == NetmodeID.SinglePlayer || Main.netMode == NetmodeID.Server || Main.LocalPlayer == Player)
+            {
+                foreach (Quest quest in activeQuests)
+                {
+                    quest.RemovePlayer(this);
+                }
+            }
         }
 
         public void StartQuest(Quest quest)
@@ -255,6 +323,8 @@ namespace WotTK.Common.Players
                 if (quest.Finish(this))
                 {
                     quest.RemovePlayer(this);
+
+                    questProgressDict.Remove(quest.Id);
                 
                     activeQuests.Remove(quest);
 
@@ -263,6 +333,11 @@ namespace WotTK.Common.Players
             }
 
             return false;
+        }
+
+        public IEnumerable<Quest> GetActiveQuests()
+        {
+            return activeQuests;
         }
 
         public TDataType GetTaskProgress<TDataType>(string questId, string taskId)
@@ -289,7 +364,7 @@ namespace WotTK.Common.Players
             }
 
             var taskProgressDict = questProgressDict[questId];
-            taskProgressDict.Add(taskId, data);
+            taskProgressDict[taskId] = data;
         }
 
         public void ClearQuestProgress(string questId)
