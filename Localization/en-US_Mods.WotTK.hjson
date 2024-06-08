@@ -11,20 +11,12 @@ Items: {
 
 	DemonicBoneCrusher: {
 		DisplayName: Demonic Bone-Crusher
-		Tooltip:
-			'''
-			[c/FFD700:+1] Agility
-			Your Attacks will spawn bones!
-			'''
+		Tooltip: Your Attacks will spawn bones!
 	}
 
 	MaceofExpertise: {
 		DisplayName: Mace of Expertise
-		Tooltip:
-			'''
-			[c/FFD700:+1] Agility
-			Deals Sacred Damage on Hit, healing you 5hp per hit.
-			'''
+		Tooltip: Deals Sacred Damage on Hit, healing you 5hp per hit.
 	}
 
 	LevelShow: {
@@ -48,29 +40,17 @@ Items: {
 
 	DarkIronBar: {
 		DisplayName: Dark Iron Bar
-		Tooltip:
-			'''
-			Max Stack - 1000
-			Sell Price - [i/s5:72]
-			'''
+		Tooltip: ""
 	}
 
 	GoblinSmasher: {
 		DisplayName: Goblin Smasher
-		Tooltip:
-			'''
-			[c/87CEEB:Crafting Reagent]
-			Increases damage by [c/FFD700:50%] while invasion is active
-			'''
+		Tooltip: Increases damage by [c/FFD700:50%] while invasion is active
 	}
 
 	CrackedSledge: {
 		DisplayName: Cracked Sledge
-		Tooltip:
-			'''
-			[c/FFD700:+2] Agility
-			Huge Knockback, Summons rocks on hit.
-			'''
+		Tooltip: Huge Knockback, Summons rocks on hit.
 	}
 
 	DarkIronOreItem: {
@@ -120,31 +100,17 @@ Items: {
 
 	UnderworldBand: {
 		DisplayName: Underworld Band
-		Tooltip:
-			'''
-			[c/FFD700:+4] Agility
-			[c/FFD700:+3] Intellect
-			'''
+		Tooltip: ""
 	}
 
 	MysticBracelet: {
 		DisplayName: Mystic Bracelet
-		Tooltip:
-			'''
-			[c/FFD700:+8] Agility
-			[c/FFD700:+6] Strength
-			'''
+		Tooltip: ""
 	}
 
 	ArchaedicStone: {
 		DisplayName: Archaedic Stone
-		Tooltip:
-			'''
-			[c/FFD700:+15] Agility
-			[c/FFD700:+10] Strength
-			[c/FFD700:+10] Intellect
-			[c/FFD700:+25] Mana
-			'''
+		Tooltip: ""
 	}
 
 	BlackAnvil: {
@@ -161,11 +127,7 @@ Items: {
 
 	SmokedEyeShooter: {
 		DisplayName: Smoked Eye Shooter
-		Tooltip:
-			'''
-			[c/FFD700:+3] Intellect
-			Shoots a homing eye which splits into bloody fragments on impact
-			'''
+		Tooltip: Shoots a homing eye which splits into bloody fragments on impact
 	}
 
 	Blink: {
@@ -200,46 +162,22 @@ Items: {
 
 	WoolCloth: {
 		DisplayName: Wool Cloth
-		Tooltip:
-			'''
-			Requires [c/00FF00:Level 5]
-			[c/87CEEB:Crafting Reagent]
-			Max Stack - 1000
-			Sell Price - [i/s5:72]
-			'''
+		Tooltip: ""
 	}
 
 	SilkCloth: {
 		DisplayName: Silk Cloth
-		Tooltip:
-			'''
-			Requires [c/00FF00:Level 45]
-			[c/87CEEB:Crafting Reagent]
-			Max Stack - 1000
-			Sell Price - [i/s60:72]
-			'''
+		Tooltip: ""
 	}
 
 	MediumLeather: {
 		DisplayName: Medium Leather
-		Tooltip:
-			'''
-			Requires [c/00FF00:Level 15]
-			[c/87CEEB:Crafting Reagent]
-			Max Stack - 1000
-			Sell Price - [i/s25:72]
-			'''
+		Tooltip: ""
 	}
 
 	ThickLeather: {
 		DisplayName: Thick Leather
-		Tooltip:
-			'''
-			Requires [c/00FF00:Level 40]
-			[c/87CEEB:Crafting Reagent]
-			Max Stack - 1000
-			Sell Price - [i/s25:72]
-			'''
+		Tooltip: ""
 	}
 
 	OrdilWood: {
@@ -255,26 +193,17 @@ Items: {
 
 	DarkRuby: {
 		DisplayName: Dark Ruby
-		Tooltip:
-			'''
-			[c/FFD700:+8] Agility
-			[c/FFD700:+3] Life Regen
-			'''
+		Tooltip: ""
 	}
 
 	DarkBelt: {
 		DisplayName: Dark Belt
-		Tooltip:
-			'''
-			[c/FFD700:+10] Agility
-			[c/FFD700:+5] Summon Damage
-			[c/FFD700:+5] Summon Crit Chance
-			'''
+		Tooltip: ""
 	}
 
 	DarkIronGreatsword: {
 		DisplayName: Dark Iron Greatsword
-		Tooltip: "["
+		Tooltip: ""
 	}
 
 	BlackholeWand: {
@@ -284,23 +213,12 @@ Items: {
 
 	RingoftheDarkestDay: {
 		DisplayName: Ring of the Darkest Day
-		Tooltip:
-			'''
-			[c/FFD700:+10] Intellect
-			[c/FFD700:+5] Magic Damage
-			[c/FFD700:+7] Magic Crit Chance
-			'''
+		Tooltip: ""
 	}
 
 	DarkIronGauntlet: {
 		DisplayName: Dark Iron Gauntlet
-		Tooltip:
-			'''
-			[c/FFD700:+15] Agility
-			[c/FFD700:+8] Melee Speed
-			[c/FFD700:+7] Melee Damage
-			[c/FFD700:+7] Melee Crit Chance
-			'''
+		Tooltip: ""
 	}
 
 	LeatherworkingTable: {
@@ -388,6 +306,21 @@ Items: {
 
 	DisplayAttributes: {
 		DisplayName: Display Attributes
+		Tooltip: ""
+	}
+
+	LeatherBelt: {
+		DisplayName: Leather Belt
+		Tooltip: ""
+	}
+
+	LeatherGloves: {
+		DisplayName: Leather Gloves
+		Tooltip: ""
+	}
+
+	LeatherSheath: {
+		DisplayName: Leather Sheath
 		Tooltip: ""
 	}
 }

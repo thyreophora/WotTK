@@ -14,10 +14,9 @@ namespace WotTK.Content.Items.Accessories
     {
         public override int MinimalLevel => 35;
 
-        public int agility = 18;
-        public int stamina = 26;
-        public int armor = 24;
-        public int spirit = 15;
+        public int agility = 15;
+        public int stamina = 22;
+        public int armor = 18;
     
         public override void SetDefaults()
 		{
@@ -41,11 +40,6 @@ namespace WotTK.Content.Items.Accessories
             string staminaText = $"[c/FFFF00:+{stamina}] stamina";
             tooltips.Add(new TooltipLine(Mod, "Stamina", staminaText));
         }
-        if (spirit > 0)
-        {
-            string spiritText = $"[c/FFFF00:+{spirit}] spirit";
-            tooltips.Add(new TooltipLine(Mod, "Spirit", spiritText));
-        }
         if (armor > 0)
         {
             string armorText = $"[c/FFFF00:+{armor}] armor";
@@ -55,9 +49,9 @@ namespace WotTK.Content.Items.Accessories
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-			player.GetModPlayer<WotTKPlayer>().agility += 18;
-            player.GetModPlayer<WotTKPlayer>().stamina += 26;
-            player.GetModPlayer<WotTKPlayer>().armor += 24;
+			player.GetModPlayer<WotTKPlayer>().agility += 15;
+            player.GetModPlayer<WotTKPlayer>().stamina += 22;
+            player.GetModPlayer<WotTKPlayer>().armor += 18;
         }
 
         public override void AddRecipes()

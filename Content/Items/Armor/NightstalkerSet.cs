@@ -10,13 +10,34 @@ using WotTK.Content.Items.Materials;
 
 namespace WotTK.Content.Items.Armor
 {
+    public abstract class NightstalkerArmor : LevelLockedItem
+    {
+        public override void UpdateEquip(Player player)
+        {
+            player.GetModPlayer<WotTKPlayer>().armor += armor;
+            player.GetModPlayer<WotTKPlayer>().strength += strength;
+            player.GetModPlayer<WotTKPlayer>().agility += agility;
+
+            if (player.head == ModContent.ItemType<NightstalkerHoodie>() &&
+                player.body == ModContent.ItemType<NightstalkerCloak>() &&
+                player.legs == ModContent.ItemType<NightstalkerPants>())
+            {
+                player.GetModPlayer<WotTKPlayer>().strength += 50;
+            }
+        }
+
+        public int armor;
+        public int strength;
+        public int agility;
+    }
+
     [AutoloadEquip(EquipType.Head)]
     public class NightstalkerHoodie : LevelLockedItem
     {
         public override int MinimalLevel => 15;
         
-        public int armor = 16;
-        public int strength = 12;
+        public int armor = 9;
+        public int strength = 6;
         public int agility = 14;
 
         public override void SetDefaults()
@@ -57,8 +78,8 @@ namespace WotTK.Content.Items.Armor
 
         public override void UpdateEquip(Player player)
         {
-            player.GetModPlayer<WotTKPlayer>().armor += 16;
-            player.GetModPlayer<WotTKPlayer>().strength += 12;
+            player.GetModPlayer<WotTKPlayer>().armor += 9;
+            player.GetModPlayer<WotTKPlayer>().strength += 6;
             player.GetModPlayer<WotTKPlayer>().agility += 14;
         }
     }
@@ -68,9 +89,9 @@ namespace WotTK.Content.Items.Armor
     {
         public override int MinimalLevel => 15;
 
-        public int armor = 24;
-        public int strength = 18;
-        public int agility = 22;
+        public int armor = 14;
+        public int stamina = 12;
+        public int agility = 16;
 
         public override void SetDefaults()
         {
@@ -88,10 +109,10 @@ namespace WotTK.Content.Items.Armor
             string armorText = $"[c/FFFF00:+{armor}] armor";
             tooltips.Add(new TooltipLine(Mod, "Armor", armorText));
         }
-        if (strength > 0)
+        if (stamina > 0)
         {
-            string strengthText = $"[c/FFFF00:+{strength}] strength";
-            tooltips.Add(new TooltipLine(Mod, "Strength", strengthText));
+            string staminaText = $"[c/FFFF00:+{stamina}] stamina";
+            tooltips.Add(new TooltipLine(Mod, "Stamina", staminaText));
         }
         if (agility > 0)
         {
@@ -111,9 +132,9 @@ namespace WotTK.Content.Items.Armor
 
         public override void UpdateEquip(Player player)
         {
-            player.GetModPlayer<WotTKPlayer>().armor += 24;
-            player.GetModPlayer<WotTKPlayer>().strength += 18;
-            player.GetModPlayer<WotTKPlayer>().agility += 22;
+            player.GetModPlayer<WotTKPlayer>().armor += 14;
+            player.GetModPlayer<WotTKPlayer>().strength += 12;
+            player.GetModPlayer<WotTKPlayer>().agility += 16;
         }
     }
 
@@ -122,9 +143,8 @@ namespace WotTK.Content.Items.Armor
     {
         public override int MinimalLevel => 15;
 
-        public int armor = 18;
-        public int strength = 15;
-        public int agility = 18;
+        public int armor = 12;
+        public int agility = 14;
 
         public override void SetDefaults()
         {
@@ -141,11 +161,6 @@ namespace WotTK.Content.Items.Armor
             string armorText = $"[c/FFFF00:+{armor}] armor";
             tooltips.Add(new TooltipLine(Mod, "Armor", armorText));
         }
-        if (strength > 0)
-        {
-            string strengthText = $"[c/FFFF00:+{strength}] strength";
-            tooltips.Add(new TooltipLine(Mod, "Strength", strengthText));
-        }
         if (agility > 0)
         {
             string agilityText = $"[c/FFFF00:+{agility}] agility";
@@ -164,9 +179,8 @@ namespace WotTK.Content.Items.Armor
 
         public override void UpdateEquip(Player player)
         {
-            player.GetModPlayer<WotTKPlayer>().armor += 18;
-            player.GetModPlayer<WotTKPlayer>().strength += 15;
-            player.GetModPlayer<WotTKPlayer>().agility += 18;
+            player.GetModPlayer<WotTKPlayer>().armor += 12;
+            player.GetModPlayer<WotTKPlayer>().agility += 14;
         }
     }
 }

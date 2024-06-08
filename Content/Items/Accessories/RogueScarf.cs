@@ -2,7 +2,6 @@ using Terraria;
 using Terraria.ModLoader;
 using Terraria.ID;
 using WotTK.Common.Players;
-using Microsoft.Xna.Framework;
 using WotTK.Content.Items.Placeables;
 using WotTK.Content.Items.Materials;
 using System;
@@ -22,11 +21,12 @@ namespace WotTK.Content.Items.Accessories
             Item.accessory = true;
             Item.rare = ItemRarityID.Blue;
         }
+        public override void UpdateAccessory(Player player, bool hideVisual)
+        {
+            player.GetModPlayer<WotTKPlayer>().strength += 16;
+            player.GetModPlayer<WotTKPlayer>().stamina += 18;
 
-        		public override void UpdateAccessory(Player player, bool hideVisual) {
-
-
-			player.GetModPlayer<WotTKDash>().canDash = true;
+            player.GetModPlayer<WotTKDash>().canDash = true;
 		}
 
         public override void AddRecipes()

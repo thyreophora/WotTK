@@ -10,21 +10,21 @@ using System.Collections.Generic;
 
 namespace WotTK.Content.Items.Accessories
 {
-    [AutoloadEquip(EquipType.Shoes)]
-    public class LeatherBoots : LevelLockedItem
+    [AutoloadEquip(new EquipType[] { EquipType.HandsOn, EquipType.HandsOff })]
+    public class LeatherGloves : LevelLockedItem
     {
         
         public override int MinimalLevel => 3;
 
-        public int agility = 2;
-        public int stamina = 3;
-        public int armor = 1;
+        public int agility = 3;
+        public int stamina = 4;
+        public int armor = 2;
 
         public override void SetDefaults()
 		{
-			Item.width = 32;
-			Item.height = 32;
-            Item.value = Item.sellPrice(0, 0, 0, 30);
+			Item.width = 44;
+			Item.height = 34;
+            Item.value = Item.sellPrice(0, 0, 0, 25);
             Item.rare = ItemRarityID.LightRed;
 
             Item.accessory = true;
@@ -51,14 +51,16 @@ namespace WotTK.Content.Items.Accessories
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.GetModPlayer<WotTKPlayer>().agility += 2;
-            player.GetModPlayer<WotTKPlayer>().stamina += 3;
-            player.GetModPlayer<WotTKPlayer>().armor += 1;
+            player.autoReuseGlove = true;
+
+            player.GetModPlayer<WotTKPlayer>().agility += 3;
+            player.GetModPlayer<WotTKPlayer>().stamina += 4;
+            player.GetModPlayer<WotTKPlayer>().armor += 2;
         }
         public override void AddRecipes()
         {
             CreateRecipe()
-                .AddIngredient(ModContent.ItemType<LinenCloth>(), 3)
+                .AddIngredient(ModContent.ItemType<LinenCloth>(), 1)
                 .AddIngredient(ModContent.ItemType<MediumLeather>(), 3)
                 .AddIngredient(ItemID.FlinxFur, 2)
                 .AddTile<LeatherworkingTile>()
@@ -66,21 +68,4 @@ namespace WotTK.Content.Items.Accessories
                 .Register();
         }
     }
-
-	public class LeatherBootsPlayer : ModPlayer
-	{
-		public bool hasBoots = false;
-
-		public override void ResetEffects() => hasBoots = false;
-
-		public override void PostUpdateRunSpeeds()
-		{
-			if (hasBoots)
-			{
-				Player.runAcceleration *= 1.25f;
-				Player.maxRunSpeed += 0.1f;
-				Player.accRunSpeed += 0.05f;
-			}
-		}
-	}
 }

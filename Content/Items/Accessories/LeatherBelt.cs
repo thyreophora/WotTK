@@ -10,34 +10,30 @@ using System.Collections.Generic;
 
 namespace WotTK.Content.Items.Accessories
 {
-    public class DarkIronGauntlet : LevelLockedItem
+    public class LeatherBelt : LevelLockedItem
     {
-        public override int MinimalLevel => 35;
+        
+        public override int MinimalLevel => 3;
 
-        public int strength = 16;
-        public int armor = 14;
-        public int stamina = 18;
+        public int agility = 4;
+        public int stamina = 3;
 
         public override void SetDefaults()
 		{
-			Item.width = 28;
-			Item.height = 44;
-            Item.value = Item.sellPrice(silver: 1);
+			Item.width = 30;
+			Item.height = 32;
+            Item.value = Item.sellPrice(0, 0, 0, 25);
             Item.rare = ItemRarityID.LightRed;
 
             Item.accessory = true;
 		}
+
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            if (strength > 0)
+            if (agility > 0)
             {
-                string strengthText = $"[c/FFFF00:+{strength}] strength";
-                tooltips.Add(new TooltipLine(Mod, "Strength", strengthText));
-            }
-            if (armor > 0)
-            {
-                string armorText = $"[c/FFFF00:+{armor}] armor";
-                tooltips.Add(new TooltipLine(Mod, "Armor", armorText));
+                string agilityText = $"[c/FFFF00:+{agility}] agility";
+                tooltips.Add(new TooltipLine(Mod, "Agility", agilityText));
             }
             if (stamina > 0)
             {
@@ -45,19 +41,21 @@ namespace WotTK.Content.Items.Accessories
                 tooltips.Add(new TooltipLine(Mod, "Stamina", staminaText));
             }
         }
+
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.GetModPlayer<WotTKPlayer>().strength += 16;
-            player.GetModPlayer<WotTKPlayer>().armor += 14;
-            player.GetModPlayer<WotTKPlayer>().stamina += 18;
-        }
+            player.autoReuseGlove = true;
 
+            player.GetModPlayer<WotTKPlayer>().agility += 4;
+            player.GetModPlayer<WotTKPlayer>().stamina += 3;
+        }
         public override void AddRecipes()
         {
             CreateRecipe()
-                .AddIngredient(ModContent.ItemType<DarkIronBar>(), 8)
-                .AddIngredient(ModContent.ItemType<MediumLeather>(), 6)
-                .AddTile<BlackAnvilTile>()
+                .AddIngredient(ModContent.ItemType<LinenCloth>(), 1)
+                .AddIngredient(ModContent.ItemType<MediumLeather>(), 3)
+                .AddIngredient(ItemID.FlinxFur, 2)
+                .AddTile<LeatherworkingTile>()
                 .AddCondition(LevelLockedRecipe.ConstructRecipeCondition(MinimalLevel, out Func<bool> condition), condition)
                 .Register();
         }

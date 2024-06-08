@@ -14,43 +14,36 @@ namespace WotTK.Content.Items.Accessories
     {
         public override int MinimalLevel => 35;
 
-        public int agility = 15;
-        public int spirit = 22;
-        public int armor = 15;
+        public int spirit = 18;
+        public int intellect = 15;
 
         public override void SetDefaults()
 		{
 			Item.width = 28;
 			Item.height = 24;
-			Item.value = Item.sellPrice(0, 0, 40, 0);
+			Item.value = Item.sellPrice(0, 0, 15, 50);
 			Item.rare = ItemRarityID.LightRed;
 
             Item.accessory = true;
 		}
-    public override void ModifyTooltips(List<TooltipLine> tooltips)
-    {
-        if (agility > 0)
+        public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            string agilityText = $"[c/FFFF00:+{agility}] agility";
-            tooltips.Add(new TooltipLine(Mod, "Agility", agilityText));
+            if (spirit > 0)
+            {
+                string spiritText = $"[c/FFFF00:+{spirit}] spirit";
+                tooltips.Add(new TooltipLine(Mod, "Spirit", spiritText));
+            }
+            if (intellect > 0)
+            {
+                string intellectText = $"[c/FFFF00:+{intellect}] intellect";
+                tooltips.Add(new TooltipLine(Mod, "Intellect", intellectText));
+            }
         }
-        if (spirit > 0)
-        {
-            string spiritText = $"[c/FFFF00:+{spirit}] spirit";
-            tooltips.Add(new TooltipLine(Mod, "Spirit", spiritText));
-        }
-        if (armor > 0)
-        {
-            string armorText = $"[c/FFFF00:+{armor}] armor";
-            tooltips.Add(new TooltipLine(Mod, "Armor", armorText));
-        }
-    }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-			player.GetModPlayer<WotTKPlayer>().agility += 15;
-            player.GetModPlayer<WotTKPlayer>().spirit += 22;
-            player.GetModPlayer<WotTKPlayer>().armor += 15;
+            player.GetModPlayer<WotTKPlayer>().spirit += 18;
+            player.GetModPlayer<WotTKPlayer>().intellect += 15;
         }
 
         public override void AddRecipes()
