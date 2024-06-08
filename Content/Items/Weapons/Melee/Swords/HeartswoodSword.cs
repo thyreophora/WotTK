@@ -21,6 +21,8 @@ namespace WotTK.Content.Items.Weapons.Melee.Swords
         }
         public override void SetDefaults()
         {
+            base.SetDefaults();
+
             Item.width = 26;
             Item.height = 36;
             Item.damage = 15;

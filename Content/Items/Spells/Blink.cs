@@ -15,6 +15,8 @@ namespace WotTK.Content.Items.Spells
 
         public override void SetDefaults()
         {
+            base.SetDefaults();
+
             Item.rare = ItemRarityID.Pink;
             Item.width = 64;
             Item.height = 64;

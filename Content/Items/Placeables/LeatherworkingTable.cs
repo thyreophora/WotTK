@@ -22,6 +22,8 @@ namespace WotTK.Content.Items.Placeables
 
         public override void SetDefaults()
         {
+            base.SetDefaults();
+
             Item.width = 38;
             Item.height = 20;
             Item.maxStack = 99;

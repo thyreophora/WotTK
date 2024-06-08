@@ -21,6 +21,8 @@ namespace WotTK.Content.Items.Weapons.Magic.Staffs
         }
         public override void SetDefaults()
         {
+            base.SetDefaults();
+
             Item.width = 46;
             Item.height = 42;
             Item.value = 10000;

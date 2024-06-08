@@ -19,8 +19,10 @@ namespace WotTK.Content.Items.Accessories
         public int stamina = 18;
 
         public override void SetDefaults()
-		{
-			Item.width = 28;
+        {
+            base.SetDefaults();
+
+            Item.width = 28;
 			Item.height = 44;
             Item.value = Item.sellPrice(silver: 1);
             Item.rare = ItemRarityID.LightRed;

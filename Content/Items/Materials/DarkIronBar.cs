@@ -17,6 +17,8 @@ namespace WotTK.Content.Items.Materials
 
         public override void SetDefaults()
         {
+            base.SetDefaults();
+
             Item.width = 26;
             Item.height = 16;
             Item.maxStack = 9999;

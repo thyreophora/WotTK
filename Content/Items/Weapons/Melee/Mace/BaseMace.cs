@@ -29,6 +29,8 @@ namespace WotTK.Content.Items.Weapons.Melee.Mace
         public override bool IsWeapon => true;
         public override void SetDefaults()
         {
+            base.SetDefaults();
+
             Item.DamageType = ModContent.GetInstance<PaladinDamageType>();
 
             Item.useTime = Item.useAnimation = MaceUseTime;
