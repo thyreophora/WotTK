@@ -104,6 +104,8 @@ namespace WotTK.Common.Globals
 			// fuck not being able to grapple level 1 - I'm adding this and fuck you guys.
             if (item.type == ItemID.GrapplingHook)
                 MinimalLevel = 0;
+            if (item.type == ItemID.BabyBirdStaff)
+                MinimalLevel = 0;
 
             // is it nessecery? probably not, but this place is for specific, PER ITEM level requirements
             if (item.type == ItemID.WoodenSword)
