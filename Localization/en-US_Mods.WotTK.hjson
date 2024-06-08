@@ -48,17 +48,29 @@ Items: {
 
 	DarkIronBar: {
 		DisplayName: Dark Iron Bar
-		Tooltip: ""
+		Tooltip:
+			'''
+			Max Stack - 1000
+			Sell Price - [i/s5:72]
+			'''
 	}
 
 	GoblinSmasher: {
 		DisplayName: Goblin Smasher
-		Tooltip: ""
+		Tooltip:
+			'''
+			[c/87CEEB:Crafting Reagent]
+			Increases damage by [c/FFD700:50%] while invasion is active
+			'''
 	}
 
 	CrackedSledge: {
 		DisplayName: Cracked Sledge
-		Tooltip: ""
+		Tooltip:
+			'''
+			[c/FFD700:+2] Agility
+			Huge Knockback, Summons rocks on hit.
+			'''
 	}
 
 	DarkIronOreItem: {
@@ -108,17 +120,31 @@ Items: {
 
 	UnderworldBand: {
 		DisplayName: Underworld Band
-		Tooltip: ""
+		Tooltip:
+			'''
+			[c/FFD700:+4] Agility
+			[c/FFD700:+3] Intellect
+			'''
 	}
 
 	MysticBracelet: {
 		DisplayName: Mystic Bracelet
-		Tooltip: ""
+		Tooltip:
+			'''
+			[c/FFD700:+8] Agility
+			[c/FFD700:+6] Strength
+			'''
 	}
 
 	ArchaedicStone: {
 		DisplayName: Archaedic Stone
-		Tooltip: ""
+		Tooltip:
+			'''
+			[c/FFD700:+15] Agility
+			[c/FFD700:+10] Strength
+			[c/FFD700:+10] Intellect
+			[c/FFD700:+25] Mana
+			'''
 	}
 
 	BlackAnvil: {
@@ -174,22 +200,46 @@ Items: {
 
 	WoolCloth: {
 		DisplayName: Wool Cloth
-		Tooltip: ""
+		Tooltip:
+			'''
+			Requires [c/00FF00:Level 5]
+			[c/87CEEB:Crafting Reagent]
+			Max Stack - 1000
+			Sell Price - [i/s5:72]
+			'''
 	}
 
 	SilkCloth: {
 		DisplayName: Silk Cloth
-		Tooltip: ""
+		Tooltip:
+			'''
+			Requires [c/00FF00:Level 45]
+			[c/87CEEB:Crafting Reagent]
+			Max Stack - 1000
+			Sell Price - [i/s60:72]
+			'''
 	}
 
 	MediumLeather: {
 		DisplayName: Medium Leather
-		Tooltip: ""
+		Tooltip:
+			'''
+			Requires [c/00FF00:Level 15]
+			[c/87CEEB:Crafting Reagent]
+			Max Stack - 1000
+			Sell Price - [i/s25:72]
+			'''
 	}
 
 	ThickLeather: {
 		DisplayName: Thick Leather
-		Tooltip: ""
+		Tooltip:
+			'''
+			Requires [c/00FF00:Level 40]
+			[c/87CEEB:Crafting Reagent]
+			Max Stack - 1000
+			Sell Price - [i/s25:72]
+			'''
 	}
 
 	OrdilWood: {
@@ -205,17 +255,26 @@ Items: {
 
 	DarkRuby: {
 		DisplayName: Dark Ruby
-		Tooltip: ""
+		Tooltip:
+			'''
+			[c/FFD700:+8] Agility
+			[c/FFD700:+3] Life Regen
+			'''
 	}
 
 	DarkBelt: {
 		DisplayName: Dark Belt
-		Tooltip: ""
+		Tooltip:
+			'''
+			[c/FFD700:+10] Agility
+			[c/FFD700:+5] Summon Damage
+			[c/FFD700:+5] Summon Crit Chance
+			'''
 	}
 
 	DarkIronGreatsword: {
 		DisplayName: Dark Iron Greatsword
-		Tooltip: ""
+		Tooltip: "["
 	}
 
 	BlackholeWand: {
@@ -225,12 +284,23 @@ Items: {
 
 	RingoftheDarkestDay: {
 		DisplayName: Ring of the Darkest Day
-		Tooltip: ""
+		Tooltip:
+			'''
+			[c/FFD700:+10] Intellect
+			[c/FFD700:+5] Magic Damage
+			[c/FFD700:+7] Magic Crit Chance
+			'''
 	}
 
 	DarkIronGauntlet: {
 		DisplayName: Dark Iron Gauntlet
-		Tooltip: ""
+		Tooltip:
+			'''
+			[c/FFD700:+15] Agility
+			[c/FFD700:+8] Melee Speed
+			[c/FFD700:+7] Melee Damage
+			[c/FFD700:+7] Melee Crit Chance
+			'''
 	}
 
 	LeatherworkingTable: {
@@ -296,11 +366,6 @@ Items: {
 		Tooltip: ""
 	}
 
-	DisplayAttributes: {
-		DisplayName: Display Attributes
-		Tooltip: ""
-	}
-
 	NightstalkerCloak: {
 		DisplayName: Nightstalker Cloak
 		Tooltip: ""
@@ -318,6 +383,11 @@ Items: {
 
 	WoolBandage: {
 		DisplayName: Wool Bandage
+		Tooltip: ""
+	}
+
+	DisplayAttributes: {
+		DisplayName: Display Attributes
 		Tooltip: ""
 	}
 }
@@ -451,6 +521,25 @@ Buffs: {
 	BandageBuff: {
 		DisplayName: Bandage Buff
 		Description: Mods.WotTK.Buffs.BandageBuff.Description
+	}
+}
+
+Quests: {
+	Common: {
+		FetchTask: {
+			Title: "{0} x{1}"
+			Description: Have {0} x{1} in your inventory
+		}
+
+		SlayTask: {
+			Title: "{0} x{1}"
+			Description: Kill {0} x{1}
+		}
+
+		ItemReward: {
+			Title: "{0} x{1}"
+			Description: You will be given {0} x{1}
+		}
 	}
 }
 

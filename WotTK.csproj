@@ -8,6 +8,4 @@
   <ItemGroup>
     <None Remove="Content\Items\Test\LevelUp.png" />
   </ItemGroup>
-  <ItemGroup>
-  </ItemGroup>
 </Project>
