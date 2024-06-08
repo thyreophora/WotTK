@@ -17,6 +17,8 @@ namespace WotTK.Content.Items.Accessories
 
         public override void SetDefaults()
         {
+            base.SetDefaults();
+
             Item.width = 30;
             Item.height = 26;
             Item.accessory = true;

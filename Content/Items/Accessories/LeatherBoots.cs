@@ -16,7 +16,9 @@ namespace WotTK.Content.Items.Accessories
         public override int MinimalLevel => 3;
         public override void SetDefaults()
 		{
-			Item.width = 32;
+            base.SetDefaults();
+
+            Item.width = 32;
 			Item.height = 32;
             Item.value = Item.sellPrice(silver: 1);
             Item.rare = ItemRarityID.LightRed;

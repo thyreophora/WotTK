@@ -3,16 +3,33 @@ using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ModLoader;
+using WotTK.Common.Globals;
 using WotTK.Common.Players;
 using WotTK.Utilities;
 
 namespace WotTK.Content
 {
+    // Remember to call base.SetDefaults();
     public abstract class LevelLockedItem : ModItem
     {
         public virtual int MinimalLevel => 0;
         public virtual bool IsWeapon => false;
         public int GetLevel(Player player) => player.WotTKPlayer().playerLevel;
+        public override void SetDefaults()
+        {
+            // inherits from the base ModItem so it doesn't need a base call, but all children do.
+            Item.GetGlobalItem<LevelLockedItemSystem>().MinimalLevel = MinimalLevel;
+            Item.GetGlobalItem<LevelLockedItemSystem>().LevelSet = true;
+        }
+
+        /*
+        public override void SetDefaults()
+        {
+            base.SetDefaults();
+            Item.GetGlobalItem<LevelLockedItemSystem>().MinimalLevel = this.MinimalLevel;
+        }
+        */
+        /*
         public override bool CanUseItem(Player player)
         {
             int level = player.WotTKPlayer().playerLevel;
@@ -115,5 +132,6 @@ namespace WotTK.Content
                 }
             }
         }
+        */
     }
 }

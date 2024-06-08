@@ -21,6 +21,8 @@ namespace WotTK.Content.Items.Armor
 
         public override void SetDefaults()
         {
+            base.SetDefaults();
+
             Item.width = 18;
             Item.height = 22;
             Item.value = Item.sellPrice(silver: 5);
@@ -74,6 +76,7 @@ namespace WotTK.Content.Items.Armor
 
         public override void SetDefaults()
         {
+            base.SetDefaults();
 
             Item.width = 30;
             Item.height = 24;
@@ -128,6 +131,8 @@ namespace WotTK.Content.Items.Armor
 
         public override void SetDefaults()
         {
+            base.SetDefaults();
+
             Item.width = 24;
             Item.height = 14;
             Item.value = Item.sellPrice(silver: 7);
