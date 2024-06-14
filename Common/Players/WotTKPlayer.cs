@@ -73,7 +73,6 @@ namespace WotTK.Common.Players
             }
             return max;
         }
-
         public bool CanUseIfLevelIs(int minlevel) => playerLevel >= minlevel;
 
         public override void ResetEffects()

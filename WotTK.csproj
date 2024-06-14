@@ -6,6 +6,12 @@
     <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Remove="decompiled player.cs" />
+  </ItemGroup>
+  <ItemGroup>
     <None Remove="Content\Items\Test\LevelUp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="decompiled player.cs" />
   </ItemGroup>
 </Project>
