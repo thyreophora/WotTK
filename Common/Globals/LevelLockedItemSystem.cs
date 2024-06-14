@@ -46,8 +46,10 @@ namespace WotTK.Common.Globals
 			switch (item.rare)
 			{
 				case (int)ItemRarityID.Gray: // -1
+                    MinimalLevel = 0;
+                    break;
                 case (int)ItemRarityID.White:
-					MinimalLevel = 0;
+					MinimalLevel = 5; // we do a little trolling
 					break;
 				case (int)ItemRarityID.Blue:
 					MinimalLevel = 15;
