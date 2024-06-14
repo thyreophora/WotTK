@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ModLoader;
-using WotTK.Common.Players;
+//using WotTK.Common.Players;
 using WotTK.Utilities;
 using Terraria.ID;
-using System;
+//using System;
 
 namespace WotTK.Common.Globals
 {
@@ -143,7 +143,7 @@ namespace WotTK.Common.Globals
 			int index = tooltips.FindLastIndex(tt => tt.Mod.Equals("Terraria") && tt.Name.Equals("Tooltip0"));
 			if (index == -1) 
 			{
-				TooltipLine item2 = new TooltipLine(Mod, "PlaceHolder", "test Text")
+				TooltipLine item2 = new TooltipLine(Mod, "PlaceHolder", "Fuck You, Thyreo.")
 				{
 					OverrideColor = Color.White
 				};

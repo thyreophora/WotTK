@@ -12,8 +12,7 @@ namespace WotTK.Content.Items.Accessories
 {
     public class LeatherSheath : LevelLockedItem
     {
-        
-        public override int MinimalLevel => 5;
+        public override int MinimalLevel => 3;
 
         public int agility = 4;
         public int strength = 6;
@@ -21,10 +20,12 @@ namespace WotTK.Content.Items.Accessories
 
         public override void SetDefaults()
 		{
-			Item.width = 42;
+            base.SetDefaults();
+
+            Item.width = 42;
 			Item.height = 50;
             Item.value = Item.sellPrice(0, 0, 0, 45);
-            Item.rare = ItemRarityID.LightRed;
+            Item.rare = ItemRarityID.Blue;
 
             Item.accessory = true;
 		}

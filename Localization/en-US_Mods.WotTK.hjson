@@ -357,6 +357,7 @@ Projectiles: {
 	TheUnstoppableForceProj.DisplayName: The Unstoppable Force Proj
 	SmookedTrail.DisplayName: Smooked Trail
 	SprintTrail.DisplayName: Sprint Trail
+	MaceofExpertiseThrowProj.DisplayName: Maceof Expertise Throw Proj
 }
 
 Events.LevelUp: Level Up: now {0} level

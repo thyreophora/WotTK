@@ -14,11 +14,11 @@ namespace WotTK.Content.Items.Accessories
     public class LeatherBoots : LevelLockedItem
     {
         
-        public override int MinimalLevel => 3;
+        public override int MinimalLevel => 1;
 
-        public int agility = 2;
-        public int stamina = 3;
-        public int armor = 1;
+        public int agility = 7;
+        public int stamina = 4;
+        public int armor = 3;
 
         public override void SetDefaults()
 		{
