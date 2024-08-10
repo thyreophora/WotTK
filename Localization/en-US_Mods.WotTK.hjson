@@ -323,6 +323,11 @@ Items: {
 		DisplayName: Leather Sheath
 		Tooltip: ""
 	}
+
+	LeatherworkingTool: {
+		Tooltip: ""
+		DisplayName: Leatherworking Tool
+	}
 }
 
 Projectiles: {
@@ -477,4 +482,7 @@ Quests: {
 	}
 }
 
-Misc.LevelRecipeCondition: Need {0} level
+Misc: {
+	LevelRecipeCondition: Need {0} level
+	LeatherworkingToolCondition: Requires Leatherworking Tool
+}

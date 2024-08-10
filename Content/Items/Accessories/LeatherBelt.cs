@@ -51,12 +51,16 @@ namespace WotTK.Content.Items.Accessories
         }
         public override void AddRecipes()
         {
+            int requiredTool = ModContent.ItemType<Content.Items.Tools.LeatherworkingTool>();
+
             CreateRecipe()
                 .AddIngredient(ModContent.ItemType<LinenCloth>(), 1)
                 .AddIngredient(ModContent.ItemType<MediumLeather>(), 3)
                 .AddIngredient(ItemID.FlinxFur, 2)
                 .AddTile<LeatherworkingTile>()
                 .AddCondition(LevelLockedRecipe.ConstructRecipeCondition(MinimalLevel, out Func<bool> condition), condition)
+
+                .AddCondition(LeatherworkingToolCondition.ConstructLeatherworkingToolCondition(requiredTool, out Func<bool> toolCondition), toolCondition)
                 .Register();
         }
     }

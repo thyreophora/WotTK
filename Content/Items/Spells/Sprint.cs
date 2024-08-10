@@ -4,6 +4,8 @@ using Terraria;
 using Terraria.ID;
 using Terraria.Audio;
 using Terraria.ModLoader;
+using Terraria.DataStructures;
+using WotTK.Mechanics.PrimitiveTrails;
 
 namespace WotTK.Content.Items.Spells
 {
@@ -78,6 +80,9 @@ namespace WotTK.Content.Items.Spells
 
     public class SprintTrail : ModProjectile
     {
+        private PrimitiveTrail trail;
+        private Texture2D trailTexture;
+
         public override void SetStaticDefaults()
         {
             Main.projFrames[Projectile.type] = 20;
@@ -85,18 +90,40 @@ namespace WotTK.Content.Items.Spells
 
         public override void SetDefaults()
         {
-            Projectile.width = 1;
+            Projectile.width = 32;
             Projectile.height = 32;
             Projectile.friendly = true;
-            Projectile.timeLeft = 60; // Adjust this value as needed
+            Projectile.timeLeft = 60; // Ajusta este valor según sea necesario
             Projectile.alpha = 255;
 
             ProjectileID.Sets.TrailingMode[Projectile.type] = 2;
             ProjectileID.Sets.TrailCacheLength[Projectile.type] = 90;
         }
 
+        public override void OnSpawn(IEntitySource source)
+        {
+            trailTexture = ModContent.Request<Texture2D>("WotTK/Content/Items/Spells/SprintTrail").Value;
+            trail = new PrimitiveTrail(trailTexture);
+        }
+
         public override void AI()
         {
+            if (++Projectile.frameCounter > 8)
+            {
+                Projectile.frameCounter = 0;
+                Projectile.frame = ++Projectile.frame % Main.projFrames[Type];
+            }
+
+            Lighting.AddLight(Projectile.Center, (255 - Projectile.alpha) * .025f / 255f, (255 - Projectile.alpha) * .25f / 255f, (255 - Projectile.alpha) * .05f / 255f);
+
+            Player player = Main.player[Projectile.owner];
+            Vector2 newPosition = player.Center - new Vector2(Projectile.width / 2, Projectile.height / 2);
+
+            trail.AddPoint(newPosition);
+
+            if (Projectile.velocity != Vector2.Zero)
+                Projectile.rotation = Projectile.velocity.ToRotation();
+
             Projectile.alpha -= 25;
             if (Projectile.alpha < 0)
             {
@@ -108,14 +135,7 @@ namespace WotTK.Content.Items.Spells
 
         public override bool PreDraw(ref Color lightColor)
         {
-            SpriteBatch spriteBatch = Main.spriteBatch;
-            Texture2D texture = ModContent.Request<Texture2D>("WotTK/Content/Items/Spells/SprintTrail").Value;
-            Vector2 drawOrigin = new Vector2(texture.Width / 2, texture.Height / 2);
-            Vector2 drawPosition = Projectile.position - Main.screenPosition + drawOrigin;
-
-            Color color = Color.White * 0.5f * (1f - (Projectile.alpha / 255f)); 
-
-            spriteBatch.Draw(texture, drawPosition, null, color, Projectile.rotation, drawOrigin, Projectile.scale, SpriteEffects.None, 0f);
+            trail.Draw(Main.spriteBatch);
             return false;
         }
     }
