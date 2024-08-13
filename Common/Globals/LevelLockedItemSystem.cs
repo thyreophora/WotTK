@@ -49,28 +49,28 @@ namespace WotTK.Common.Globals
                     MinimalLevel = 0;
                     break;
                 case (int)ItemRarityID.White:
-					MinimalLevel = 5; // we do a little trolling
+					MinimalLevel = 0; // we do a little trolling
 					break;
 				case (int)ItemRarityID.Blue:
-					MinimalLevel = 15;
+					MinimalLevel = 5;
 					break;
 				case (int)ItemRarityID.Green:
-					MinimalLevel = 20;
+					MinimalLevel = 10;
 					break;
 				case (int)ItemRarityID.Orange:
-					MinimalLevel = 30;
+					MinimalLevel = 15;
 					break;
 				case (int)ItemRarityID.LightRed:
-					MinimalLevel = 40;
+					MinimalLevel = 25;
 					break;
 				case (int)ItemRarityID.Pink:
-					MinimalLevel = 50;
+					MinimalLevel = 35;
 					break;
 				case (int)ItemRarityID.LightPurple:
-					MinimalLevel = 55;
+					MinimalLevel = 45;
 					break;
 				case (int)ItemRarityID.Lime:
-					MinimalLevel = 60;
+					MinimalLevel = 55;
 					break;
 				case (int)ItemRarityID.Yellow:
 					MinimalLevel = 65;
@@ -145,7 +145,7 @@ namespace WotTK.Common.Globals
 			int index = tooltips.FindLastIndex(tt => tt.Mod.Equals("Terraria") && tt.Name.Equals("Tooltip0"));
 			if (index == -1) 
 			{
-				TooltipLine item2 = new TooltipLine(Mod, "PlaceHolder", "Fuck You, Thyreo.")
+				TooltipLine item2 = new TooltipLine(Mod, "PlaceHolder", "Fuck You, Thyreophora!!!! you're a fucking whore!'.") // ignore this, i deserve it lmfao
 				{
 					OverrideColor = Color.White
 				};

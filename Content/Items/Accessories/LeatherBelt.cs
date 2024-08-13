@@ -20,10 +20,12 @@ namespace WotTK.Content.Items.Accessories
 
         public override void SetDefaults()
 		{
+            base.SetDefaults();
+
 			Item.width = 30;
 			Item.height = 32;
             Item.value = Item.sellPrice(0, 0, 0, 25);
-            Item.rare = ItemRarityID.LightRed;
+            Item.rare = ItemRarityID.Blue;
 
             Item.accessory = true;
 		}
