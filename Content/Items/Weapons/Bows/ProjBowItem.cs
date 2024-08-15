@@ -26,7 +26,7 @@ namespace WotTK.Content.Items.Weapons.Bows
             Item.useTime = 13;
             Item.width = 54;
             Item.height = 14;
-            Item.shoot = ModContent.ProjectileType<VenomspitterProj>();
+            Item.shoot = ModContent.ProjectileType<ProjBowProj>();
             Item.noMelee = true;
             Item.value = Item.sellPrice(0, 15);
             Item.rare = ItemRarityID.Orange;
