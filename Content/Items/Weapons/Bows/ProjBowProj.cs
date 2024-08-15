@@ -125,26 +125,26 @@ namespace WotTK.Content.Items.Weapons.Bows
             Projectile.velocity = aim;
         }
 
-        private void HandleShooting(Vector2 source)
-        {
-            if (chargeLevel > 0)
-            {
-                Vector2 shootDirection = Projectile.velocity;
-                shootDirection.Normalize();
-                shootDirection *= 10f + chargeLevel * 2.4f; 
+     private void HandleShooting(Vector2 source)
+     {
+         if (chargeLevel > 0)
+         {
+             Vector2 shootDirection = Projectile.velocity;
+             shootDirection.Normalize();
+             shootDirection *= 10f + chargeLevel * 2.4f; 
 
-                Vector2 spawnPos = source + shootDirection * 4f;
+             Vector2 spawnPos = source;
 
-                int damage = Projectile.damage + chargeLevel * 6; 
-                Projectile.NewProjectile(Projectile.GetSource_FromThis(), spawnPos, shootDirection, ModContent.ProjectileType<PoisonArrow>(), damage, Projectile.knockBack, Projectile.owner);
-                SoundEngine.PlaySound(SoundID.Item5, Projectile.position);
-                for (int i = 0; i < chargeLevel * 2; i++)
-                {
-                    Vector2 dustPos = Projectile.Center + Vector2.UnitX.RotatedByRandom(MathHelper.TwoPi) * Projectile.width / 2;
-                    Dust.NewDustPerfect(dustPos, DustID.GreenMoss, null, 0, default, 1.5f);
-                }
-            }
-        }
+             int damage = Projectile.damage + chargeLevel * 6; 
+             Projectile.NewProjectile(Projectile.GetSource_FromThis(), spawnPos, shootDirection, ModContent.ProjectileType<PoisonArrow>(), damage, Projectile.knockBack, Projectile.owner);
+             SoundEngine.PlaySound(SoundID.Item5, Projectile.position);
+             for (int i = 0; i < chargeLevel * 2; i++)
+             {
+                 Vector2 dustPos = Projectile.Center + Vector2.UnitX.RotatedByRandom(MathHelper.TwoPi) * Projectile.width / 2;
+                 Dust.NewDustPerfect(dustPos, DustID.GreenMoss, null, 0, default, 1.5f);
+             }
+         }
+     }
 
         public override bool PreDraw(ref Color lightColor)
         {
