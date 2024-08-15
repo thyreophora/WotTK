@@ -13,7 +13,7 @@ namespace WotTK.Content.Items.Weapons.Bows
         public override void SetStaticDefaults()
         {
             ProjectileID.Sets.TrailCacheLength[Projectile.type] = 12;
-            ProjectileID.Sets.TrailingMode[Projectile.type] = 0;
+            ProjectileID.Sets.TrailingMode[Projectile.type] = 2;
         }
         public override void SetDefaults()
         {
@@ -53,7 +53,6 @@ namespace WotTK.Content.Items.Weapons.Bows
             base.OnHitNPC(target, hit, damageDone);
         }
 
-
         public override bool PreDraw(ref Color lightColor)
         {
             Texture2D texture = ModContent.Request<Texture2D>(Texture).Value;
@@ -61,7 +60,7 @@ namespace WotTK.Content.Items.Weapons.Bows
             int y3 = num156 * Projectile.frame;
             Rectangle rectangle = new(0, y3, texture.Width, num156);
             Vector2 origin2 = rectangle.Size() / 2f;
-            SpriteEffects effects = (Projectile.spriteDirection == -1) ? SpriteEffects.FlipVertically : SpriteEffects.None;
+            SpriteEffects effects = (Projectile.spriteDirection == -1) ? SpriteEffects.None : SpriteEffects.FlipHorizontally;
             for (int i = 0; i < ProjectileID.Sets.TrailCacheLength[Projectile.type]; i++)
             {
                 Color color27 = Color.DarkGreen * Projectile.Opacity * 0.75f * 0.5f;
