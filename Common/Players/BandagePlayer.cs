@@ -28,8 +28,8 @@ namespace WotTK.Common.Players
 
         public override void OnHurt(Player.HurtInfo info)
         {
-            bandageData.HealsLeft = 0;
-            bandageData.HealAmount = 0;
+            Initialize();
+            Player.channel = false;
         }
 
         // is called after buffs update
@@ -43,6 +43,10 @@ namespace WotTK.Common.Players
                 Player.Heal(current_heal);
 
                 Player.AddBuff(ModContent.BuffType<BandageBuff>(), 60);
+                if (0 == bandageData.HealsLeft)
+                {
+                    Player.channel = false;
+                }
             }
         }
     }

@@ -25,8 +25,8 @@ namespace WotTK.Content.Items.Consumables.Abstract
             Item.width = 24;
             Item.height = 24;
             Item.rare = ItemRarityID.Purple;
-            Item.useStyle = ItemUseStyleID.DrinkLiquid;
-            Item.useAnimation = 15;
+            Item.useStyle = ItemUseStyleID.MowTheLawn;
+            Item.useAnimation = time * 60;
             Item.useTime = time * 60;
             Item.useTurn = true;
             Item.UseSound = SoundID.Item3;
@@ -38,7 +38,7 @@ namespace WotTK.Content.Items.Consumables.Abstract
         public override bool CanUseItem(Player player)
         {
             // TODO: replace with buff in the UseItem function
-            return !player.HasBuff(BuffID.PotionSickness);
+            return true;//!player.HasBuff(BuffID.PotionSickness);
         }
         public override bool? UseItem(Player player)
         {
@@ -47,6 +47,7 @@ namespace WotTK.Content.Items.Consumables.Abstract
 
             player.GetModPlayer<BandagePlayer>().bandageData.HealAmount = heal_amount;
             player.GetModPlayer<BandagePlayer>().bandageData.HealsLeft = healing_time;
+            player.channel = true;
             return true;
         }
     }
