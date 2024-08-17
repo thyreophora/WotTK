@@ -38,7 +38,7 @@ namespace WotTK.Content.Items.Consumables.Abstract
         public override bool CanUseItem(Player player)
         {
             // TODO: replace with buff in the UseItem function
-            return true;//!player.HasBuff(BuffID.PotionSickness);
+            return !player.HasBuff(BuffID.PotionSickness);
         }
         public override bool? UseItem(Player player)
         {
