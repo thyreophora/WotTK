@@ -328,6 +328,11 @@ Items: {
 		Tooltip: ""
 		DisplayName: Leatherworking Tool
 	}
+
+	ProjBowItem: {
+		DisplayName: Proj Bow Item
+		Tooltip: ""
+	}
 }
 
 Projectiles: {
@@ -363,6 +368,8 @@ Projectiles: {
 	SmookedTrail.DisplayName: Smooked Trail
 	SprintTrail.DisplayName: Sprint Trail
 	MaceofExpertiseThrowProj.DisplayName: Maceof Expertise Throw Proj
+	PoisonArrow.DisplayName: Poison Arrow
+	ProjBowProj.DisplayName: Proj Bow Proj
 }
 
 Events.LevelUp: Level Up: now {0} level
