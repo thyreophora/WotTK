@@ -26,6 +26,12 @@ namespace WotTK.Common.Players
             bandageData.HealAmount = 0;
         }
 
+        public override void OnHurt(Player.HurtInfo info)
+        {
+            bandageData.HealsLeft = 0;
+            bandageData.HealAmount = 0;
+        }
+
         // is called after buffs update
         public override void PostUpdateBuffs()
         {
