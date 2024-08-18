@@ -28,8 +28,11 @@ namespace WotTK.Common.Players
 
         public override void OnHurt(Player.HurtInfo info)
         {
-            Initialize();
-            Player.channel = false;
+            if (0 < bandageData.HealsLeft)
+            {
+                Initialize();
+                Player.channel = false;
+            }
         }
 
         // is called after buffs update
