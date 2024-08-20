@@ -18,20 +18,21 @@ namespace WotTK.Content.Items.Consumables.Abstract
         {
             DefaultBandage();
         }
-        public void DefaultBandage(int time = 60, int amount = 100)
+        public void DefaultBandage(float time = 60, int amount = 100)
         {
+            int timeInTicks = (int)(time * 60);
             Item.consumable = true;
             Item.maxStack = 69;
             Item.width = 24;
             Item.height = 24;
             Item.rare = ItemRarityID.Purple;
             Item.useStyle = ItemUseStyleID.MowTheLawn;
-            Item.useAnimation = time * 60;
-            Item.useTime = time * 60;
+            Item.useAnimation = timeInTicks;
+            Item.useTime = timeInTicks;
             Item.useTurn = true;
             Item.UseSound = SoundID.Item3;
 
-            healing_time = time;
+            healing_time = timeInTicks;
             heal_amount = amount;
         }
 
@@ -43,10 +44,10 @@ namespace WotTK.Content.Items.Consumables.Abstract
         public override bool? UseItem(Player player)
         {
             player.AddBuff(BuffID.PotionSickness, 60 * 60);
-            player.AddBuff(ModContent.BuffType<BandageBuff>(), 60);
+            player.AddBuff(ModContent.BuffType<BandageBuff>(), BandagePlayer.heal_interval);
 
             player.GetModPlayer<BandagePlayer>().bandageData.HealAmount = heal_amount;
-            player.GetModPlayer<BandagePlayer>().bandageData.HealsLeft = healing_time;
+            player.GetModPlayer<BandagePlayer>().bandageData.HealsLeft = healing_time / BandagePlayer.heal_interval;
             player.channel = true;
             return true;
         }

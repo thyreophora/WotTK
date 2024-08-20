@@ -12,6 +12,7 @@ namespace WotTK.Common.Players
 {
     public class BandagePlayer : ModPlayer
     {
+        public static int heal_interval = 6;
         public struct BandageData
         {
             public int HealAmount;
@@ -45,7 +46,7 @@ namespace WotTK.Common.Players
                 bandageData.HealAmount -= current_heal;
                 Player.Heal(current_heal);
 
-                Player.AddBuff(ModContent.BuffType<BandageBuff>(), 60);
+                Player.AddBuff(ModContent.BuffType<BandageBuff>(), heal_interval);
                 if (0 == bandageData.HealsLeft)
                 {
                     Player.channel = false;
